@@ -129,13 +129,13 @@ bid.老虎机 = "com.igs.fafafa"
 --newidfa(bid.西十区,5/5)			--A组
 --newidfa(bid.闪电修,120/20)			--B组
 --newidfa(bid.地一森林舞会,620/10)		--B组
---newidfa(bid.四方坦克大战,1050/10)		--B2组
+newidfa(bid.四方坦克大战,1050/5)		--B2组
 --newidfa(bid.熊猫网赚,3200/20)		--B组
 --newidfa(bid.银河战舰,1500/20)		--A组
 --newidfa(bid.多多优惠券,160/2)		--A组
 --newidfa(bid['dido－見面追蹤小助手'],520/20)		--B组
 --newidfa(bid.环球娱乐,4000/20)		--A组
-newidfa(bid.老虎机,4000/20)		--A组
+--newidfa(bid.老虎机,4000/20)		--A组
 
 
 

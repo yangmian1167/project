@@ -58,12 +58,13 @@ atexit(function()
 	end)
 
 bid={}
-bid.期货掌中宝 = { 1324945454,"com.qihuozhangzhongbao"}
+bid.花上钱贷款 = {	["appid"] =  "1278376336", ["appbid"] = "com.jiucang.huashangqian", ["adid"]= '1032', ["keyword"]="花上钱贷款" }
+
 
 
 screen.init(0)
 var = {}
-var.channel = "whaso"
+var.source = "lixuanjishua"
 
 
 function sign(adid,timestamp)
@@ -84,7 +85,7 @@ function up(name,other)
 	idfalist.idfa = idfa
 	idfalist.ip = '192.168.1.1'
 	idfalist.ip = ip or get_ip() or '192.168.1.1'
-	idfalist.account = keyword or account
+	idfalist.account = bid[name]['keyword'] or account
 	idfalist.password = password
 	idfalist.phone = phone
 	idfalist.other = other
@@ -92,23 +93,27 @@ function up(name,other)
 end
 
 function checkidfa(name)
-	local url = "http://api.refanqie.com/1/hlw-coreapi/channel/checkIdfa.json"
+	local url = "http://m.cmzqian.com/API/common/repeat"
 	local postArr = {}
-	postArr.appid =bid[name]['appid']
+	postArr.adid=bid[name]['adid']
 	postArr.idfa=idfa
 	postArr.ip=ip or get_ip() or rd(1,255)..'.'..rd(1,255)..'.'..rd(1,255)..'.'..rd(1,255)
-	postArr.channel = var.channel
-	postArr.keyword = bid[name]['keyword']
+	postArr.source=var.source
+	postArr.os_version = sys.version()
+	postArr.device = model
+	postArr.keyword = keyword or bid[name]['keyword']
 
 	index = 0
 	post_data = ''
 	
 	for k,v in pairs(postArr)do
 		index = index + 1
-		if index == #postArr then
-			post_data = post_data..k..'='..v
-		else
-			post_data = post_data..k..'='..v..'&'
+		if v ~= nil then
+			if index == 8 then
+				post_data = post_data..k..'='..v
+			else
+				post_data = post_data..k..'='..v..'&'
+			end
 		end
 	end
 	url = url..'?'..post_data
@@ -118,7 +123,7 @@ function checkidfa(name)
 	if getdata ~= nil then
 		local data = json.decode(getdata)
 		log(data or "nil")
-		if data[idfa] == 0 then
+		if tonumber(data[idfa]) == 0 then
 			log("idfa: OK.",true)
 			return true
 		else
@@ -129,20 +134,20 @@ end
 
 
 function clickidfa(name)
-	local url = "http://api.refanqie.com/1/hlw-coreapi/channel/reportClick.json"
+	local url = "http://m.cmzqian.com/API/common/checkClick"
 	local postArr = {}
-	postArr.appid = bid[name]['appid']
-	postArr.idfa = idfa
-	postArr.ip   = ip or get_ip() or rd(1,255)..'.'..rd(1,255)..'.'..rd(1,255)..'.'..rd(1,255)
-	postArr.channel = var.channel
+	postArr.adid=bid[name]['adid']
+	postArr.idfa=idfa
+	postArr.ip=ip or get_ip() or rd(1,255)..'.'..rd(1,255)..'.'..rd(1,255)..'.'..rd(1,255)
+	postArr.source=var.source
+	postArr.os_version = sys.version()
+	postArr.device = model
+	postArr.keyword = keyword or bid[name]['keyword']
 	
 	----------------------
-	postArr.model=model
-	postArr.version = sys.version()
-	postArr.keyword = bid[name]['keyword']
-	
+--	postArr.keyword = e:escape(bid[name]['keyword'])
 	if callbackid then
-		postArr.callbackurl  = "http://idfa888.com/Public/idfa/?service=idfa.callback&id="..callbackid
+		postArr.callback  = "http://idfa888.com/Public/idfa/?service=idfa.callback&id="..callbackid
 	end
 	
 	index = 0
@@ -150,7 +155,7 @@ function clickidfa(name)
 	
 	for k,v in pairs(postArr)do
 		index = index + 1
-		if index == #postArr then
+		if index == 8 then
 			post_data = post_data..k..'='..v
 		else
 			post_data = post_data..k..'='..v..'&'
@@ -163,7 +168,7 @@ function clickidfa(name)
 	if getdata ~= nil then
 		local data = json.decode(getdata)
 		log(data or "nil")
-		if data["message"] == "ok" then
+		if tonumber(data.status) == 1 then
 			log("点击成功: OK.",true)
 			return true
 		else
@@ -174,20 +179,21 @@ end
 
 
 function activeidfa(name)
-	local url = "http://api.refanqie.com/1/hlw-coreapi/channel/submitIdfa.json"
+	local url = "http://m.cmzqian.com/API/common/activate"
 	local postArr = {}
-	postArr.appid=bid[name]['appid']
+	postArr.adid=bid[name]['adid']
 	postArr.idfa=idfa
 	postArr.ip=ip or get_ip() or rd(1,255)..'.'..rd(1,255)..'.'..rd(1,255)..'.'..rd(1,255)
-	postArr.channel =var.channel
+	postArr.source=var.source
+	postArr.os_version = sys.version()
+	postArr.device = model
+	postArr.keyword = keyword or bid[name]['keyword']
 	
 	----------------------
-	postArr.model=model
-	postArr.version = sys.version()
 --	postArr.keyword = e:escape(bid[name]['keyword'])
-	postArr.keyword = bid[name]['keyword']
+--	postArr.keyword = bid[name]['keyword']
 	if callbackid then
-		postArr.callbackurl  = "http://idfa888.com/Public/idfa/?service=idfa.callback&id="..callbackid
+		--postArr.callbackurl  = "http://idfa888.com/Public/idfa/?service=idfa.callback&id="..callbackid
 	end
 	
 	index = 0
@@ -208,7 +214,7 @@ function activeidfa(name)
 	if getdata ~= nil then
 		local data = json.decode(getdata)
 		log(data or "nil")
-		if data['message'] == "ok" then
+		if tonumber(data.status) == 1 then
 			log("激活成功: OK.",true)
 			return true
 		else
@@ -216,8 +222,6 @@ function activeidfa(name)
 		end
 	end
 end
-
-
 
 function checkip()
 	ip = get_ip() or "192.168.1.1"
@@ -255,11 +259,10 @@ function callbackapi(name)
 end
 
 function activeapi(name)
+
 	if XXTfakerNewPhone(bid[name]['appbid'])then
 		idfa = XXTfakerGetinfo(bid[name]['appbid'])['IDFA']
 		model = XXTfakerGetinfo(bid[name]["appbid"])['ProductType']
-		
-		keyword = bid[name]['keyword']
 		local dtassss = up(name,bid[name]['keyword'])
 		if dtassss ~= nil then
 			callbackid = json.decode(dtassss)['data']['id']
@@ -267,10 +270,10 @@ function activeapi(name)
 			if callbackid ~= nil then
 				if checkidfa(name)then
 					if clickidfa(name)then
-						delay(rd(15,20))
+						delay(rd(10,20))
 						newidfa(name,1)
 						if activeidfa(name)then
-							up(name,"激活成功")
+							up(name,bid[name]['keyword'].."-激活成功")
 						end
 					end
 				end
@@ -293,7 +296,7 @@ function onlyactive(name)
 					delay(rd(10,20))
 					newidfa(name,1)
 					if activeidfa(name)then
-						up(name,keyword .. "-激活成功")
+						up(name,bid[name]['keyword'].."-激活成功")
 					end
 
 				end
@@ -344,7 +347,7 @@ function newidfa(name,times)
 	for i= 1,times do
 
 		local TIMEline = os.time()
-		local OUTtime = rd(90,95)
+		local OUTtime = rd(30,35)
 		while os.time()- TIMEline < OUTtime do
 			if active(bid[name]['appbid'],4)then
 				if d(apparr.right,"apparr.right",true)then
@@ -373,28 +376,22 @@ function beewallidfa(name)
 	end
 	delay(1)
 end
---onlycheckidfa
-function onlycheckidfa(name)
-	if idfaisok(name)then
-		delay(rd(2,3))
-		newidfa(name,1)
-	end
-	delay(1)
-end
 
 
-bid.银河战舰 = {	["appid"] =  "1415584003", ["appbid"] = "galaxy.empire", ["keyword"]="雷霆战机" }
-bid.DaDa英语 = {	["appid"] =  "1129663942", ["appbid"] = "com.dadaabc.DaDaClass", ["keyword"]="英语口语" }
+bid.花上钱贷款 = {	["appid"] =  "1278376336", ["appbid"] = "com.jiucang.huashangqian", ["adid"]= '1032', ["keyword"]="花上钱贷款" }
+bid.拓道财富 = {	["appid"] =  "1428159989", ["appbid"] = "com.tuodao.tdcaifu", ["adid"]= '1036', ["keyword"]="拓道财富" }
+bid.信贷360 = {	["appid"] =  "1399516881", ["appbid"] = "com.block.xd360", ["adid"]= '1019', ["keyword"]="信贷360" }
 
 
- 
+
 --[[]]
 while true do
 	log("vpn-key")
-	if  vpn() then
+	if false or  vpn() then
 		if checkip()then
-			activeapi("银河战舰")
---			activeapi("DaDa英语")
+			onlyactive("花上钱贷款")
+--			onlyactive("拓道财富")
+--			onlyactive("信贷360")
 		end
 	end
 	for _,bid in ipairs(app.bundles()) do
@@ -406,7 +403,6 @@ while true do
 end
 
 --]]
-
 
 
 

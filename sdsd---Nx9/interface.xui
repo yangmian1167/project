@@ -1,0 +1,37 @@
+ext = nil
+if _DEBUG then
+	-- 调试模式
+	ext = {lua = '.lua', xui = '.xui'}
+else
+	-- 正常运行
+	ext = {lua = '.xxt', xui = '.xuic'}
+end
+return {
+	title = "闪电刷单";
+	header = "闪电降价";
+	subheader = "链接配置界面";
+	defaults = "sdsd";	-- 配置存储的位置，读取配置的时候需要用到
+	items = {
+		{
+			default = "https://lnk0.com/Vd0gk4";
+			cell = "TextField";
+			key = "link";
+			keyboard = "Alphabet";
+			placeholder = "请输入链接";
+		};
+		{
+			default = true;
+			cell = "Switch";
+			key = "vpn";
+			label = "VPN";
+		};
+--		{
+--			default = false;
+--			cell = "Switch";
+--			key = "do";
+--			label = "启动脚本开关";
+--		};
+
+	
+	};
+};

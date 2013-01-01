@@ -50,6 +50,7 @@ else
 end
 
 bid={}
+bid.支付宝 = "com.alipay.iphoneclient"
 bid.淘集集刷单 = {
 				['appbid']='com.huanshou.taojiji',
 		}
@@ -93,20 +94,42 @@ var.diqu = 0
 
 
 --全局变量
+
+
+function checkip()
+	ip = get_ip() or "192.168.1.1"
+	local url = 'http://hlj.51-gx.com/Public/idfa/?service=idfa.checkip&ip='..ip
+	local getdata = get(url)
+	if getdata ~= nil then
+		local data = json.decode(getdata)
+		log(data or "nil")
+		if data.data.state == "ok" then
+			log("ip可以用:OK.",true)
+			return true
+		else
+			log("ip, 排重失败",true)
+		end
+	end
+end
+
 function up_wenfree()
-	local url = 'http://idfa888.com/Public/idfa/?service=idfa.idfa'
+	local url = 'http://wenfree.cn/api/Public/user/?service=Tjj.paystate'
 	local idfalist ={}
 	idfalist.phonename = var.phonename or device.name()
-	idfalist.phoneimei = var.phoneimei or sys.mgcopyanswer("SerialNumber")
+	idfalist.imei = var.phoneimei or sys.mgcopyanswer("SerialNumber")
 	idfalist.name = name
 	idfalist.idfa = idfa or phone
 	idfalist.ip = ip or get_ip() or  '192.168.1.1'
 	idfalist.account = var.account or phone
 	idfalist.pwd = var.pwd
+	idfalist.tag = tagtb[var.phonename]
 	idfalist.phone = phone
+	idfalist.bank = var.sheng.."-"..var.diqu
 	idfalist.bankphone = var.phone
+	idfalist.address = var.address
 	idfalist.money = var.money
 	idfalist.pay = var.pay
+	idfalist.whos = "ym"
 	log(idfalist)
 	return post(url,idfalist)
 end
@@ -270,9 +293,13 @@ buy.首页 = {{{ 25, 1055, 0xfdfdfd},{101, 1066, 0xff622f},{321, 1063, 0xd8d8d8}
 buy.首页_去购买 = {{{473, 379, 0xff7e31},{474, 419, 0xff8031},{618, 378, 0xf73b18},{616, 416, 0xf53b18},}, 85, 465, 388, 627, 1034}
 buy.购物界面 = {{{140, 1064, 0xff5a32},{140, 1130, 0xff5a32},{628, 1069, 0xff5a32},{625, 1123, 0xff5a32},{ 53,   81, 0xffffff},{ 44,   99, 0xffffff},}, 85, 0, 0, 0, 0}
 buy.选择规格界面 = {{{615,  328, 0xa2a2a0},{597,  329, 0xa2a2a1},{ 49, 1042, 0xff6331},{ 47, 1107, 0xfe6430},{595, 1045, 0xed1401},{594, 1105, 0xee1701},}, 85, 14, 315, 624, 1129}
-	buy.选择规格界面_色 = {{{67, 588, 0xf6f6f6},{28, 589, 0xf6f6f6},{39, 567, 0xf6f6f6},{51, 610, 0xf6f6f6},}, 85, 17, 484, 209, 698}
+	buy.选择规格界面_色 = {
+		{{71, 586, 0xf6f6f6},{20, 565, 0xffffff},{20, 615, 0xffffff},{23, 615, 0xf6f6f6},{25, 586, 0xf6f6f6},{116, 590, 0xf6f6f6},},
+		100, 10, 497, 141, 825
+		}
 	buy.选择规格界面_数量 = {{{64, 795, 0xf6f6f6},{32, 797, 0xf6f6f6},{61, 770, 0xf6f6f6},{61, 813, 0xf6f6f6},}, 85, 17, 712, 253, 842}
 	buy.选择规格界面_确定 = {{{319, 1071, 0xf83d19},{333, 1062, 0xfeddd7},{305, 1037, 0xf73e18},}, 85, 257, 997, 370, 1126}
+	
 buy.选择规格界面_挑选种类 = {{{ 29, 572, 0xf6f6f6},{ 30, 608, 0xf6f6f6},{113, 573, 0xf6f6f6},{112, 605, 0xf6f6f6},}, 85, 7, 311, 636, 1014}
 --buy.选择规格界面_挑选种类 = {{{ 31, 572, 0xff6632},{ 35, 599, 0xff6632},{104, 578, 0xff6632},{111, 606, 0xff6632},}, 85, 19, 526, 486, 767}
 buy.购物车界面 = {{{268, 69, 0x515151},{268, 99, 0x4d4d4d},{357, 99, 0x767676},{370, 91, 0x4c4c4c},{370, 72, 0x929292},{370, 71, 0xffffff},}, 85, 255, 55, 385, 111}
@@ -292,39 +319,90 @@ buy.新增地址界面_输入详细地址 = {{{ 27, 384, 0xa9a9a9},{ 61, 391, 0x
 buy.新增地址界面_保存 = {{{556, 74, 0x3b3b3b},{554, 81, 0x363636},{589, 88, 0x212121},{593, 76, 0x1a1a1a},}, 85, 541, 64, 603, 101}
 buy.返回箭头 = {{{60, 70, 0x333333},{48, 83, 0x373737},{60, 98, 0x333333},{56, 99, 0xffffff},}, 85, 31, 55, 79, 105}
 
+buy.搜索界面 = {{{ 42, 70, 0x9f9f9d},{ 42, 93, 0xc4c4c3},{559, 74, 0xafafaf},{559, 92, 0x9c9c9c},{567, 95, 0xbebebe},{580, 93, 0x838383},}, 85, 32, 65, 583, 101}
+	buy.搜索界面_有结果 = {{{21, 612, 0xee0000},{32, 613, 0xffffff},{21, 615, 0xee0000},}, 85, 4, 138, 608, 962}
+
 buy.提现界面 = {{{291, 68, 0x787878},{287, 98, 0x8a8a8a},{316, 96, 0x858585},{322, 70, 0x999999},{349, 70, 0x505050},{350, 92, 0xaeaeae},{350, 91, 0xffffff},}, 85, 284, 64, 355, 101}
 
 -----tips---------
 buy.tips_选择支付方式={{{ 47,  948, 0x02a9f1},{ 53,  854, 0x47d547},{275, 1079, 0xfe6932},}, 85, 17, 772, 634, 1132}
 
+指定物品list = {
+	"七星莲花水晶玻璃酥油灯灯座",
+	"加持酥油蜡烛24小时酥油灯斗",
+	"6只装4小时彩色无烟香薰蜡烛煮茶蜡",
+	"纯天然老山檀香塔香",
+	"加持108颗佛珠手链",
+	"高温塑料防风杯",
+	"包邮檀香盘香",
+				}
 
+
+morenpwd = 520000
+otherpwd={}
+otherpwd['xxt-5s']=123124
+otherpwd['xxt-5s']=123124
+otherpwd['xxt-5s']=123124
+
+
+tagtb={}
+tagtb[var.phonename] = var.phonename
+tagtb['xxt-5s'] = 'ios11 xxt 测机"
+
+
+
+if otherpwd[var.phonename] then
+	morenpwd = otherpwd[var.phonename]
+end
+
+
+	
 function buys()
 
 	滑动次数 = rd(2,8)
 	第一次滑动 = true
+	buyway = 0
+	买第几个 = rd(1,8)
 	
 	while true do
-		if active(bid.淘集集刷单.appbid) then
+		newbid = app.front_bid()
+		if newbid == bid.淘集集刷单.appbid or newbid == bid.支付宝 then
 			if d(buy.首页,"buy.首页",false) then
-				if 第一次滑动  then
-					for i=1,滑动次数 do
-						moveTo(268,618,268,300,20)
-					end
-					第一次滑动 = false
-				elseif d(buy.首页_去购买,"buy.首页_去购买",true) then
-					for i=1,rd(3,4) do
-						moveTo(268,618,300,374)
-					end
+				if  buyway == 0 then
+					--直接搜索
+					click(330, 93)	
 				else
-					第一次滑动 = true
+					if 第一次滑动  then
+						for i=1,滑动次数 do
+							moveTo(268,618,268,300,20)
+						end
+						第一次滑动 = false
+					elseif d(buy.首页_去购买,"buy.首页_去购买",true) then
+						for i=1,rd(3,4) do
+							moveTo(268,618,300,374)
+						end
+					else
+						第一次滑动 = true
+					end
 				end
+			elseif d(buy.搜索界面,"buy.搜索界面",false) then
+				if d(buy.搜索界面_有结果,"搜索界面_有结果",true)then
+					
+				else
+					click(510, 81)
+					input(指定物品list[rd(1,#指定物品list)])
+					click(559, 1095)
+				end
+				
 			elseif d(buy.购物界面,"buy.购物界面",true) then
 			elseif d(buy.选择规格界面,"buy.选择规格界面",false) then
 			
---				d(buy.选择规格界面_确定,"选择规格界面_确定",true)
---				click(rd(43,226),rd(578,637))
---				click(57, 790)
---				d(buy.选择规格界面_确定,"选择规格界面_确定",true)
+
+--				d(buy.选择规格界面_色,"选择规格界面_色",true)
+--				d(buy.选择规格界面_色,"选择规格界面_色",true)
+				click(70, 592)
+				click(71, 731)
+				click(324, 1077)
 				delay(5)
 			
 			elseif d(buy.购物车界面,"buy.购物车界面",false) then
@@ -332,11 +410,14 @@ function buys()
 				if d(buy.购物车界面_收货地址空,"buy.购物车界面_收货地址空",true) then
 				elseif d(buy.购物车界面_微信支付,"buy.购物车界面_微信支付",true)then
 				elseif d(buy.购物车界面_支付宝_提交订单,"buy.购物车界面_支付宝_提交订单",false)then
-					local txt = screen.ocr_text( 99, 1059, 241, 1121)
+					local txt = screen.ocr_text( 121, 1073, 240, 1101)
 					var.money = txt:atrim()
+--					sys.alert(txt)
+					
+					delay(1)
 					if d(buy.购物车界面_支付宝_提交订单,"buy.购物车界面_支付宝_提交订单",true)then
+						var.pay = "准备付款"
 						up_wenfree()
-						os.exit()
 					end
 				end
 			
@@ -350,7 +431,17 @@ function buys()
 			elseif d(buy.新增地址界面,"buy.新增地址界面",false) then
 				if d(buy.新增地址界面_选择地区,"buy.新增地址界面_选择地区",true) then
 					if d(buy.新增地址界面_选择地区_确定和取消,"buy.新增地址界面_选择地区_确定和取消",false) then
-						var.sheng = rd(1,9)
+						
+						function shengshui()
+							local mun = rd(1,14)
+							if mun ~= 7 and mun ~= 3 then
+								return mun
+							else
+								return shengshui()
+							end
+						end
+
+						var.sheng = shengshui()
 						var.diqu = rd(1,4)
 						for i =1,var.sheng do
 							click(112,958)
@@ -379,14 +470,17 @@ function buys()
 					click(285, 1078)
 				elseif d(buy.返回箭头,"buy.返回箭头",true) then
 				end
-			end	
+			end
+		else
+			active(bid.淘集集刷单.appbid,5)
 		end
 		delay(2)
 	end	
 end
 
---buys()
---os.exit()
+idfa = 'wenfree'
+buys()
+os.exit()
 
 vpnx()
 delay(3)
@@ -397,14 +491,16 @@ kfy.id = '14294'
 
 while true do
 	if vpn() then
-		if open(bid['淘集集刷单']['url'][device.name()])then
-			if newidfa() then
-				buys()
-			end	
+		if checkip() then
+			if open(bid['淘集集刷单']['url'][device.name()])then
+				if newidfa() then
+					buys()
+				end	
+			end
 		end
 --		closeX(bid.淘集集刷单.appbid)
 	end
---	vpnx()
+	vpnx()
 	delay(5)
 end
 ----]]

@@ -14,23 +14,20 @@ phonename = device.name()
 bid={}
 bid.淘集集 = {
 				['appbid']='com.huanshou.taojiji',
-				['url']={
-					['iPhone31']='http://uri6.com/tkio/3eUVjqa',   --jqa链接 
-					['iPhone32']='http://uri6.com/tkio/3eUVjqa',   --jqa链接 
-		
-					
-					['iPhone33']='http://uri6.com/tkio/vuaYB3a',   --B3a链接 
-					['iPhone34']='http://uri6.com/tkio/vuaYB3a',   --B3a链接 
-						}
+--				['url']="http://uri6.com/tkio/3eUVjqa",    --B3a链接 31 32 33 34
+				['url']="http://uri6.com/tkio/vuaYB3a",    --B3a链接 35 36 37 38
 			}
 			
+--phonelist_url = {
+----	['iPhone12']='http://uri6.com/tkio/vuaYB3a',   --B3a链接 
+----	['iPhone12']='http://uri6.com/tkio/vuaYB3a',   --B3a链接 
+--}
 
+--if phonelist_url[phonename] then
+--	bid.淘集集.url = phonelist_url[phonename]
+--end
 
 			
-bid.集享联盟 = {
-				['appbid']='com.maxxipoint.ios',
-				['url']='https://event.maxxipoint.com/event/h5DownloadApp.do?activityId=32'
-			}
 
 screen.init(0)
 var = {}
@@ -48,6 +45,23 @@ var.pay = nil
 
 
 --全局变量
+
+function checkip()
+	ip = get_ip() or "192.168.1.1"
+	local url = 'http://hlj.51-gx.com/Public/idfa/?service=idfa.checkip&ip='..ip
+	local getdata = get(url)
+	if getdata ~= nil then
+		local data = json.decode(getdata)
+		log(data or "nil")
+		if data.data.state == "ok" then
+			log("ip可以用:OK.",true)
+			return true
+		else
+			log("ip, 排重失败",true)
+		end
+	end
+end
+
 function up_wenfree()
 	local url = 'http://idfa888.com/Public/idfa/?service=idfa.idfa'
 	local idfalist ={}
@@ -143,6 +157,7 @@ function newidfa()
 			end
 			delay(2)
 		end
+		
 		up(appname(bid.淘集集.appbid),bid['淘集集']['url'])
 		delay(4)
 		return true
@@ -155,7 +170,7 @@ end
 --[[]]
 while true do
 	if vpn() then
-		if open(bid['淘集集']['url'][phonename])then
+		if open(bid['淘集集']['url'])then
 			newidfa()
 		end
 		closeX(bid.淘集集.appbid)

@@ -12,10 +12,10 @@ else
 end
 
 bid={}
-bid.果聊 = {
-				['appbid']='com.hachin.im',
-				['url']='https://lnk0.com/Y9EFls',
-			}
+--bid.果聊 = {
+--				['appbid']='com.hachin.im',
+--				['url']='https://lnk0.com/Y9EFls',
+--			}
 bid.闪电降价 = {
 				['appbid']='com.hs.shanjiang',
 				['url']='https://lnk0.com/dEdI5k',
@@ -30,11 +30,16 @@ bid.闪电降价.url.iPhone02='https://lnk0.com/Vd0gk4'
 bid.闪电降价.url.iPhone03='https://lnk0.com/dEdI5k'
 
 bid.闪电降价.url.iPhone04='http://lnk0.com/toQNx9'
+bid.闪电降价.url.iPhone05='http://lnk0.com/toQNx9'
+bid.闪电降价.url.iPhone06='http://lnk0.com/toQNx9'
+bid.闪电降价.url.iPhone07='http://lnk0.com/toQNx9'
+bid.闪电降价.url.iPhone08='http://lnk0.com/toQNx9'
+
 			
-bid.集享联盟 = {
-				['appbid']='com.maxxipoint.ios',
-				['url']='https://event.maxxipoint.com/event/h5DownloadApp.do?activityId=32'
-			}
+--bid.集享联盟 = {
+--				['appbid']='com.maxxipoint.ios',
+--				['url']='https://event.maxxipoint.com/event/h5DownloadApp.do?activityId=32'
+--			}
 
 screen.init(0)
 var = {}
@@ -74,22 +79,24 @@ end
 web={}
 web.open={{{526,632,0x007aff},{396,622,0x3897ff},{393,623,0xffffff},},85}
 
+
 function open(urls)
-	openUrl(urls)
-	delay(3)
-	local timeline = os.time()
-	local outtimes = 60
-	while os.time()-timeline < outtimes do
-		if d(web.open,"web.open",true,1)then
-			delay(math.random(10,15))
-			return true
+	if XXTfakerNewPhone("com.apple.mobilesafari")then
+		delay(2)
+		openUrl(urls)
+		delay(3)
+		local timeline = os.time()
+		local outtimes = 60
+		while os.time()-timeline < outtimes do
+			if d(web.open,"web.open",true,1)then
+				delay(math.random(10,15))
+				return true
+			end
+			delay(1)
 		end
-		delay(1)
+		log("open time ",true)
 	end
-	log("open time ",true)
 end
-
-
 
 apparr={}
 apparr.right={{{462,666,0x007aff},{225,666,0x007aff},}, 85, 54, 394, 590, 809}
