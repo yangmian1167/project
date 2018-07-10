@@ -18,6 +18,7 @@ ml.自动战斗界面_按钮={{{1072,564,0x896254},{1083,563,0x58433a},}, 85}
 
 
 
+
 function game()
 	local TimeLine = os.time()
 	local UserTime = 60 * (n or 10)
@@ -38,7 +39,10 @@ function game()
 				
 				
 			else
+				if tips()then
+				else
 				click(1096,586)			--all other UI
+				end
 			end
 		end
 		delay(math.random(20,200)/1000)
@@ -46,6 +50,24 @@ function game()
 end
 
 
+ml.tips={}
+ml.tips_宠物卡片确定={{{683,561,0x9d571b},{683,560,0x5a4232},}, 85}
+ml.tips_完成就职={{{929,560,0xf9f2bc},{931,560,0x283308},}, 85}
+ml.tips_就职确定={{{636, 492, 0x262e10},{637, 492, 0x7a7b65},}, 85}
+ml.tips_获得伙伴确定={{{732, 556, 0x713e16},{734, 557, 0xf7ecdf},}, 85}
+
+function tips()
+	
+	while true do
+		if active(app_bid.mlbb,5)then
+			if d(ml.tips_宠物卡片确定,"ml.tips_宠物卡片确定",true,1)then
+			elseif d(ml.tips_完成就职,"ml.tips_完成就职",true,1)then
+			elseif d(ml.tips_就职确定,"ml.tips_就职确定",true,1)then
+			elseif d(ml.tips_获得伙伴确定,"ml.tips_获得伙伴确定",true,1)then
+			end	
+		end
+	end
+end
 
 
 game()
