@@ -379,15 +379,6 @@ function cest()       --计时器
 end
 
 
-function dingshi()    -- 计时器
-	local 当前时间 = (os.date("%H"))
-	log(当前时间)
-	当前时间 = tonumber(当前时间)
-	if (当前时间 >=1 and 当前时间 < 8)or(当前时间 >= 10 and 当前时间 < 13)or(当前时间 >=15 and 当前时间 < 17) or (当前时间 >=19 and 当前时间 < 22)then
-	else
-		return "非挂机时间"
-	end
-end
 
 
 app_bid.awz="AWZ"

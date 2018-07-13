@@ -1,6 +1,6 @@
 width,height = screen.size();
 sys.toast(width.."*"..height)
-
+nLog(app.front_bid())
 
 function log(txt,key)
 	nLog(txt)
@@ -35,12 +35,13 @@ end
 --杀掉进程和app
 function closeX(app_bid,key,t)
 	local key = key or false
+	local t = t or 2
 	if key then
 		app.quit(app_bid)
 	else
 		app.close(app_bid)
 	end
-	delay(2)
+	delay(t)
 end
 --随机偏移点击函数
 function click(x,y,t,wait,txt)
@@ -95,23 +96,19 @@ function done(t,name,clicks,mun)
 end
 --d
 function d(t,name,clicks,mun)
-	if #t then
-		if #t > 3 then
-			return cpic(t,name,clicks,mun)
-		else
-			return done(t,name,clicks,mun)
-		end
+	if #t > 3 then
+		return cpic(t,name,clicks,mun)
 	else
-		log("数组报错")
+		return done(t,name,clicks,mun)
 	end
 end
 
 --vpnTable 示例
 vpnlist ={
-		dispName = 'app50',
+		dispName = 'adad01',
 		VPNType = "L2TP",
 		server = 'yhtip.com',
-		authorization = 'app50',
+		authorization = 'adad01',
 		password = 'Aa112211',           -- 密码
 		secret = '1',            -- 密钥，PPTP 可不填
 		encrypLevel = 1,               -- 加密级别，选填，默认 1
@@ -137,7 +134,7 @@ function creat_vpn(table)
 		sys.toast('创建失败，确定人品没有问题？')
 	end
 end
-
+--creat_vpn(vpnlist)
 --读出vpn的列表
 function vpn_list()
 	local list = vpnconf.list()
@@ -273,8 +270,111 @@ function get(url,times)
 	end
 end
 
+-- 使用 http://ip.chinaz.com/getip.aspx 获取
+function get_ip()
+    local done = false
+	local outtime = os.time()
+    thread.dispatch(function()
+		outtime = os.time()
+        while (os.time()-outtime < 30) do
+            if (done) then
+                sys.toast("", -1)
+                return
+            else
+                sys.toast("正在获取 IP 地址...", device.front_orien())
+            end
+            sys.msleep(2000)
+        end
+    end)
+    while (os.time() - outtime < 30) do
+        local c, h, b = http.get("http://ip.chinaz.com/getip.aspx?ts="..tostring(sys.rnd()), 60)
+        if (c==200) then
+            sys.toast("", -1)
+            done = true
+            return b:match('%d+%.%d+%.%d+%.%d+')
+        end
+    end
+end
 
 
+
+--[[参数1. rnType 表示随机类型
+                1为输入随机数字
+                2为随机手机号
+                3为随机字母
+                4为随机字母/数字(先字母后数字)，一般用于输用户名和密码，所以字母在前
+                5为随机邮箱
+                6为随机16进制
+                7为随机中文(常用中文字库到度娘下载吧)
+       参数2. rnLen 表示随机的长度
+       参数3. rnUL 表示字母的大小写。1为大写、2为小写、其他为不区分，默认为不区分
+　　以上三个参数，用不到的参数就不用填，用不到的参数你设置了不会出错，但也不会生效。
+　　比如手机号只要一个rnType参数就行，生成数字就只要rnType、rnLen参数
+　　如果随机结果有字母，且不区分大小写的话，也不用rnUL参数
+ 
+　　脚本最后有示例，直接调试下就看出来效果了
+]]
+ 
+function myRand(rnType,rnLen,rnUL)
+	local zmRan,HexRan,myrandS,rns
+	rnUL=rnUL or 3
+	rns=rns or 0  --用于精确随机种子
+	rns=rns+1
+	zmRan={"A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z",
+	"a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"}
+	HexRan={"0","1","2","3","4","5","6","7","8","9","a","b","c","d","e","f","A","B","C","D","E","F"}
+	myrandS=""
+	math.randomseed(rns..tostring(os.time()):reverse():sub(1, 6))
+	if rnType==1 then --生成数字
+		myrandS=math.random(9)
+		for r1=1,rnLen-1 do
+			myrandS=myrandS..math.random(0,9)
+		end
+	elseif rnType==2 then --生成手机号,rnLen,rn11无需设置
+		local mheader={"13","15"}
+		myrandS=mheader[math.random(#mheader)]
+		for r1=1,9 do
+			myrandS=myrandS..math.random(0,9)
+		end
+	elseif rnType==3 then --生成字母
+		for r1=1,rnLen do
+			myrandS=myrandS..zmRan[math.random(52)]
+		end
+	elseif rnType==4 or rnType==5 then --生成数字/字母组合或邮箱
+		local rn3=math.random(2,5)
+		for r1=1,rn3 do
+			myrandS=myrandS..zmRan[math.random(52)]
+		end
+		for r1=1,rnLen-rn3 do
+			myrandS=myrandS..math.random(0,9)
+		end
+		if rnType==5 then
+			local mailheader={"@qq.com","@hotmail.com","@sohu.com"} --自行增减
+			myrandS=myrandS..mailheader[math.random(#mailheader)]
+		end
+	elseif rnType==6 then --生成16进制
+		myrandS=HexRan[math.random(2,22)]
+		for r1=1,rnLen-1 do
+			myrandS=myrandS..HexRan[math.random(22)]
+		end
+	end
+	if rnUL==1 then
+		return string.upper(myrandS) --返回大写
+	elseif rnUL==2 then
+		return string.lower(myrandS) --返回小写
+	else
+		return myrandS
+	end
+end
+--[[
+print(myRand(1,9))
+print(myRand(2))
+print(myRand(3,9,1))
+print(myRand(4,9,2))
+print(myRand(5,9,""))
+print(myRand(6,9))
+print(myRand(7,9))
+--]]
 
 
 
