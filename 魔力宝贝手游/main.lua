@@ -224,6 +224,8 @@ ml.战斗界面={}
 ml.战斗界面_战斗界面={{{1075,563,0xaa3a2b},{1087,571,0x923024},}, 85}
 ml.战斗界面_自动战斗按钮={{{1072,564,0x896254},{1083,563,0x58433a},}, 85}
 ml.战斗界面_没有技能={{{861, 539, 0x6e6863},{865, 544, 0xe7ac65},{865, 552, 0xccc4c7},{865, 551, 0x443031},}, 85, 825, 516, 1029, 617}
+ml.战斗界面_切换英雄技能={{{752, 230, 0x3e185b},{751, 239, 0x61058d},{751, 243, 0xcb3b7f},{770, 252, 0xfdfad1},}, 85, 712, 208, 1049, 519}
+ml.战斗界面_切换宠物技能={{{733, 238, 0x0f3805},{736, 255, 0x378020},{736, 268, 0x110a03},{765, 253, 0xffff57},}, 85, 696, 203, 1063, 523}
 function 主界面下的操作()
 	if 奖励_key and d(ml.游戏主界面ok_奖励有红点,"ml.游戏主界面ok_奖励有红点",true,1)then
 	elseif 活动_key  and d(ml.游戏主界面ok_活动有红点,"ml.游戏主界面ok_活动有红点",true,1)then
@@ -259,9 +261,7 @@ function 魔力宝贝挂机流程()
 
 	while os.time()-TimeLine < UserTime do
 		strattimeline = os.time()
-		
 		if active(app_bid.mlbb,3)then
-			
 			if os.time()-checkLinght > 10 then
 				log("查询光圈,休息2秒")
 				delay(2)
@@ -274,8 +274,10 @@ function 魔力宝贝挂机流程()
 			elseif d(ml.战斗界面_战斗界面,"ml.战斗界面_战斗界面")then
 				log("正在战斗中")
 				delay(3)
-				if d(ml.战斗界面_没有技能,"ml.战斗界面_自动战斗按钮",true,1)then
+				if d(ml.战斗界面_自动战斗按钮,"ml.战斗界面_自动战斗按钮",true,1)then
 				elseif d(ml.战斗界面_没有技能,"ml.战斗界面_没有技能",true,1)then
+				elseif d(ml.战斗界面_切换英雄技能,"ml.战斗界面_切换英雄技能",true,1)then
+				elseif d(ml.战斗界面_切换宠物技能,"ml.战斗界面_切换宠物技能",true,1)then
 				end
 			else
 				if tips()then
