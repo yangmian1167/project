@@ -34,6 +34,8 @@ ml.创建角色={}
 	ml.tip_维护结束公告1={{{957,  74, 0x89492a},{653, 529, 0x526a12},{421, 525, 0x4e6112},}, 85}
 	ml.tip_维返回游戏={{{ 967, 580, 0x383838},{ 990, 582, 0x6f6f6f},{1043, 593, 0x5e5e5e},{1072, 592, 0x3c3b3b},}, 85}
 	ml.tip_前往购买点取消={{{518, 354, 0x615045},{611, 353, 0x994f19},}, 85}
+	ml.tip_防沉迷在线时间提示确定={{{529, 380, 0xa5581a},{550, 384, 0xf6ecdf},}, 85}
+	
 	--tips处理
 	ml.游戏主界面ok_主界面点到任务栏={{{1021, 108, 0x645141},{1119, 107, 0xbe6733},}, 85}
 	
@@ -55,6 +57,7 @@ function tips()
 	elseif d(ml.tip_维护结束公告1,"ml.tip_维护结束公告1",true,1)then
 	elseif d(ml.tip_维返回游戏,"ml.tip_维返回游戏",true,1)then
 	elseif d(ml.tip_前往购买点取消,"ml.tip_前往购买点取消",true,1)then
+	elseif d(ml.tip_防沉迷在线时间提示确定,"ml.tip_防沉迷在线时间提示确定",true,1)then
 	elseif d(ml.tip_第三界面判断_公告,"ml.tip_第三界面判断_公告",true)then
 		d(ml.event_第三界面判断,"ml.event_第三界面判断关闭",true,1)
 	elseif d(ml.游戏主界面ok_主界面点到任务栏,"ml.游戏主界面ok_主界面点到任务栏",true,1)then
@@ -77,7 +80,7 @@ ml.event_第三界面判断={{{1094, 35, 0xdec99e},{ 866, 31, 0x71eefc},{ 634, 2
 	ml.event_活动界面任务={{{467, 222, 0xaa5b1a},{505, 190, 0xf7140a},{475, 230, 0x8e4917},}, 85, }
 	ml.event_职业学院接取任务和前往={{{821, 561, 0x738d20},{931, 565, 0x658118},}, 85}
 	--下面组队ui
-	ml.event_第三界面判断_组队界面={{{32, 17, 0xafa294},{36, 17, 0x998b7e},{45, 20, 0xf6ead6},}, 85}
+	ml.event_第三界面判断_组队界面={{{801, 116, 0x131211},{803, 116, 0xfaebd0},{872, 115, 0x918677},}, 85}
 	ml.event_第三界面判断_返回组队={{{904, 563, 0x8aa12c},{996, 571, 0x708b1e},}, 85}
 	ml.event_第三界面判断_人数未满={{{930, 222, 0x52322b},{991, 223, 0x583630},}, 85}
 	--职业学院
@@ -118,7 +121,8 @@ function check30day()
 end
 
 function event()
-	if d(ml.event_第三界面判断,"ml.event_第三界面判断")then
+	if d(ml.event_第三界面判断,"ml.event_在第三界面")then
+		
 		if d(ml.event_第三界面判断_活动界面,"ml.event_第三界面判断_活动界面")then
 			log("准备活动",true)
 			if d(ml.event_活动界面任务,"活动_活动界面任务",true,1)then
@@ -198,8 +202,14 @@ function small_light_box1()
 		end
 	end
 end
+function lvl()
+	local txt = screen.ocr_text(1103, 57, 1129, 73,"eng","f5d900-867100") -- 默认配置是使用英文数字模式识别文字
+	log("识别等级："..txt:atrim())
+	return txt:atrim() or 1
+end
+
 ml.游戏主界面ok={}
-ml.游戏主界面ok_主界面ok={{{1017, 113, 0x9f542f},{1015, 134, 0x693822},}, 85}
+ml.游戏主界面ok_主界面ok={{{1022, 133, 0x683824},{1026, 125, 0x65422d},{1123, 121, 0x4b3e35},}, 85}
 	ml.游戏主界面ok_没有对话框={{{954, 140, 0x663521},}, 85}
 	ml.游戏主界面ok_便捷组队={{{1092, 431, 0x8c4a1a},{1085, 495, 0x874718},{1086, 561, 0x804317},}, 85}	--战斗,组队,离开
 	ml.游戏主界面ok_对话选一={{{1088, 434, 0x854618},}, 85}
@@ -226,7 +236,9 @@ ml.战斗界面_自动战斗按钮={{{1072,564,0x896254},{1083,563,0x58433a},}, 
 ml.战斗界面_没有技能={{{861, 539, 0x6e6863},{865, 544, 0xe7ac65},{865, 552, 0xccc4c7},{865, 551, 0x443031},}, 85, 825, 516, 1029, 617}
 ml.战斗界面_切换英雄技能={{{752, 230, 0x3e185b},{751, 239, 0x61058d},{751, 243, 0xcb3b7f},{770, 252, 0xfdfad1},}, 85, 712, 208, 1049, 519}
 ml.战斗界面_切换宠物技能={{{733, 238, 0x0f3805},{736, 255, 0x378020},{736, 268, 0x110a03},{765, 253, 0xffff57},}, 85, 696, 203, 1063, 523}
+
 function 主界面下的操作()
+
 	if 奖励_key and d(ml.游戏主界面ok_奖励有红点,"ml.游戏主界面ok_奖励有红点",true,1)then
 	elseif 活动_key  and d(ml.游戏主界面ok_活动有红点,"ml.游戏主界面ok_活动有红点",true,1)then
 	elseif not(d(ml.游戏主界面ok_没有对话框,"游戏主界面ok_没有没有对话框_逆向思维"))then
@@ -247,6 +259,7 @@ function 主界面下的操作()
 	else
 		delay(0.5)	
 	end
+	
 end	
 	
 function 魔力宝贝挂机流程()
@@ -255,22 +268,36 @@ function 魔力宝贝挂机流程()
 	local task = 0				--设置单个帐号任务次数
 	local checkLinght = os.time()
 	奖励_key = true
+	
 	活动_key = false
-	组队_key = false
+	活动_key_time = os.time()
+	活动_key_time_jl = 0
+	
+	组队_key = true
 	支线任务_key = true
+	level = 1
+	
 
 	while os.time()-TimeLine < UserTime do
-		strattimeline = os.time()
+		if os.time()-活动_key_time > 10*60 then
+			活动_key = true
+			活动_key_time_jl = os.time()
+		end
+		
+
 		if active(app_bid.mlbb,3)then
 			if os.time()-checkLinght > 10 then
 				log("查询光圈,休息2秒")
 				delay(2)
-				small_light_box() 
+				small_light_box()
 				small_light_box1()
 				checkLinght = os.time()
 			end
 			if d(ml.游戏主界面ok_主界面ok,"ml.游戏主界面ok_主界面ok")then
+				level = lvl()
+				
 				主界面下的操作()
+				
 			elseif d(ml.战斗界面_战斗界面,"ml.战斗界面_战斗界面")then
 				log("正在战斗中")
 				delay(3)
@@ -281,7 +308,6 @@ function 魔力宝贝挂机流程()
 				end
 			else
 				if tips()then
-					log("tips->"..os.time()-strattimeline)
 					if event()then
 						log("什么也没有找到,随便点击一下")
 						click(1085, 581)			--all other state
@@ -290,19 +316,14 @@ function 魔力宝贝挂机流程()
 			end
 		end
 		delay(math.random(20,200)/1000)
-		log(os.time()-strattimeline)
+
 	end
 end
 
 
+
+
 魔力宝贝挂机流程()
-
-
-
-
-
-
-
 
 
 
