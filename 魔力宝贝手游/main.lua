@@ -147,7 +147,7 @@ function event()
 			elseif d(ml.event_第三界面判断_活动真中,"event_第三界面判断_活动真中",true,1)then
 				delay(60)
 			else
-				活动任务_key = false
+				活动任务_key = 
 				d(ml.event_第三界面判断,"ml.event_第三界面判断",true,1)
 			end
 		elseif d(ml.event_第三界面判断_职业学院界面,"event_第三界面判断_职业学院界面") then
@@ -201,7 +201,7 @@ end
 
 function small_light_box()
 	--第一步先查询左上角亮光
-	x, y = screen.find_color({{815, 557, 0xfffadc},{815, 554, 0xffce42},}, 85, 0, 0, 0, 0)
+	local x, y = screen.find_color({{815, 557, 0xfffadc},{815, 554, 0xffce42},}, 85, 0, 0, 0, 0)
 	if x >= 0 and y >= 0 then
 		log("找到左边的亮点")
 		log(x..","..y)
@@ -216,15 +216,13 @@ end
 
 function small_light_box1()
 	--第一步先查询左上角亮光
-	local x, y = screen.find_color({{809, 460, 0xfff6e2},{809, 454, 0xffffe3},
-			{817, 454, 0xffffce},{814, 452, 0xffd158},}, 85, 0, 0, 0, 0)
+	local x, y = screen.find_color({{814, 561, 0xfff4c8},{820, 555, 0xffffc9},}, 85, 0, 0, 0, 0)
 	if x >= 0 and y >= 0 then
 		log("找到左边的亮点1")
 		log(x..","..y)
-		x2, y2 = screen.find_color({{925, 493, 0xf8de50},{922, 493, 0xfff8d1},}, 85, 
-			                       x+(888-807), y+(478-455), x+(981-815), y+(523-455))
-		if x2>=0 and y2>=0 then
-			click((x+x2)/2,(y+y2)/2)
+		x3, y3 = screen.find_color({{868, 603, 0xfff5c5},{862, 609, 0xfff9d0},{866, 608, 0xfff19f},}, 85, x+(835-841), y+(576-561), x+(1125-814), y+(636-561))
+		if x3>=0 and y3>=0 then
+			click((x+x3)/2,(y+y3)/2)
 			return true
 		end
 	end
@@ -318,8 +316,9 @@ function 魔力宝贝挂机流程()
 					活动_key = false
 				end
 			end	
-			if os.time()-checkLinght > 10 then
+			if os.time()-checkLinght > 5 then
 				if d(ml.游戏主界面ok_结束引导,"ml.游戏主界面ok_结束引导",true,1)then
+				else
 				log("查询光圈,休息2秒")
 				delay(2)
 				small_light_box()
