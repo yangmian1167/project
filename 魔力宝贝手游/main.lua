@@ -35,6 +35,7 @@ ml.创建角色={}
 	ml.tip_维返回游戏={{{ 967, 580, 0x383838},{ 990, 582, 0x6f6f6f},{1043, 593, 0x5e5e5e},{1072, 592, 0x3c3b3b},}, 85}
 	ml.tip_前往购买点取消={{{518, 354, 0x615045},{611, 353, 0x994f19},}, 85}
 	ml.tip_防沉迷在线时间提示确定={{{529, 380, 0xa5581a},{550, 384, 0xf6ecdf},}, 85}
+	ml.tip_邀请入队取消={{{542, 355, 0x6e5b4d},{621, 362, 0x9f5418},}, 85}
 	
 	--tips处理
 	ml.游戏主界面ok_主界面点到任务栏={{{1021, 108, 0x645141},{1119, 107, 0xbe6733},}, 85}
@@ -48,6 +49,8 @@ function tips()
 	elseif d(ml.tips_获得伙伴确定,"ml.tips_获得伙伴确定",true,1)then
 	elseif d(ml.游戏主界面ok_结束引导,"ml.游戏主界面ok_结束引导",true,1)then
 	elseif d(ml.tips_战斗失败,"ml.tips_战斗失败",true,1)then
+		活动_key = true
+		支线任务_key = false
 	elseif d(ml.tips_万事通考验,"ml.tips_万事通考验",true,1)then
 	elseif d(ml.tip_跳过剧情,"ml.tip_跳过剧情",true,1)then
 	elseif d(ml.游戏主界面ok_对话学院任务,"ml.游戏主界面ok_对话学院任务",true,1)then
@@ -58,6 +61,7 @@ function tips()
 	elseif d(ml.tip_维返回游戏,"ml.tip_维返回游戏",true,1)then
 	elseif d(ml.tip_前往购买点取消,"ml.tip_前往购买点取消",true,1)then
 	elseif d(ml.tip_防沉迷在线时间提示确定,"ml.tip_防沉迷在线时间提示确定",true,1)then
+	elseif d(ml.tip_邀请入队取消,"ml.tip_邀请入队取消",true,1)then
 	elseif d(ml.tip_第三界面判断_公告,"ml.tip_第三界面判断_公告",true)then
 		d(ml.event_第三界面判断,"ml.event_第三界面判断关闭",true,1)
 	elseif d(ml.游戏主界面ok_主界面点到任务栏,"ml.游戏主界面ok_主界面点到任务栏",true,1)then
@@ -81,8 +85,11 @@ ml.event_第三界面判断={{{1094, 35, 0xdec99e},{ 866, 31, 0x71eefc},{ 634, 2
 	ml.event_职业学院接取任务和前往={{{821, 561, 0x738d20},{931, 565, 0x658118},}, 85}
 	--下面组队ui
 	ml.event_第三界面判断_组队界面={{{801, 116, 0x131211},{803, 116, 0xfaebd0},{872, 115, 0x918677},}, 85}
-	ml.event_第三界面判断_返回组队={{{904, 563, 0x8aa12c},{996, 571, 0x708b1e},}, 85}
-	ml.event_第三界面判断_人数未满={{{930, 222, 0x52322b},{991, 223, 0x583630},}, 85}
+	ml.event_第三界面判断_返回组队={{{998, 563, 0x708a1e},{866, 113, 0x72695f},{815, 115, 0x37251d},}, 85}
+	ml.event_第三界面判断_人数未满={{{ 929, 216, 0x5e3631},{1008, 216, 0x633f39},}, 85}
+	ml.event_第三界面判断_组队喊话={{{800, 111, 0x30221b},{863, 115, 0xf4ead2},}, 85}
+	ml.event_第三界面判断_组队喊话确定={{{538, 409, 0xab5b1a},{730, 179, 0x89775d},}, 85}
+	
 	--职业学院
 	ml.event_第三界面判断_职业学院界面={{{ 28, 20, 0x9f9286},{125, 19, 0xb6a99d},{157, 18, 0xcdc3b6},}, 85}
 	--奖励界面
@@ -131,7 +138,6 @@ function event()
 			end
 		elseif d(ml.event_第三界面判断_职业学院界面,"event_第三界面判断_职业学院界面") then
 			if d(ml.event_职业学院接取任务和前往,"活动_职业学院接取任务和前往",true,1)then
-			delay(90)
 			end
 		elseif 奖励_key and d(ml.event_第三界面判断_奖励界面,"ml.event_第三界面判断_奖励界面")then
 			if d(ml.event_第三界面判断_首充好礼,"ml.event_第三界面判断_首充好礼")then
@@ -148,8 +154,13 @@ function event()
 			if d(ml.event_第三界面判断_返回组队,"ml.event_第三界面判断_返回组队",true,1)then	
 			elseif d(ml.event_第三界面判断_人数未满,"ml.event_第三界面判断_人数未满")then	
 				log("人数未满")
-				d(ml.event_第三界面判断,"ml.event_第三界面判断",true,1)
-				组队_key = true
+				delay(6)
+				if d(ml.event_第三界面判断_组队喊话,"ml.event_第三界面判断_组队喊话",true)then
+					d(ml.event_第三界面判断_组队喊话确定,"ml.event_第三界面判断_组队喊话确定",true)
+				elseif not 	d(ml.event_第三界面判断_人数未满,"ml.event_第三界面判断_人数未满")then
+					d(ml.event_第三界面判断,"ml.event_第三界面判断",true,1)
+					组队_key = false
+				end
 			else
 				d(ml.event_第三界面判断,"ml.event_第三界面判断",true,1)
 			end
@@ -223,9 +234,11 @@ ml.游戏主界面ok_主界面ok={{{1022, 133, 0x683824},{1026, 125, 0x65422d},{
 	ml.游戏主界面ok_使用={{{1024,471,0xf8e8d8},{1023,471,0x27180a},{1017,476,0x6a5440},}, 85, 996, 462, 1081, 488}	
 	ml.游戏主界面ok_使用1={{{825,408,0x78583b},{826,408,0xf9f2e9},}, 85}
 	ml.游戏主界面ok_结束引导={{{32, 415, 0x4a270b},{32, 414, 0xffdfc0},}, 85}
-	ml.游戏主界面ok_支线任务={{{939, 244, 0xfad153},{939, 248, 0xfad153},}, 85}
+	ml.游戏主界面ok_支线任务1={{{937, 164, 0xfbd254},{937, 172, 0xfbd254},{976, 164, 0xfbd254},{976, 176, 0xe4be4d},}, 85, 929, 153, 1131, 412}
+	ml.游戏主界面ok_支线任务2={{{939, 323, 0xfad153},{939, 327, 0xfad153},}, 85}
 	ml.游戏主界面ok_引导任务={{{938, 244, 0xdeb94c},{938, 248, 0xdeb94c},}, 85}
-	ml.游戏主界面ok_主线任务={{{939, 168, 0xb0e259},{939, 166, 0xb0e259},}, 85}
+	ml.游戏主界面ok_主线任务1={{{937, 244, 0xa4cf53},{950, 244, 0xb1e35a},{969, 245, 0xaedf58},{980, 247, 0xb1e35a},}, 85, 928, 154, 1132, 410}
+	ml.游戏主界面ok_主线任务2={{{939, 244, 0xb0e259},{939, 251, 0xb0e259},}, 85}
 	--event()
 	ml.游戏主界面ok_奖励有红点={{{41, 210, 0xfffff3},{35, 197, 0xf198ff},{34, 201, 0xffecfe},{61, 193, 0xff180b},}, 85, 8, 86, 269, 338}
 	ml.游戏主界面ok_活动有红点={{{109, 219, 0xe5563c},{122, 204, 0xfae96f},{140, 193, 0xff180b},{138, 224, 0xfff287},}, 85, 5, 92, 323, 337}
@@ -252,10 +265,10 @@ function 主界面下的操作()
 	elseif d(ml.游戏主界面ok_使用1,"ml.游戏主界面ok_使用1",true,1)then
 	elseif d(ml.游戏主界面ok_结束引导,"ml.游戏主界面ok_结束引导",true,1)then
 	
-	elseif 支线任务_key and d(ml.游戏主界面ok_支线任务,"ml.游戏主界面ok_支线任务",true,1)then
+	elseif 支线任务_key and d(ml.游戏主界面ok_支线任务1,"ml.游戏主界面ok_支线任务1",true,1) or d(ml.游戏主界面ok_支线任务2,"ml.游戏主界面ok_支线任务2",true,1)then
 	elseif d(ml.游戏主界面ok_引导任务,"ml.游戏主界面ok_引导任务",true,1)then
 	elseif d(ml.游戏主界面ok_等级不够,"ml.游戏主界面ok_等级不够")then
-	elseif d(ml.游戏主界面ok_主线任务,"ml.游戏主界面ok_主线任务",true,1)then
+	elseif d(ml.游戏主界面ok_主线任务1,"ml.游戏主界面ok_主线任务1",true,1) or d(ml.游戏主界面ok_主线任务2,"ml.游戏主界面ok_主线任务2",true,1)then
 	else
 		delay(0.5)	
 	end
@@ -276,15 +289,9 @@ function 魔力宝贝挂机流程()
 	组队_key = true
 	支线任务_key = true
 	level = 1
-	
 
 	while os.time()-TimeLine < UserTime do
-		if os.time()-活动_key_time > 10*60 then
-			活动_key = true
-			活动_key_time_jl = os.time()
-		end
 		
-
 		if active(app_bid.mlbb,3)then
 			if os.time()-checkLinght > 10 then
 				log("查询光圈,休息2秒")
@@ -316,7 +323,6 @@ function 魔力宝贝挂机流程()
 			end
 		end
 		delay(math.random(20,200)/1000)
-
 	end
 end
 
