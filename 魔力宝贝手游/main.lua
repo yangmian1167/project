@@ -357,7 +357,7 @@ function 魔力宝贝挂机流程()
 --					活动_key = false
 --				end
 			end	
-			if os.time()-checkLinght > level*30 then
+			if os.time()-checkLinght > level*2 then
 				if d(ml.游戏主界面ok_结束引导,"ml.游戏主界面ok_结束引导",true,1)then
 				else
 				log("查询光圈,休息2秒")
