@@ -100,7 +100,6 @@ ml.event_第三界面判断={{{1094, 35, 0xdec99e},{ 866, 31, 0x71eefc},{ 634, 2
 	ml.event_第三界面判断_人数未到三人={{{537, 199, 0x56342c},{620, 202, 0x573731},}, 85}
 	ml.event_第三界面判断_组队喊话={{{800, 111, 0x30221b},{863, 115, 0xf4ead2},}, 85}
 	ml.event_第三界面判断_组队喊话确定={{{538, 409, 0xab5b1a},{730, 179, 0x89775d},}, 85}
-	
 	--职业学院
 	ml.event_第三界面判断_职业学院界面={{{ 28, 20, 0x9f9286},{125, 19, 0xb6a99d},{157, 18, 0xcdc3b6},}, 85}
 	ml.event_职业学院接取任务和前往={{{821, 561, 0x738d20},{931, 565, 0x658118},}, 85}
@@ -109,7 +108,7 @@ ml.event_第三界面判断={{{1094, 35, 0xdec99e},{ 866, 31, 0x71eefc},{ 634, 2
 	--突发事件
 	ml.event_第三界面判断_充值={{{42, 16, 0x2e1a13},{43, 16, 0x9a8c7f},{47, 14, 0x8b7d72},}, 85}
 	--event 第三界面盲区
-	ml.tip_第三界面判断_公告 = {{{1094,  34, 0x9b8d70},{ 695, 531, 0xea8d26},{ 544, 461, 0x1360c0},}, 85}
+	ml.tip_第三界面判断_公告 = {{{1089,  32, 0x7e7563},{1033, 225, 0x7a3b33},{ 995, 222, 0xd64e19},}, 85}
 	ml.tip_第三界面判断_不点更新={{{495, 354, 0xc3751f},{539, 365, 0x964d18},{625, 351, 0x7faa31},{635, 362, 0xf9f7ee},}, 85}
 
 function check30day()
@@ -139,21 +138,20 @@ function check30day()
 	end
 end
 
-
-
 function event()
 	if d(ml.event_第三界面判断,"ml.event_在第三界面")then
 		if d(ml.event_第三界面判断_活动界面,"ml.event_第三界面判断_活动界面")then
-			log("准备活动",true)
+			log("准备活动")
 			if d(ml.event_第三界面判断_活动万事通,"event_第三界面判断_活动万事通",true,1)then
+				活动_启动_key = false
 			elseif d(ml.event_第三界面判断_活动学院任务,"event_第三界面判断_活动学院任务",true,1)then
 				活动_启动_key = false
+				delay(10)
 			elseif d(ml.event_第三界面判断_活动真中,"event_第三界面判断_活动真中",true,1)then
 				活动_启动_key = false 
 				delay(10)
 				if os.time() - 真中超时 > 30 then
 				d(ml.event_第三界面判断,"ml.event_第三界面判断",true,1)
-				
 				end
 			else
 				活动_启动_key = false 
@@ -193,8 +191,6 @@ function event()
 				支线任务_key = false
 				活动_启动_key = true
 				if d(ml.游戏主界面ok_奖励有红点,"ml.游戏主界面ok_奖励有红点",true,1)then
-					
-				
 				end
 			else
 				d(ml.event_第三界面判断,"ml.event_第三界面判断",true,1)
@@ -202,6 +198,7 @@ function event()
 		elseif d(ml.event_第三界面判断_充值,"ml.event_第三界面判断_充值")then
 			d(ml.event_第三界面判断,"ml.event_第三界面判断",true,1)
 		else
+			
 			d(ml.event_第三界面判断,"ml.event_第三界面判断",true,1)
 		end
 	--这里登录的创建角相关的区域
@@ -268,6 +265,7 @@ ml.游戏主界面ok_主界面ok={{{1089, 114, 0xfbf7ea},{1089, 110, 0x806848},{
 	ml.游戏主界面ok_关闭电台={{{1051, 43, 0xeea43e},{1065, 33, 0xf6bd72},{1068, 32, 0xffffff},}, 85}
 	ml.游戏主界面ok_等级不够={{{ 941, 186, 0xd53106},{ 952, 188, 0xf13201},{1028, 188, 0xce3107},{1035, 188, 0xf73200},}, 85, 934, 181, 1050, 204}
 	ml.游戏主界面ok_日常真中任务={{{939, 245, 0xfad153},{949, 241, 0xfbd254},{947, 247, 0xfbd254},{951, 254, 0xe6c04e},}, 85}
+	ml.游戏主界面ok_日常任务={{{939, 325, 0xfad153},{964, 335, 0xc8a546},}, 85}
 	ml.游戏主界面ok_支线任务={{{939, 243, 0xfad153},{939, 245, 0xfad153},{982, 245, 0xfbd254},{982, 249, 0xfbd254},}, 85}
 	ml.游戏主界面ok_引导任务={{{938, 244, 0xdeb94c},{938, 248, 0xdeb94c},}, 85}
 	ml.游戏主界面ok_主线任务={{{937, 244, 0xa4cf53},{950, 244, 0xb1e35a},{969, 245, 0xaedf58},{980, 247, 0xb1e35a},}, 85, 928, 154, 1132, 410}
@@ -301,10 +299,8 @@ function 主界面下的操作()
 	elseif d(ml.游戏主界面ok_使用1,"ml.游戏主界面ok_使用1",true,1)then
 	elseif d(ml.游戏主界面ok_关闭聊天框,"ml.游戏主界面ok_关闭聊天框",true,1)then
 	elseif d(ml.游戏主界面ok_关闭电台,"ml.游戏主界面ok_关闭电台",true,1)then
---	elseif 活动_key then
---		log("活动_key_不做其他")
---		delay(2)
 	elseif d(ml.游戏主界面ok_日常真中任务,"ml.游戏主界面ok_日常真中任务",true,1) then
+	elseif d(ml.游戏主界面ok_日常任务,"ml.游戏主界面ok_日常任务",true,1) then
 	elseif 支线任务_key and d(ml.游戏主界面ok_支线任务,"ml.游戏主界面ok_支线任务",true,1) then
 		delay(3)
 	
@@ -347,17 +343,18 @@ function 魔力宝贝挂机流程()
 	while os.time()-TimeLine < UserTime do
 		log(os.time() - 活动_key_time)
 		if active(app_bid.mlbb,3)then
-			if os.time() - 活动_key_time > 60*10 then
+			if os.time() - 活动_key_time > 60 then
 				活动_启动_key = true
 				组队_key = true
 				主线任务_key = true
 				支线任务_key = true
 				log("十分钟开启一次所有任务")
---				if os.time() - 活动_key_time1 > 60*15 then
+				活动_key_time = os.time()
+--				if os.time() - 活动_key_time1 > 60*10 then
 --					活动_key = false
 --				end
 			end	
-			if os.time()-checkLinght > level*2 then
+			if os.time()-checkLinght > 10 then
 				if d(ml.游戏主界面ok_结束引导,"ml.游戏主界面ok_结束引导",true,1)then
 				else
 				log("查询光圈,休息2秒")
@@ -368,7 +365,7 @@ function 魔力宝贝挂机流程()
 				end
 			end
 			if d(ml.游戏主界面ok_主界面ok,"ml.游戏主界面ok_主界面ok")then
-				level = lvl()
+				level = lvl() or 1
 				log("level = "..level)
 				主界面下的操作()
 			elseif d(ml.战斗界面_战斗界面,"ml.战斗界面_战斗界面")then
