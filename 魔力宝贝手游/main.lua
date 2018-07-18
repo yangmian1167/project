@@ -148,23 +148,18 @@ function event()
 	if d(ml.event_第三界面判断,"ml.event_在第三界面")then
 		if d(ml.event_第三界面判断_活动界面,"ml.event_第三界面判断_活动界面")then
 			if 	活动_key then
-				if os.time() - 活动超时time < 10 then
-					活动超时time = os.time()
-					if d(ml.event_第三界面判断_活动万事通,"event_第三界面判断_活动万事通",true,1)then
-					elseif d(ml.event_第三界面判断_法兰城许愿,"event_第三界面判断_法兰城许愿",true,1)then
-						delay(10)
-					elseif d(ml.event_第三界面判断_活动学院任务,"event_第三界面判断_活动学院任务",true,1)then
-						delay(10)
-					elseif d(ml.event_第三界面判断_活动真中,"event_第三界面判断_活动真中",true,1)then
-						delay(10)
-					else
-						活动_启动_key = 3
-						活动_key = false
-						主线任务_key = true
-						log("活动任务关闭")
-						d(ml.event_第三界面判断,"ml.event_第三界面判断",true,1)
-					end
+				if d(ml.event_第三界面判断_活动万事通,"event_第三界面判断_活动万事通",true,1)then
+				elseif d(ml.event_第三界面判断_法兰城许愿,"event_第三界面判断_法兰城许愿",true,1)then
+					delay(10)
+				elseif d(ml.event_第三界面判断_活动学院任务,"event_第三界面判断_活动学院任务",true,1)then
+					delay(10)
+				elseif d(ml.event_第三界面判断_活动真中,"event_第三界面判断_活动真中",true,1)then
+					delay(10)
 				else
+					活动_启动_key = 3
+					活动_key = false
+					主线任务_key = true
+					log("活动任务关闭")
 					d(ml.event_第三界面判断,"ml.event_第三界面判断",true,1)
 				end
 			else
@@ -274,6 +269,7 @@ ml.游戏主界面ok_主界面ok={{{1089, 114, 0xfbf7ea},{1089, 110, 0x806848},{
 	ml.游戏主界面ok_日常真中任务={{{939, 245, 0xfad153},{949, 241, 0xfbd254},{947, 247, 0xfbd254},{951, 254, 0xe6c04e},}, 85}
 	ml.游戏主界面ok_日常任务={{{939, 325, 0xfad153},{964, 335, 0xc8a546},}, 85}
 	ml.游戏主界面ok_日常任务1={{{946, 322, 0xebc44f},{946, 335, 0xebc44f},{957, 335, 0xfbd254},{957, 322, 0xfbd254},}, 85, 932, 156, 988, 412}
+	ml.游戏主界面ok_进阶任务={{{977, 169, 0xdfb94c},{978, 195, 0xf9f8f8},{982, 217, 0xe0c08f},}, 85, 936, 155, 997, 230}
 	ml.游戏主界面ok_支线任务={{{944, 242, 0xd7b349},{957, 242, 0xd6b24a},{957, 255, 0x554126},{944, 254, 0xf2c951},}, 85, 932, 155, 988, 415}
 	ml.游戏主界面ok_支线任务1={{{973, 335, 0xfbd254},{973, 323, 0xfbd254},{939, 323, 0xf4cc52},{939, 335, 0xf7ce53},}, 85, 932, 160, 987, 412}
 	ml.游戏主界面ok_挑战任务={{{939, 243, 0xfad153},{939, 253, 0xfad153},{946, 248, 0xfbd254},{982, 248, 0xfbd254},}, 85, 933, 157, 987, 398}
@@ -313,6 +309,8 @@ function 主界面下的操作()
 	elseif d(ml.游戏主界面ok_日常真中任务,"ml.游戏主界面ok_日常真中任务",true,1) then
 	elseif d(ml.游戏主界面ok_日常任务,"ml.游戏主界面ok_日常任务",true,1) then
 	elseif d(ml.游戏主界面ok_日常任务1,"ml.游戏主界面ok_日常任务1",true,1) then
+	elseif d(ml.游戏主界面ok_进阶任务,"ml.游戏主界面ok_进阶任务",true,1) then
+		
 		delay(3)
 
 	elseif d(ml.游戏主界面ok_引导任务,"ml.游戏主界面ok_引导任务",true,1)then
@@ -341,7 +339,7 @@ function 魔力宝贝挂机流程()
 	奖励_key = true
 	--活动---------------------------------------
 	活动_key = true
-	活动_启动_key = 0
+	活动_启动_key = 3
 	活动_key_time = 0
 	活动超时time = os.time()
 	---------------------------------------------
@@ -412,7 +410,7 @@ end
 
 
 
-
+-- d(ml.游戏主界面ok_进阶任务,"ml.游戏主界面ok_进阶任务",true,1)
 魔力宝贝挂机流程()
 
 
