@@ -56,8 +56,6 @@ function tips()
 	elseif d(ml.游戏主界面ok_结束引导,"ml.游戏主界面ok_结束引导",true,1)then
 	elseif d(ml.tips_战斗失败,"ml.tips_战斗失败",true,1)then
 		组队_key = true
-		主线任务_key = true
-		支线任务_key = false
 	elseif d(ml.tip_副本离开,"ml.tip_副本离开",true,1)then
 		支线任务_key = false
 		d(ml.tip_副本离开确定,"ml.tip_副本离开确定",true,1)
@@ -147,7 +145,7 @@ end
 function event()
 	if d(ml.event_第三界面判断,"ml.event_在第三界面")then
 		if d(ml.event_第三界面判断_活动界面,"ml.event_第三界面判断_活动界面")then
-			if 	活动_key then
+			if 	活动_key  then
 				if d(ml.event_第三界面判断_活动万事通,"event_第三界面判断_活动万事通",true,1)then
 				elseif d(ml.event_第三界面判断_法兰城许愿,"event_第三界面判断_法兰城许愿",true,1)then
 					delay(10)
@@ -273,7 +271,7 @@ ml.游戏主界面ok_主界面ok={{{1089, 114, 0xfbf7ea},{1089, 110, 0x806848},{
 	ml.游戏主界面ok_支线任务={{{944, 242, 0xd7b349},{957, 242, 0xd6b24a},{957, 255, 0x554126},{944, 254, 0xf2c951},}, 85, 932, 155, 988, 415}
 	ml.游戏主界面ok_支线任务1={{{973, 335, 0xfbd254},{973, 323, 0xfbd254},{939, 323, 0xf4cc52},{939, 335, 0xf7ce53},}, 85, 932, 160, 987, 412}
 	ml.游戏主界面ok_挑战任务={{{939, 243, 0xfad153},{939, 253, 0xfad153},{946, 248, 0xfbd254},{982, 248, 0xfbd254},}, 85, 933, 157, 987, 398}
-	ml.游戏主界面ok_引导任务={{{938, 244, 0xdeb94c},{938, 248, 0xdeb94c},}, 85}
+	ml.游戏主界面ok_引导任务={{{948, 242, 0xf1c951},{963, 249, 0xfbd254},{973, 249, 0xd8b34a},}, 85, 937, 235, 1120, 300}
 	ml.游戏主界面ok_主线任务={{{937, 244, 0xa4cf53},{950, 244, 0xb1e35a},{969, 245, 0xaedf58},{980, 247, 0xb1e35a},}, 85, 928, 154, 1132, 410}
 	-- 放到光标前面了
 	ml.游戏主界面ok_结束引导={{{32, 415, 0x4a270b},{32, 414, 0xffdfc0},}, 85}
@@ -314,15 +312,16 @@ function 主界面下的操作()
 		delay(3)
 
 	elseif d(ml.游戏主界面ok_引导任务,"ml.游戏主界面ok_引导任务",true,1)then
-		if d(ml.游戏主界面ok_支线任务,"ml.游戏主界面ok_支线任务",true,1) then
-		else
-			活动_key = false
-		end
 	elseif 活动_key then
-	elseif 支线任务_key and d(ml.游戏主界面ok_支线任务,"ml.游戏主界面ok_支线任务",true,1) or d(ml.游戏主界面ok_支线任务1,"ml.游戏主界面ok_支线任务1",true,1)or d(ml.游戏主界面ok_挑战任务,"ml.游戏主界面ok_挑战任务",true,1) then
-	elseif d(ml.游戏主界面ok_等级不够,"ml.游戏主界面ok_等级不够")then
+		elseif d(ml.游戏主界面ok_等级不够,"ml.游戏主界面ok_等级不够")then
+		主线任务_key = false
 		支线任务_key = true
+		if 支线任务_key and d(ml.游戏主界面ok_支线任务,"ml.游戏主界面ok_支线任务",true,1) or d(ml.游戏主界面ok_支线任务1,"ml.游戏主界面ok_支线任务1",true,1)or d(ml.游戏主界面ok_挑战任务,"ml.游戏主界面ok_挑战任务",true,1) then
+		end
 	elseif 主线任务_key and d(ml.游戏主界面ok_主线任务,"ml.游戏主界面ok_主线任务",true,1) then
+
+
+	
 	
 	
 	else
@@ -361,6 +360,7 @@ function 魔力宝贝挂机流程()
 			if os.time() - 活动_key_time > 60*5 then
 				活动_启动_key = 0
 				活动_key = true
+				组队_key = true
 				log("五分钟刷新一次活动")
 				活动_key_time = os.time()
 
