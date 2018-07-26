@@ -11,7 +11,7 @@ ml={}
 ml.tips={}
 ml.event={}
 --登录和创建
-ml.登录界面={{{510, 493, 0x71bd0a},{ 51, 131, 0xf7e9d3},{ 50,  46, 0xf6ecd4},}, 85}
+
 ml.创建角色={}
 	ml.创建角色_创建角色界面1={{{ 907, 338, 0x6bbded},{ 967, 338, 0x6dd970},{1027, 336, 0xf35a3d},}, 85}
 	ml.创建角色_下一步={{{1055, 592, 0x773d15},{1029, 581, 0xd2b696},{ 965, 566, 0xccbfb2},{ 965, 566, 0xccbfb2},}, 85, 925, 551, 1081, 602}
@@ -39,6 +39,9 @@ ml.创建角色={}
 	ml.tip_用户协议同意={{{435, 416, 0xa95b1a},{672, 419, 0xb0362f},}, 85}
 	ml.tip_副本离开={{{1043, 372, 0x684f42},{ 999, 136, 0x733d26},{1051, 139, 0x3f3431},}, 85}
 	ml.tip_副本离开确定={{{593, 402, 0x5f8629},{530, 406, 0xebddcc},{501, 404, 0x594941},}, 85}
+	ml.tip_超时返回登录列表={{{546, 353, 0xbd6c1c},{619, 386, 0x6b3712},}, 85}
+	ml.tip_网络错误={{{541, 349, 0xa85a1a},{603, 359, 0x874617},}, 85}
+	ml.tip_微信登录={{{630, 481, 0x7dc80d},{974, 483, 0x00b5e1},{186, 483, 0xeb8316},}, 85}
 	--
 	ml.tip_选择服务器界面关闭={{{1085, 38, 0x804428},{ 870, 41, 0x9ac236},{ 784, 40, 0xd7b226},{ 949, 40, 0xa9a19d},}, 85}
 	ml.tip_邀请入队取消={{{542, 355, 0x6e5b4d},{621, 362, 0x9f5418},}, 85}
@@ -73,6 +76,9 @@ function tips()
 	elseif d(ml.tip_选择服务器界面关闭,"ml.tip_选择服务器界面关闭",true,1)then
 	elseif d(ml.tip_用户协议同意,"ml.tip_用户协议同意",true,1)then
 	elseif d(ml.tip_邀请入队取消,"ml.tip_邀请入队取消",true,1)then
+	elseif d(ml.tip_超时返回登录列表,"ml.tip_超时返回登录列表",true,1)then
+	elseif d(ml.tip_网络错误,"ml.tip_网络错误",true,1)then
+	elseif d(ml.tip_微信登录,"ml.tip_微信登录",true,1)then
 	elseif d(ml.tip_第三界面判断_公告,"ml.tip_第三界面判断_公告",true)then
 		d(ml.event_第三界面判断,"ml.event_第三界面判断关闭",true,1)
 	elseif d(ml.游戏主界面ok_主界面点到任务栏,"ml.游戏主界面ok_主界面点到任务栏",true,1)then
@@ -142,6 +148,7 @@ function check30day()
 	end
 end
 
+
 function event()
 	if d(ml.event_第三界面判断,"ml.event_在第三界面")then
 		if d(ml.event_第三界面判断_活动界面,"ml.event_第三界面判断_活动界面")then
@@ -157,6 +164,7 @@ function event()
 					活动_启动_key = 3
 					活动_key = false
 					主线任务_key = true
+					找光标_key = true
 					log("活动任务关闭")
 					d(ml.event_第三界面判断,"ml.event_第三界面判断",true,1)
 				end
@@ -200,7 +208,6 @@ function event()
 			d(ml.event_第三界面判断,"ml.event_第三界面判断",true,1)
 		end
 	--这里登录的创建角相关的区域
-	elseif d(ml.登录界面,"ml.登录界面",true,1)then
 	elseif d(ml.创建角色_创建角色界面1,"创建角色界面1",false,1) then
 		d(ml.创建角色_下一步,"下一步",true,1)
 	elseif d(ml.创建角色_创建角色界面2,"创建角色界面2",false,1) then
@@ -250,8 +257,18 @@ function lvl()
 	return levels
 end
 
+
+ml.登录界面 = {{{63,  37, 0xf8ebd4},{64, 124, 0xfcf8e3},{60, 226, 0xf8ead2},}, 85}
+	ml.登录界面_换区 = {{{794, 402, 0xa8e000},{618, 494, 0x6db80d},}, 85}
+	ml.登录界面_选区界面 = {{{1093, 40, 0x381c0f},{ 863, 38, 0xa3c63a},{ 782, 42, 0xd3ac23},{ 708, 44, 0xd74a1d},}, 85, 685, 29, 1125, 56}
+	ml.登录界面_第一个区 = {{{458, 301, 0x696159},{454, 300, 0x625a53},}, 85, 448, 291, 481, 318}
+	ml.登录界面_第二个区 = {{{768, 299, 0x645b55},{768, 301, 0x514944},}, 85, 759, 293, 797, 317}
+	ml.登录界面_第三个区 = {{{454, 397, 0x645b55},{454, 398, 0x58504a},}, 85, 444, 391, 482, 414}
+	ml.登录界面_第四个区 = {{{774, 397, 0x645b55},{770, 399, 0x5d544e},}, 85, 761, 392, 796, 412}
+	ml.登录界面_第五个区 = {{{456, 494, 0x544c46},{453, 497, 0x6b625b},}, 85, 447, 490, 481, 509}
+	ml.登录界面_登录游戏={{{511, 494, 0x6ebb0b},{620, 490, 0x76c30a},}, 85}
 ml.游戏主界面ok={}
-ml.游戏主界面ok_主界面ok={{{1089, 114, 0xfbf7ea},{1089, 110, 0x806848},{1088, 136, 0x3d352d},}, 85}
+	ml.游戏主界面ok_主界面ok={{{1089, 114, 0xfbf7ea},{1089, 110, 0x806848},{1088, 136, 0x3d352d},}, 85}
 	ml.游戏主界面ok_没有对话框={{{963, 127, 0xecd5b2},{948, 133, 0x693925},}, 85}
 	ml.游戏主界面ok_便捷组队={{{1092, 431, 0x8c4a1a},{1085, 495, 0x874718},{1086, 561, 0x804317},}, 85}	--战斗,组队,离开
 	ml.游戏主界面ok_对话选一={{{1088, 434, 0x854618},}, 85}
@@ -273,10 +290,11 @@ ml.游戏主界面ok_主界面ok={{{1089, 114, 0xfbf7ea},{1089, 110, 0x806848},{
 	ml.游戏主界面ok_挑战任务={{{939, 243, 0xfad153},{939, 253, 0xfad153},{946, 248, 0xfbd254},{982, 248, 0xfbd254},}, 85, 933, 157, 987, 398}
 	ml.游戏主界面ok_引导任务={{{948, 242, 0xf1c951},{963, 249, 0xfbd254},{973, 249, 0xd8b34a},}, 85, 937, 235, 1120, 300}
 	ml.游戏主界面ok_主线任务={{{937, 244, 0xa4cf53},{950, 244, 0xb1e35a},{969, 245, 0xaedf58},{980, 247, 0xb1e35a},}, 85, 928, 154, 1132, 410}
-	-- 放到光标前面了
-	ml.游戏主界面ok_结束引导={{{32, 415, 0x4a270b},{32, 414, 0xffdfc0},}, 85}
-	--event()
-	ml.游戏主界面ok_奖励有红点={{{41, 210, 0xfffff3},{35, 197, 0xf198ff},{34, 201, 0xffecfe},{61, 193, 0xff180b},}, 85, 8, 86, 269, 338}
+	ml.游戏主界面ok_主线任务1={{{982, 173, 0xb1e35a},{982, 156, 0x93b54b},{939, 156, 0x93b44b},{939, 173, 0xb1e35a},}, 85, 933, 155, 989, 344}
+-- 放到光标前面了
+ml.游戏主界面ok_结束引导={{{32, 415, 0x4a270b},{32, 414, 0xffdfc0},}, 85}
+--event()
+ml.游戏主界面ok_奖励有红点={{{41, 210, 0xfffff3},{35, 197, 0xf198ff},{34, 201, 0xffecfe},{61, 193, 0xff180b},}, 85, 8, 86, 269, 338}
 	ml.游戏主界面ok_活动有红点={{{109, 219, 0xe5563c},{122, 204, 0xfae96f},{140, 193, 0xff180b},{138, 224, 0xfff287},}, 85, 5, 92, 323, 337}
 --战斗界面--
 ml.战斗界面={}
@@ -311,14 +329,17 @@ function 主界面下的操作()
 		
 		delay(3)
 
-	elseif d(ml.游戏主界面ok_引导任务,"ml.游戏主界面ok_引导任务",true,1)then
+	--elseif d(ml.游戏主界面ok_引导任务,"ml.游戏主界面ok_引导任务",true,1)then
 	elseif 活动_key then
-		elseif d(ml.游戏主界面ok_等级不够,"ml.游戏主界面ok_等级不够")then
+	elseif d(ml.游戏主界面ok_等级不够,"ml.游戏主界面ok_等级不够")then
 		主线任务_key = false
 		支线任务_key = true
 		if 支线任务_key and d(ml.游戏主界面ok_支线任务,"ml.游戏主界面ok_支线任务",true,1) or d(ml.游戏主界面ok_支线任务1,"ml.游戏主界面ok_支线任务1",true,1)or d(ml.游戏主界面ok_挑战任务,"ml.游戏主界面ok_挑战任务",true,1) then
+		else
+		主线任务_key = true
 		end
-	elseif 主线任务_key and d(ml.游戏主界面ok_主线任务,"ml.游戏主界面ok_主线任务",true,1) then
+	elseif 主线任务_key and d(ml.游戏主界面ok_主线任务,"ml.游戏主界面ok_主线任务",true,1) or d(ml.游戏主界面ok_主线任务1,"ml.游戏主界面ok_主线任务1",true,1)then
+	
 
 
 	
@@ -329,129 +350,134 @@ function 主界面下的操作()
 	end
 end	
 	
-function 魔力宝贝挂机流程()
+function mlbb()
+	screen.init(1)
 	local TimeLine = os.time()
-	local UserTime = 60 * (n or 30000)
+	local UserTime = 60 * (n or 60)
 	local task = 0				--设置单个帐号任务次数
 	local checkLinght = os.time()
 	
 	奖励_key = true
-	--活动---------------------------------------
+	--活动----------------------------------------
 	活动_key = true
 	活动_启动_key = 3
 	活动_key_time = 0
 	活动超时time = os.time()
-	---------------------------------------------
+	----------------------------------------------
 	组队_key = true
 	主线任务_key = true
 	支线任务_key = true
 	level = 1
-	
+	----------------------------------------------
+	找光标_key = true
+	---换区---------------------------------------
+	一区_key = true
+	二区_key = true
+	三区_key = true
+	四区_key = true
+	五区_key = true
+	换区_key = true
+	单区时间 = os.time()
+	---------------------------------------------
 	while os.time()-TimeLine < UserTime do
-		log(os.time() - 活动_key_time)
-		
-		if active(app_bid.mlbb,3)then
-			
-			if level < 19 then
-				活动_key = false
-				活动_启动_key = 3
-			end
-			
-			if os.time() - 活动_key_time > 60*5 then
-				活动_启动_key = 0
-				活动_key = true
-				组队_key = true
-				log("五分钟刷新一次活动")
-				活动_key_time = os.time()
-
-			end	
-		
-			-----------------出checkLinght
-			if os.time()-checkLinght > 25 then
-				if d(ml.游戏主界面ok_结束引导,"ml.游戏主界面ok_结束引导",true,1)then
-				elseif d(ml.新号光标单独处理,"ml.新号光标单独处理",true,1)then
-				else
-					log("查询光圈,休息2秒")
-					delay(2)
-					small_light_box()
-					small_light_box1()
-					checkLinght = os.time()
-				end
-			end
-			
-			
-			-----------------game--------------------------------------------------------
-			if d(ml.游戏主界面ok_主界面ok,"ml.游戏主界面ok_主界面ok")then
-				level = lvl() or 1
-				log("level = "..level)
-				主界面下的操作()
+		log(os.time() - TimeLine)
+		if os.time() - 单区时间 < 60*5 then
+			log(os.time() - 单区时间)
+			if active(app_bid.mlbb,3)then
 				
-			elseif d(ml.战斗界面_战斗界面,"ml.战斗界面_战斗界面")then
-				log("正在战斗中")
-				delay(3)
-				if d(ml.战斗界面_自动战斗按钮,"ml.战斗界面_自动战斗按钮",true,1)then
-				elseif d(ml.战斗界面_没有技能,"ml.战斗界面_没有技能",true,1)then
-				elseif d(ml.战斗界面_切换英雄技能,"ml.战斗界面_切换英雄技能",true,1)then
-				elseif d(ml.战斗界面_切换宠物技能,"ml.战斗界面_切换宠物技能",true,1)then
+				if level < 19 then
+					活动_key = false
+					活动_启动_key = 3
+					找光标_key = true
 				end
-			else
-				if tips()then
-					if event()then
-						log("什么也没有找到,随便点击一下")
-						click(1085, 581)			--all other state
+				
+				if os.time() - 活动_key_time > 60*5 then
+					活动_启动_key = 0
+					活动_key = true
+					组队_key = true
+					找光标_key = false
+					log("五分钟刷新一次活动")
+					活动_key_time = os.time()
+
+				end	
+			
+				-----------------出checkLinght
+				if 找光标_key and os.time()-checkLinght > 25 then
+					if d(ml.游戏主界面ok_结束引导,"ml.游戏主界面ok_结束引导",true,1)then
+					elseif d(ml.新号光标单独处理,"ml.新号光标单独处理",true,1)then
+					else
+						log("查询光圈,休息2秒")
+						delay(2)
+						small_light_box()
+						small_light_box1()
+						checkLinght = os.time()
+					end
+				end
+				
+				
+				-----------------game--------------------------------------------------------
+				if d(ml.登录界面,"ml.登录界面") then
+					if 换区_key  and  d(ml.登录界面_换区,"ml.登录界面_换区",true,1) then
+					elseif d(ml.登录界面_登录游戏,"ml.登录界面_登录游戏",true,1) then
+					end
+				elseif d(ml.登录界面_选区界面,"ml.登录界面_选区界面") then
+					
+						if 一区_key and d(ml.登录界面_第一个区,"ml.登录界面_第一个区",true,1)then
+							一区_key = false
+							换区_key = false
+						elseif 二区_key and d(ml.登录界面_第二个区,"ml.登录界面_第二个区",true,1)then
+							二区_key = false
+							换区_key = false
+						elseif 三区_key and d(ml.登录界面_第三个区,"ml.登录界面_第三个区",true,1)then
+							三区_key = false
+							换区_key = false
+						elseif 四区_key and d(ml.登录界面_第四个区,"ml.登录界面_第四个区",true,1)then
+							四区_key = false
+							换区_key = false
+						elseif 五区_key and d(ml.登录界面_第五个区,"ml.登录界面_第五个区",true,1)then
+							五区_key = false
+							换区_key = false
+						 
+						end
+				
+				elseif d(ml.游戏主界面ok_主界面ok,"ml.游戏主界面ok_主界面ok")then
+					level = lvl() or 1
+					log("level = "..level)
+					主界面下的操作()
+					
+				elseif d(ml.战斗界面_战斗界面,"ml.战斗界面_战斗界面")then
+					log("正在战斗中")
+					delay(3)
+					if d(ml.战斗界面_自动战斗按钮,"ml.战斗界面_自动战斗按钮",true,1)then
+					elseif d(ml.战斗界面_没有技能,"ml.战斗界面_没有技能",true,1)then
+					elseif d(ml.战斗界面_切换英雄技能,"ml.战斗界面_切换英雄技能",true,1)then
+					elseif d(ml.战斗界面_切换宠物技能,"ml.战斗界面_切换宠物技能",true,1)then
+					end
+				else
+					if tips()then
+						if event()then
+							log("什么也没有找到,随便点击一下")
+							click(1085, 581)			--all other state
+						end
 					end
 				end
 			end
+			delay(math.random(20,200)/1000)
+			log("end")
+		else
+		换区_key = true
+		单区时间 = os.time()
+		closeX(app_bid.mlbb)
 		end
-		delay(math.random(20,200)/1000)
-		log("end")
 	end
 end
 
 
 
--- d(ml.游戏主界面ok_进阶任务,"ml.游戏主界面ok_进阶任务",true,1)
-魔力宝贝挂机流程()
 
 
 
 
-function wechat()
-	time_line = os.time()
-	time_sjhr =	math.random(20,20)
-	time_sjmin = math.random(50,50)
-	time_hr,time_min = tonumber(os.date("%H")),tonumber(os.date("%M"))
-	todo = true
-	do_time = math.random(10,15)
-	do_time_min = math.random(0,105)
-	log("do_time_min--------"..do_time_min)
-	work_time = time_hr
-
-	while true do
-		time_hr,time_min = tonumber(os.date("%H")),tonumber(os.date("%M"))
-		log("当前时间："..time_hr..":"..time_min)
-		if todo and time_hr >= 6 and time_min >= do_time_min and time_hr <=7 then
-			local timeLine = os.time()
-			while os.time()-time_line < do_time*60 do
-				log("微信倒计时："..os.time()-time_line)
-				wechats()
-			end
-			todo = false
-			work_time = time_hr
-		end
-		log("---"..time_hr - work_time)
-		if time_hr - work_time >= 1 then
-			todo = true
-			do_time_min = math.random(0,105)
-		else
-			if  app.front_bid() == app_bid_wechat then
-				app.close(app_bid_wechat)
-			end	
-		end
-		delay(2)
-	end	
-
-end
 
 
 

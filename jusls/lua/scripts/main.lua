@@ -43,10 +43,21 @@ end
 
 
 
-jishi()
-
-
-
-
+--在光标处输入
+app.input_text()
+--随机函数,例如1-100随机选择数字
+math.random(1,100)
+--随机文字函数
+function random_yuyan()
+	local yuyan = {
+		"在忙吗","最近过的还好吗","工作还顺利吗","好久没联系了","又是美好的一天","早上好呀","有空回我电话","你在家吗"
+	}
+	local resyuyan = yuyan[math.random(1,#yuyan)]
+	
+	local res = ''
+	
+	res = resyuyan
+	return res
+end
 
 
