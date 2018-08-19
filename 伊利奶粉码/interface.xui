@@ -1,0 +1,13 @@
+return {
+	title = _config.name;
+	header = "脚本配置";
+	subheader = "脚本配置界面";
+	defaults = _config.bid;	-- 配置存储的位置，读取配置的时候需要用到
+	items = {
+		{
+			url = "https://kb.xxtouch.com/XUI/";
+			cell = "Link";
+			label = "XUI 制作手册";
+		};
+	};
+};

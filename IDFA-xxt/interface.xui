@@ -1,0 +1,50 @@
+ext = nil
+if _DEBUG then
+	-- 调试模式
+	ext = {lua = '.lua', xui = '.xui'}
+else
+	-- 正常运行
+	ext = {lua = '.xxt', xui = '.xuic'}
+end
+return {
+	title = "wenfree";
+	header = "脚本配置";
+	subheader = "脚本配置界面";
+	defaults = "wenfree";	-- 配置存储的位置，读取配置的时候需要用到
+	items = {
+		{
+			url = "https://kb.xxtouch.com/XUI/";
+			cell = "Link";
+			label = "XUI 制作手册";
+		};
+		{
+			url = "xui-sub" .. ext.xui;
+			cell = "Link";
+			label = "加载子界面";
+		};
+		{
+			default = true;
+			label = "启用某功能";
+			cell = "Switch";
+			key = "task";  -- 该项存储的键，读取该键配置时需要用到
+		};
+		{
+			showValue = true;  -- 是否显示当前值
+			min = 1;  -- 最小值
+			default = 5;  -- 默认值
+			max = 100;  -- 最大值
+			step = 1;  -- 可以设置步进间隔
+			label = "滑动控件";
+			cell = "Slider";
+			key = "slider";
+		};
+		{
+			cell = "Button";
+			action = "LaunchScript:";
+			label = "启动脚本";
+			args = {
+				path = "main" .. ext.lua;
+			};
+		};
+	};
+};

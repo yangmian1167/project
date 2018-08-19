@@ -87,9 +87,9 @@ function killerall(times)
 	end
 end
 
-var_times = {}
-var_times.start = 6
-var_times.rest = math.random(5,10)
+--var_times = {}
+--var_times.start = 6
+--var_times.rest = math.random(5,10)
 
 --while true do
 --	time_hour = tonumber(os.date("%H"))
@@ -131,7 +131,6 @@ var_times.rest = math.random(5,10)
 		
 
 
-mlbb()
 
 
 
