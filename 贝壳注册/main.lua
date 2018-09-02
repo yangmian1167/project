@@ -1,7 +1,7 @@
 nLog = require('nLog')()
 require('faker')
 require('xxtsp')
-require("alz")
+require("yumi")
 require("name")
 require("LuaDemo")
 
@@ -84,8 +84,8 @@ screen.init(0)
 var = {}
 var.lun = 0
 
-
-kfy.id = '11107'
+YUMI()
+--kfy.id = '11107'
 --全局变量
 
 function up(name,other)

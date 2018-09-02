@@ -84,7 +84,7 @@ function newidfa(bids,times)
 		if XXTfakerNewPhone(bids)then
 			idfa = XXTfakerGetinfo(bids)['IDFA']
 			local TIMEline = os.time()
-			local OUTtime = rd(30,50)
+			local OUTtime = rd(60,180)
 			while os.time()- TIMEline < OUTtime do
 				if active(bids,4)then
 					if d(apparr.right,"apparr.right",true)then
@@ -108,8 +108,8 @@ end
 
 
 
---newidfa(bid.大码微拍,720/10)
-newidfa(bid.开天斩龙,1100/10)
+newidfa(bid.大码微拍,540/10)
+--newidfa(bid.开天斩龙,1100/10)
 
 
 

@@ -287,7 +287,7 @@ function get_ip()
         end
     end)
     while (os.time() - outtime < 30) do
-        local c, h, b =  http.get("ht("t("https://ip.cn/",30)
+        local c, h, b =  http.get("https://ip.cn/",30)
         if (c==200) then
             sys.toast("", -1)
             done = true

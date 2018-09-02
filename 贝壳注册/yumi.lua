@@ -1,5 +1,5 @@
 yumi={}
-yumi.id = '15730'
+yumi.id = '21644'
 yumi.uid = '47869-tly'
 yumi.pwd = 'q3991705q'
 yumi.url = 'http://api.jyzszp.com/Api/index'

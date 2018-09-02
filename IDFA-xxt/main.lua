@@ -135,7 +135,13 @@ bid.佛滔命理大师 = "com.fotao.fotaoapp"
 bid.食得鲜 = "com.youguoshu.shidexian"
 bid.天天剧本杀 = "com.script.killing"
 bid.公积金查询 = "com.yrt.gjj.gjj.chaxun"
-
+bid.夜夜交友社区 = "cn.fjyuai6.app"
+bid.快弎 = "FasteasyNote.Marcuswan65.app"
+bid.校朋家长端 = "com.keji110.XiaoPengParent"
+bid.校朋老师端 = "com.keji110.XiaoPeng"
+bid.全国招投标 = "com.mengdie.zhaobiao"
+bid.咪爪交友 = "com.miAudio.app"
+bid.地一森林舞会 = "org.enshilesiqi.dyslwh"
 
 screen.init(0)
 var = {}
@@ -201,13 +207,21 @@ function newidfa(bids,times)
 end
 
 
+--newidfa(bid.校朋家长端,2200/17)		--B组
+--newidfa(bid.校朋老师端,1200/7)		--A组
+newidfa(bid.全国招投标,150/5)		--A组
+--newidfa(bid.咪爪交友,420/20)		--A组
+--newidfa(bid.地一森林舞会,1700/20)		--B组
+
 --newidfa(bid.天天剧本杀,130/10)		--B组
 --newidfa(bid.食得鲜,4500/10)		--B组
 --newidfa(bid.熊猫网赚,4500/10)		--A组
 --newidfa(bid.佛滔命理大师,500/10)		--A组
---newidfa(bid.公积金借款,420/18)		--A组
---newidfa(bid['51公积金管家'],600/10)		--A组
---newidfa(bid.公积金查询,120/10)		--B组
+--newidfa(bid.公积金借款,200/18)		--A组
+--newidfa(bid['51公积金管家'],220/9)		--A组
+--newidfa(bid.公积金查询,220/20)		--B组
+--newidfa(bid.夜夜交友社区,300/5)		--B组
+--newidfa(bid.快弎,2500/20)		--B组
 
 --newidfa(bid.imarry,200/20)		--A组
 --newidfa(bid.全本小说书城,1100/20)
@@ -219,7 +233,7 @@ end
 --newidfa(bid.还呗极速版,620/20)
 --newidfa(bid.富狗斗地主,7100/20)		--A组
 --newidfa(bid.多融财富,550/20)			--A组
-newidfa(bid.西十区,320/10)			--A组
+--newidfa(bid.西十区,320/9)			--A组
 --newidfa(bid.五福理财,500/19)			--A组
 --newidfa(bid.沪深理财福利版,420/19)		--A组
 --newidfa(bid.钻石乐园,1200/20)			--A组
@@ -252,16 +266,6 @@ newidfa(bid.西十区,320/10)			--A组
 --newidfa(bid.花生备孕,110/1)	--xxt
 --newidfa(bid.星商圈,220/1)	--xxt
 --newidfa(bid.他他,550/30)	--xxt
-
-
-
-
-
-
-
-
-
-
 
 
 
