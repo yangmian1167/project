@@ -41,6 +41,7 @@ atexit(function()
 bid={}
 bid.大码微拍 = "com.xmfg.dmwp"
 bid.开天斩龙 = "com.kai.tian.ktzl"
+bid.赚钱啦 = "sz.parttimejob"
 
 
 screen.init(0)
@@ -79,44 +80,44 @@ apparr={}
 apparr.right={{{462,666,0x007aff},{225,666,0x007aff},}, 85, 54, 394, 590, 809}
 
 function newidfa(bids,times)
-	if false or vpn()then
 	for i= 1,times do
-		if XXTfakerNewPhone(bids)then
-			idfa = XXTfakerGetinfo(bids)['IDFA']
-			local TIMEline = os.time()
-			local OUTtime = rd(60,180)
-			while os.time()- TIMEline < OUTtime do
-				if active(bids,4)then
-					if d(apparr.right,"apparr.right",true)then
-
-					else
-						moveTo(600,300,100,100,30,50)
-						delay(1)
-						click(321, 978)
-						delay(1)
-						click(462, 666)
-						delay(1)
+		if false or vpn()then
+			if XXTfakerNewPhone(bids)then
+				idfa = XXTfakerGetinfo(bids)['IDFA']
+				local TIMEline = os.time()
+				local OUTtime = rd(25,30)
+				while os.time()- TIMEline < OUTtime do
+					if active(bids,4)then
+						if d(apparr.right,"apparr.right",true)then
+						else
+							moveTo(600,300,100,100,30,50)
+							delay(1)
+--							click(321, 978)
+--							delay(1)
+--							click(462, 666)
+--							delay(1)
+						end
 					end
 				end
+				up(appname(bids),'初次上传')
 			end
-			up(appname(bids),'初次上传')
 		end
+		vpnx()
+		delay(3)
+		log("关闭VPN-------->>>>>>>")
 	end
-	end
-	vpnx()
 end
 
 
 
-newidfa(bid.大码微拍,540/10)
---newidfa(bid.开天斩龙,1100/10)
+--newidfa(bid.大码微拍,540/10)		--B组
+--newidfa(bid.开天斩龙,1100/10)		--B组	
+newidfa(bid.赚钱啦,250/1)		--B组
 
 
 
 
-
-
-
+	
 
 
 

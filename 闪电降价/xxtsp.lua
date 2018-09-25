@@ -287,8 +287,7 @@ function get_ip()
         end
     end)
     while (os.time() - outtime < 30) do
---		local c, h, b = http.get("http://ip.chinaz.com/getip.aspx?ts="..tostring(sys.rnd()), 30)
-		local c, h, b = http.get("http://ip.cn", 30)
+		local c, h, b = http.get("https://ip.cn/",30)
 --        local c, h, b = http.get("https://www.ipip.net/",30)
         if (c==200) then
             sys.toast("", -1)
@@ -378,21 +377,7 @@ print(myRand(6,9))
 print(myRand(7,9))
 --]]
 
-function img_url()
---	local imgurl = 'http://image.baidu.com/channel/listjson?pn='..math.random(1,29999)..'&rn=1&tag1=%E7%BE%8E%E5%A5%B3'
-	local imgurl = 'http://image.baidu.com/channel/listjson?pn='..math.random(1,15000)..'&rn=1&tag1=%E7%BE%8E%E5%A5%B3&tag2=%E5%85%A8%E9%83%A8&ftags=%E5%A4%B4%E5%83%8F'
-	local sz = require("sz")
-	local http = require("szocket.http")
-	local res, code = http.request(imgurl);
-	--nLog(res)
-	if code == 200 then
-		local json = sz.json
-		imgtable = json.decode(res)
-		log(imgtable.data[1]['image_url'])
---		log(imgtable.data[1]['thumbnail_url'])
-		return imgtable.data[1]['image_url']
-	end
-end
+
 
 
 

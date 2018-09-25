@@ -1,5 +1,5 @@
 kfy={}
-kfy.id = '11107'
+kfy.id = '13944'
 kfy.action = 'loginIn'
 kfy.name = 's-cgy5paih'
 kfy.password = 'yangmian121'
@@ -68,7 +68,7 @@ function GET_Phone()
 	get.action = 'getPhone'
 	get.token = token
 	get.vno = '0'
-	--get.locationMatching='include&locationLevel=c&location=江苏'
+	get.locationMatching='include&locationLevel=c&location=杭州'
 	local res = post(kfy.url,get)
 	if res ~= nil then
 		phone_list = string.split(res,'|')
@@ -86,7 +86,7 @@ function GET_Phone_a(phone)
 	get.token = token
 	get.phone = phone
 	get.vno = '0'
-	--get.locationMatching='include&locationLevel=c&location=江苏'
+	get.locationMatching='include&locationLevel=c&location=杭州'
 	local res = post(kfy.url,get)
 	if res ~= nil then
 		phone_list = string.split(res,'|')

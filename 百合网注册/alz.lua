@@ -1,10 +1,10 @@
 kfy={}
-kfy.id = '10952'
+kfy.id = '10482'
 kfy.action = 'loginIn'
-kfy.name = 's-f3z93kng'
-kfy.password = 'whoami@520'
+kfy.name = 's-cgy5paih'
+kfy.password = 'yangmian121'
 kfy.url = 'http://api.ndd001.com/do.php'
-token = '668d1e2a-e0eb-4716-9d75-6aadacf51337'
+token = '12698a4b-ada8-4ffd-94ff-12d833f33aa0'
 
 
 function GET_message(phone)

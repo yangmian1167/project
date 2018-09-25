@@ -142,6 +142,17 @@ bid.校朋老师端 = "com.keji110.XiaoPeng"
 bid.全国招投标 = "com.mengdie.zhaobiao"
 bid.咪爪交友 = "com.miAudio.app"
 bid.地一森林舞会 = "org.enshilesiqi.dyslwh"
+bid.龙腾霸业 = "com.rp.ltby"
+bid.闪电修 = "com.Suddenfix.SuddenFixCustomer"
+bid.开运花鸟字 = "com.sk2mobile.huaniaozi"
+bid.尋仙 = "tw.9453play.xx"
+bid.萌宠冒险  = "com.kouyo.rexue.coo"
+bid.黔商金融通  = "com.qiashang.app"
+bid["800Notes"]  = "com.zdq.huketian.note.gtf"
+bid.赚钱吧兼职 = "com.floor.jobsqan.caroravel"
+bid.赚钱BitCoin = "com.PenaMiguel.bitCoin"
+bid.玫瑰日记 = "com.meigui.rijiw"
+bid['幸运六合'] = "com.3dBrickgame"
 
 screen.init(0)
 var = {}
@@ -184,7 +195,7 @@ function newidfa(bids,times)
 		if XXTfakerNewPhone(bids)then
 			idfa = XXTfakerGetinfo(bids)['IDFA']
 			local TIMEline = os.time()
-			local OUTtime = rd(20,25)
+			local OUTtime = rd(22,25)
 			while os.time()- TIMEline < OUTtime do
 				if active(bids,4)then
 					if d(apparr.right,"apparr.right",true)then
@@ -198,7 +209,7 @@ function newidfa(bids,times)
 						delay(1)
 					end
 				end
-			end
+			end	
 			up(appname(bids),'初次上传')
 		end
 	end
@@ -209,17 +220,27 @@ end
 
 --newidfa(bid.校朋家长端,2200/17)		--B组
 --newidfa(bid.校朋老师端,1200/7)		--A组
-newidfa(bid.全国招投标,150/5)		--A组
+--newidfa(bid.全国招投标,125/5)		--A组
 --newidfa(bid.咪爪交友,420/20)		--A组
---newidfa(bid.地一森林舞会,1700/20)		--B组
+--newidfa(bid.地一森林舞会,720/5)		--B组
+--newidfa(bid.龙腾霸业,2100/20)		--B组
+--newidfa(bid.闪电修,120/1)		--A组
+--newidfa(bid.开运花鸟字,320/20)		--B组
+--newidfa(bid.尋仙,310000/20)		--B组
+--newidfa(bid.萌宠冒险 ,310000/20)		--B组
+--newidfa(bid.黔商金融通 ,420/10)		--A1组
+--newidfa(bid["800Notes"] ,1050/19)		--B组
+--newidfa(bid.赚钱吧兼职 ,3100/20)		--B组
+--newidfa(bid.赚钱BitCoin ,1100/10)		--A组
+--newidfa(bid.玫瑰日记 ,300/8)		--A1组
 
 --newidfa(bid.天天剧本杀,130/10)		--B组
 --newidfa(bid.食得鲜,4500/10)		--B组
 --newidfa(bid.熊猫网赚,4500/10)		--A组
 --newidfa(bid.佛滔命理大师,500/10)		--A组
 --newidfa(bid.公积金借款,200/18)		--A组
---newidfa(bid['51公积金管家'],220/9)		--A组
---newidfa(bid.公积金查询,220/20)		--B组
+newidfa(bid['51公积金管家'],300/5)		--A组
+--newidfa(bid.公积金查询,220/18)		--B组
 --newidfa(bid.夜夜交友社区,300/5)		--B组
 --newidfa(bid.快弎,2500/20)		--B组
 
@@ -233,7 +254,7 @@ newidfa(bid.全国招投标,150/5)		--A组
 --newidfa(bid.还呗极速版,620/20)
 --newidfa(bid.富狗斗地主,7100/20)		--A组
 --newidfa(bid.多融财富,550/20)			--A组
---newidfa(bid.西十区,320/9)			--A组
+--newidfa(bid.西十区,500/5)			--A组
 --newidfa(bid.五福理财,500/19)			--A组
 --newidfa(bid.沪深理财福利版,420/19)		--A组
 --newidfa(bid.钻石乐园,1200/20)			--A组
@@ -248,6 +269,7 @@ newidfa(bid.全国招投标,150/5)		--A组
 --newidfa(bid["幸运六狮"],1200/20)	--A组
 --newidfa(bid["百胜电玩"],2000/10)	--A组
 --newidfa(bid["夜夜交友社区"],200/10)	--A组
+--newidfa(bid["幸运六合"],8800/30)	--A组
 
 
 --newidfa(bid.发烧钓鱼,320/20)		--B组

@@ -1,7 +1,7 @@
 nLog = require('nLog')()
 require('faker')
 require('xxtsp')
-require("yumi")
+require("alz")
 require("name")
 require("LuaDemo")
 
@@ -84,8 +84,8 @@ screen.init(0)
 var = {}
 var.lun = 0
 
-YUMI()
---kfy.id = '11107'
+--YUMI()
+kfy.id = '11107'
 --全局变量
 
 function up(name,other)
@@ -260,7 +260,7 @@ page.url_注册成功={{{319,523,0x3072f6},{324,557,0xffffff},{342,637,0x030303}
 page.url_已经注册过={{{319,536,0xffda6a},{321,570,0xf55065},{324,592,0xffda6a},{331,824,0x4c81ee},}, 85, 125, 442, 464, 974}
 
 function url()
-	local urls = "https://m.ke.com/zhuanti/invite?ucid=1000000020249363&invite_code=66400643&from=fenxiangye"	--万成平	
+	local urls = "https://m.ke.com/zhuanti/invite?ucid=1000000020249363&invite_code=66400643&from=linkqr"	--万成平	
 --	local urls = "https://m.ke.com/zhuanti/invite?ucid=1000000020318938&invite_code=77646995&from=fenxiangye"   --李杨
 --	local urls = "https://m.ke.com/zhuanti/invite?ucid=1000000023115221&invite_code=59054155&from=fenxiangye"   --罗晨
 --	local urls = "https://m.ke.com/zhuanti/invite?ucid=1000000020166810&invite_code=34971810&from=fenxiangye"	--李卓君

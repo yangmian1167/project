@@ -37,7 +37,7 @@ atexit(function()
 		local appbids = app.front_bid()
 		if appbids ~= "com.apple.springboard" then
 --			app.quit(appbids)
-			closeX(appbids)
+--			closeX(appbids)
 		end
 		sys.msleep(500)
 	end)
@@ -87,22 +87,21 @@ var = {}
 var.lun = 0
 
 
-kfy.id = '10482'
+--kfy.id = '10482'
 --YUMI()
 --全局变量
 
 function up(name,other)
 	local url = 'http://idfa888.com/Public/idfa/?service=idfa.idfa'
 	local idfalist ={}
-
-	idfalist.phonename = (phonename or device.name())				--如果未指定phonename 则取设备名
+	idfalist.phonename = phonename or device.name()
 	idfalist.phoneimei = phoneimei or sys.mgcopyanswer("SerialNumber")
 	idfalist.phoneos = phoneos or sys.version()
 	idfalist.name = name
 	idfalist.idfa = idfa or phone
 	idfalist.ip = '192.168.1.1'
 	idfalist.ip = ip or '192.168.1.1'
-	idfalist.account = account
+	idfalist.account = account or get_local() or '未知'
 	idfalist.password = password
 	idfalist.phone = phone
 	idfalist.other = other
@@ -171,21 +170,30 @@ page.本地相册={{{367,860,0xfd6e27},{396,767,0xfd6e27},{569,154,0xffffff},},8
 page.照片={{{328,78,0x000000},{331,81,0xf9f9f9},{552,80,0x007aff},},85}
 page.照片_详情={{{21,83,0x007aff},{309,79,0xf9f9f9},{313,79,0x3a3a3a},{552,86,0x007aff},},85}
 page.照片_注册成功={{{569,1097,0x43fe85},{62,1086,0xe83c2d},},85}
+page.照片_地址未显示={{{596,404,0xc7c7cc},{568,407,0xd9d9d9},{523,404,0xffffff},{530,404,0xd9d9d9},}, 85, 450, 341, 625, 465}
+page.照片_地址_确定={{{602,661,0xfd6e27},{581,667,0xfd6e27},}, 85, 535, 626, 628, 697}
 
 function fix()
 	local TimeLine = os.time()
 	local OutTime = 60*3
 	sex = rd(1,100)
-	
+	if sex > 20 then
+		sexk = "女"
+	else
+		sexk = "男"
+	end
 
 	while os.time()-TimeLine < OutTime do
 		if active(bid.app,5)then
 			if d(page.基本资料界面,"page.基本资料界面") then
 				if d(page.基本资料界面_请输入,"page.基本资料界面_请输入",true)then
-				elseif sex > 70 and d(page.基本资料界面_性别女,"page.基本资料界面_性别女",true)then
+				elseif sex > 20 and d(page.基本资料界面_性别女,"page.基本资料界面_性别女",true)then
 				elseif d(page.我知道了,"page.我知道了",true,1)then
 				else
 					if d(page.基本资料界面_完成,"page.基本资料界面_完成",true)then
+					elseif d(page.照片_地址未显示,"page.照片_地址未显示",true)then
+						delay(2)
+						d(page.照片_地址_确定,"page.照片_地址_确定",true)
 					else
 						moveTo(316, 733,316, 433)
 						delay(2)
@@ -203,10 +211,10 @@ function fix()
 					d(page.本地相册,"page.本地相册",true,1)
 				else
 					sys.alert("下载失败",3)
-					return false
 				end
 				
 			elseif d(page.照片_注册成功,"page.照片_注册成功",true,1)then
+				up("百合网",sexk)
 				delay(10)
 				return true
 			elseif d(page.照片_详情,"page.照片_详情")then
@@ -272,6 +280,7 @@ function reg()
 			elseif d(page.regUI,"page.regUI") then
 				if 取号 then
 					if d(page.regUI_login,"page.regUI_login",true)then
+						delay(1)
 						if GET_Phone()then
 							log(phone,true)
 							delay(2.8)
@@ -323,7 +332,32 @@ function reg()
 end
 
 
-
+function get_local()
+    local done = false
+	local outtime = os.time()
+    thread.dispatch(function()
+		outtime = os.time()
+        while (os.time()-outtime < 30) do
+            if (done) then
+                sys.toast("", -1)
+                return
+            else
+                sys.toast("正在获取 IP 地址...", device.front_orien())
+            end
+            sys.msleep(2000)
+        end
+    end)
+    while (os.time() - outtime < 30) do
+--		local c, h, b = http.get("http://ip.chinaz.com/getip.aspx?ts="..tostring(sys.rnd()), 30)
+		local c, h, b = http.get("http://ip.cn", 30)
+--        local c, h, b = http.get("https://www.ipip.net/",30)
+        if (c==200) then
+            sys.toast("", -1)
+            done = true
+            return b:match('所在地理位置：<code>.*</code>')
+        end
+    end
+end
 
 --[[]]
 
