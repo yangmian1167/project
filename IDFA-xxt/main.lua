@@ -117,9 +117,9 @@ bid.公积金查询 = "com.yrt.gjj.gjj.chaxun"
 --newidfa(bid.佛滔命理大师,500/10)		--A组
 --newidfa(bid.公积金借款,200/18)		--A组
 --newidfa(bid['51公积金管家'],520/15)		--b组
-newidfa(bid.公积金查询,220/5)		--B组
+--newidfa(bid.公积金查询,220/5)		--B组
 --newidfa(bid.西十区,420/10)			--A组
---newidfa(bid.闪电修,220/7)			--A1组
+newidfa(bid.闪电修,120/20)			--B组
 --newidfa(bid.地一森林舞会,1500/18)		--B组
 
 
