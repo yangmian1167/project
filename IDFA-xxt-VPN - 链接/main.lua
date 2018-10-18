@@ -39,8 +39,12 @@ atexit(function()
 	end)
 
 bid={}
---require('bid')
-
+bid.大码微拍 = "com.xmfg.dmwp"
+bid.开天斩龙 = "com.kai.tian.ktzl"
+bid.赚钱啦 = "sz.parttimejob"
+bid.四方坦克大战 = "com.sfgame.sftkdz"
+bid.融360 = "com.rong360.victor"
+bid.全日空海淘 = "acd.mall.apps.20170619"
 
 
 screen.init(0)
@@ -57,7 +61,7 @@ function up(name,other)
 	idfalist.name = name
 	idfalist.idfa = idfa
 	idfalist.ip = '192.168.1.1'
---	idfalist.ip = get_ip() or '192.168.1.1'
+	idfalist.ip = get_ip() or '192.168.1.1'
 	idfalist.account = account
 	idfalist.password = password
 	idfalist.phone = phone
@@ -78,62 +82,78 @@ end
 apparr={}
 apparr.right={{{462,666,0x007aff},{225,666,0x007aff},}, 85, 54, 394, 590, 809}
 
-function newidfa(bids,times)
-	if true or vpn()then
-	for i= 1,times do
-		if XXTfakerNewPhone(bids)then
-			idfa = XXTfakerGetinfo(bids)['IDFA']
-			local TIMEline = os.time()
-			local OUTtime = rd(22,25)
-			while os.time()- TIMEline < OUTtime do
-				if active(bids,4)then
-					if d(apparr.right,"apparr.right",true)then
+web={}
+web.open={{{526,632,0x007aff},{396,622,0x3897ff},{393,623,0xffffff},},85}
 
-					else
-						moveTo(600,300,100,100,30,50)
-						delay(1)
-						click(321, 978)
-						delay(1)
-						click(462, 666)
-						delay(1)
-					end
-				end
-			end	
-			up(appname(bids),'初次上传')
+--融360
+--urls = "http://m.rong360.com/app/osdown/?ios=https://itunes.apple.com/cn/app/id1026689855?mt=8&android=https://campaign.rong360.com/applanding/rongapp/landing_22.html?&weixin=&from=zckj_xgxyk_ceshi01"
+--全日空海淘
+urls = "https://at.umeng.com/jCmiqi"
+function open(urls)
+	openUrl(urls)
+	delay(3)
+	local timeline = os.time()
+	local outtimes = 60
+	while os.time()-timeline < outtimes do
+		if d(web.open,"web.open",true,1)then
+			delay(math.random(10,15))
+			return true
 		end
+		delay(1)
 	end
-	end
-	vpnx()
+	log("open time ",true)
 end
 
 
-bid.西十区 = 'com.aiyou.iosxsq001'
-bid.闪电修 = "com.Suddenfix.SuddenFixCustomer"
-bid.地一森林舞会 = "org.enshilesiqi.dyslwh"
-bid['51公积金管家'] = "com.jianbing.gjj.pro"
-bid.公积金查询 = "com.yrt.gjj.gjj.chaxun"
-bid.四方坦克大战 = "com.sfgame.sftkdz"
-bid.熊猫网赚 = "com.onePiece.plusa.intentMoney"
-bid.银河战舰 = "galaxy.empire"
-bid.多多优惠券 = "com.zhuifeng.pinquanduoduo"
-bid.多多优惠券 = "com.zhuifeng.pinquanduoduo"
-bid['dido－見面追蹤小助手'] = "com.UniMax.iDido"
-bid.环球娱乐 = "BB10"
---------------------------------------------------------在后面都加上 该app的 ID---------------------
---newidfa(bid.玫瑰日记 ,300/8)		--A1组
---newidfa(bid.佛滔命理大师,500/10)		--A组
---newidfa(bid.公积金借款,200/18)		--A组
---newidfa(bid['51公积金管家'],520/15)		--b组
---newidfa(bid.公积金查询,220/5)		--B组
---newidfa(bid.西十区,5/5)			--A组
---newidfa(bid.闪电修,120/20)			--B组
---newidfa(bid.地一森林舞会,620/10)		--B组
---newidfa(bid.四方坦克大战,1050/10)		--B2组
---newidfa(bid.熊猫网赚,3200/20)		--B组
---newidfa(bid.银河战舰,1500/20)		--A组
---newidfa(bid.多多优惠券,160/2)		--A组
---newidfa(bid['dido－見面追蹤小助手'],520/20)		--B组
-newidfa(bid.环球娱乐,1700/20)		--A组
+
+
+function newidfa(bids,times)
+	for i= 1,times do
+		if false or vpn()then
+			XXTfakerNewPhone('com.apple.mobilesafari')
+			delay(1)
+			if open(urls) then
+				if XXTfakerNewPhone(bids)then
+					idfa = XXTfakerGetinfo(bids)['IDFA']
+					local TIMEline = os.time()
+					local OUTtime = rd(150,200)
+					while os.time()- TIMEline < OUTtime do
+						if active(bids,4)then
+							if d(apparr.right,"apparr.right",true)then
+							else
+								moveTo(600,300,100,100,30,50)
+								delay(1)
+			--							click(321, 978)
+			--							delay(1)
+			--							click(462, 666)
+			--							delay(1)
+							end
+						end
+					end
+					up(appname(bids),'初次上传')
+				end
+			end	
+		end
+		vpnx()
+		delay(3)
+		log("关闭VPN-------->>>>>>>")
+	end
+end
+
+
+
+--newidfa(bid.大码微拍,540/10)		--B组
+--newidfa(bid.开天斩龙,1100/10)		--B组	
+--newidfa(bid.赚钱啦,250/1)		--B组
+--newidfa(bid.四方坦克大战,220/10)		--B2组
+--newidfa(bid.融360,100/1)		--A组
+newidfa(bid.全日空海淘,20/1)		--AAAAAAAAA测试机
+
+
+	
+
+
+
 
 
 

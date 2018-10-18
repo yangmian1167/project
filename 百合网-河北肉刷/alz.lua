@@ -1,25 +1,13 @@
 kfy={}
-kfy.id = '13860'
+kfy.id = '10952'
 kfy.action = 'loginIn'
-kfy.name = 's-cgy5paih'
-kfy.password = 'yangmian121'
+kfy.name = 's-gozqerp3'
+kfy.password = 'a135246'
 kfy.url = 'http://api.ndd001.com/do.php'
-token = '12698a4b-ada8-4ffd-94ff-12d833f33aa0'
+token = 'f8629ece-0246-4eda-935a-224fb45746a1'
 
 
-function alz()
-	local get ={}
-	get.action = 'loginIn'
-	get.name = kfy.name
-	get.password = kfy.password
-	
-	local res = post(kfy.url,get)
-	if res ~= nil then
-		loginlist = string.split(res,'|')
-		log("token--->"..loginlist[2])
-		token = loginlist[2]
-	end
-end
+
 
 function GET_message(phone)
 	local get ={}
@@ -36,6 +24,8 @@ function GET_message(phone)
 			sms = string.sub(sms,i,j)
 			nLog(sms)
 			return true
+		else
+			sys.toast(res)
 		end
 	end
 end
@@ -67,14 +57,20 @@ function GET_Phone()
 	get.sid = kfy.id
 	get.action = 'getPhone'
 	get.token = token
-	get.vno = '0'
---	get.locationMatching='include&locationLevel=c&location=杭州'
+--	get.vno = '0'
+	--get.locationMatching='include&locationLevel=c&location=江苏'
 	local res = post(kfy.url,get)
 	if res ~= nil then
 		phone_list = string.split(res,'|')
 		if phone_list[1] == '1' then
 			phone = phone_list[2]
+			phoneheader = string.sub(phone,1,3)
+			if phoneheader == '171' or phoneheader == '170' then
+				return false
+			end
 			return phone
+		else
+			log(phone_list[2],true)
 		end
 	end
 end
@@ -86,7 +82,7 @@ function GET_Phone_a(phone)
 	get.token = token
 	get.phone = phone
 	get.vno = '0'
---	get.locationMatching='include&locationLevel=c&location=杭州'
+	--get.locationMatching='include&locationLevel=c&location=江苏'
 	local res = post(kfy.url,get)
 	if res ~= nil then
 		phone_list = string.split(res,'|')

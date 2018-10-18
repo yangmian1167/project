@@ -2,7 +2,40 @@ nLog = require('nLog')()
 require('faker')
 require('xxtsp')
 require('alz')
---xui.show("xui-sub")
+xui.show('interface.xuic')
+
+local uitimes = os.time()
+
+while app.front_bid() ~= "com.xxtouch.XXTExplorer" do
+	sys.toast("正在加载链接")
+	sys.msleep(200)
+	if os.time()-uitimes >= 120 then
+		return false
+	end
+end
+
+while app.front_bid() == "com.xxtouch.XXTExplorer" do
+	sys.toast("按Home键或者开关 启动脚本")
+	sys.msleep(1000)
+	local dict = xui.read('sdsd')
+	log(dict)
+	if os.time()-uitimes >= 120 then
+		return false
+	end
+	if dict['do'] then
+		sys.toast("即将执行注册刷单任务")
+		break
+	end
+end
+
+
+--xui.setup('interface.xui')
+--local default = xui.get('com.yourcompany.yourscript', '_config.name')
+local dict = xui.read('sdsd')
+log(dict)
+
+
+
 
 if not(xxtinstall())then
 	log("伪装失效")
@@ -18,19 +51,10 @@ bid.果聊 = {
 			}
 bid.闪电降价 = {
 				['appbid']='com.hs.shanjiang',
-				['url']='https://lnk0.com/dEdI5k',
-				['url']='https://lnk0.com/Vd0gk4',
-				['url']='https://lnk0.com/QZhE94',
+				['url']=dict["link"],
 			}
-bid.闪电降价.url={}
---bid.闪电降价.url.iPhone01='https://lnk0.com/Vd0gk4'
---bid.闪电降价.url.iPhone02='https://lnk0.com/QZhE94'
-bid.闪电降价.url.iPhone03='https://lnk0.com/Vd0gk4'
-bid.闪电降价.url.iPhone04='https://lnk0.com/QZhE94'
---bid.闪电降价.url.iPhone05='https://lnk0.com/dEdI5k'
---bid.闪电降价.url.iPhone17='https://lnk0.com/Vd0gk4'
---bid.闪电降价.url.iPhone18='https://lnk0.com/QZhE94'
---bid.闪电降价.url.BBBBBBBB='https://lnk0.com/Vd0gk4'
+
+
 			
 bid.集享联盟 = {
 				['appbid']='com.maxxipoint.ios',
@@ -53,7 +77,7 @@ function up(name,other)
 	idfalist.idfa = idfa
 	idfalist.ip = '192.168.1.1'
 	idfalist.ip = get_ip() or '192.168.1.1'
-	idfalist.account = account
+	idfalist.account = account or "北京"
 	idfalist.password = password
 	idfalist.phone = phone
 	idfalist.other = other
@@ -187,9 +211,9 @@ function newidfa(bids,times)
 							click(540, 84)
 						end
 					elseif success and d(apparr.注册成功,'apparr.注册成功')then
-						up(appname(bids),bid['闪电降价']['url'][device.name()])
-						delay(rd(30,50))
-						
+						up(appname(bids),bid['闪电降价']['url'])
+						delay(rd(5,10))
+						sys.alert("注册完成",0)
 						return true
 					else
 						if d(apparr.tips_x,"apparr.tips_x",true,1)then
@@ -208,19 +232,17 @@ function newidfa(bids,times)
 end
 
 kfy.id = '13860'
---[[]]
+
 while true do
-	if vpn() then
-		if open(bid['闪电降价']['url'][device.name()])then
+	if not(dict['vpn']) or vpn() then
+		if open(bid['闪电降价']['url'])then
 			newidfa(bid.闪电降价.appbid,1)
 		end
 		closeX(bid.闪电降价.appbid)
 	end
 	vpnx()
 	delay(2*3)
---	delay(10*60)
 end
---]]
 
 
 
@@ -240,5 +262,22 @@ end
 
 
 
-	
-	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
