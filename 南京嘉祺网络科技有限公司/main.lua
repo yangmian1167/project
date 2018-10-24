@@ -396,8 +396,8 @@ bid.链家 = {	["appid"] =  "472208016", ["appbid"] = "com.exmart.HomeLink", ["i
 bid.银河战舰 = {	["appid"] =  "472208016", ["appbid"] = "galaxy.empire", ["id"]= 1075 , ["keyword"]="红警" }
 
 bid.小黑鱼.keyword={
-	{"借款",2700},
-	{"借钱",2900},
+{"借款app", 950},
+{"现金借款",  950},
 	}
 --app.run("com.xhy.blackfish.app")
 --os.exit()

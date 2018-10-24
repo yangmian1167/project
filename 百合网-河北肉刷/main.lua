@@ -348,6 +348,7 @@ function fix()
 			elseif sexk and d(page.本地相册,"page.本地相册",true,3)then
 				dialog("男不上传头像",1)
 				return true
+				--[[
 			elseif d(page.本地相册,"page.本地相册",false,1)then
 				delay(1)
 				clear.all_photos()
@@ -361,7 +362,7 @@ function fix()
 				else
 					sys.alert("下载失败",3)
 				end
-				
+				--]]
 			elseif d(page.照片_注册成功,"page.照片_注册成功",true,1)then
 				up("婚恋网",sexk)
 				delay(10)

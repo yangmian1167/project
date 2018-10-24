@@ -383,8 +383,8 @@ function onlycheckidfa(name)
 end
 
 
-bid.银河战舰 = {	["appid"] =  "1415584003", ["appbid"] = "galaxy.empire", ["keyword"]="红警ol " }
-bid.DaDa英语 = {	["appid"] =  "1129663942", ["appbid"] = "com.dadaabc.DaDaClass", ["keyword"]="51talk" }
+bid.银河战舰 = {	["appid"] =  "1415584003", ["appbid"] = "galaxy.empire", ["keyword"]="红警2共和国之辉" }
+bid.DaDa英语 = {	["appid"] =  "1129663942", ["appbid"] = "com.dadaabc.DaDaClass", ["keyword"]="英语口语" }
 
 
  
@@ -393,8 +393,8 @@ while true do
 	log("vpn-key")
 	if  vpn() then
 		if checkip()then
-			activeapi("银河战舰")
---			activeapi("DaDa英语")
+--			activeapi("银河战舰")
+			activeapi("DaDa英语")
 		end
 	end
 	for _,bid in ipairs(app.bundles()) do

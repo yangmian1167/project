@@ -18,14 +18,16 @@ bid.果聊 = {
 bid.闪电降价 = {
 				['appbid']='com.hs.shanjiang',
 				['url']={
+					['iPhone04']='https://lnk0.com/QZhE94',
 					['iPhone05']='https://lnk0.com/QZhE94',
-					['iPhone07']='https://lnk0.com/QZhE94',
-					['iPhone08']='https://lnk0.com/QZhE94',
+					
 					['iPhone06']='https://lnk0.com/Vd0gk4',
-					['iPhone09']='https://lnk0.com/Vd0gk4',
-					['iPhone10']='https://lnk0.com/Vd0gk4',
---					['iPhone08']='https://lnk0.com/dEdI5k',
---					['iPhone09']='https://lnk0.com/dEdI5k',					
+					['iPhone07']='https://lnk0.com/Vd0gk4',
+				
+--					['iPhone08']='http://lnk0.com/toQNx9',
+								
+					['iPhone08']='https://lnk0.com/dEdI5k',					
+					['iPhone09']='https://lnk0.com/dEdI5k',					
 --					
 					}
 
@@ -158,24 +160,3 @@ while true do
 	delay(rd(15,25))
 end
 --]]
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-	

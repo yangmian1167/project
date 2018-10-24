@@ -14,7 +14,8 @@ end
 bid={}
 bid.淘集集 = {
 				['appbid']='com.huanshou.taojiji',
-				['url']='http://uri6.com/tkio/3eUVjqa',
+--				['url']='http://uri6.com/tkio/3eUVjqa',   --jqa链接 31 32
+				['url']='http://uri6.com/tkio/vuaYB3a',   --B3a链接 33 34
 			}
 			
 
@@ -28,8 +29,34 @@ bid.集享联盟 = {
 screen.init(0)
 var = {}
 var.lun = 0
---全局变量
+var.phonename = device.name()
+var.phoneimei = sys.mgcopyanswer("SerialNumber")
+var.tag = 'A10-20'
+var.phone = phone
+var.pwd = pwd
+var.bank = nil
+var.bankphone = nil
+var.address = nil
+var.money = nil
+var.pay = nil
 
+
+--全局变量
+function up_wenfree()
+	local url = 'http://idfa888.com/Public/idfa/?service=idfa.idfa'
+	local idfalist ={}
+	idfalist.phonename = var.phonename or device.name()
+	idfalist.phoneimei = var.phoneimei or sys.mgcopyanswer("SerialNumber")
+	idfalist.name = name
+	idfalist.idfa = idfa or phone
+	idfalist.ip = ip or get_ip() or  '192.168.1.1'
+	idfalist.account = var.account
+	idfalist.pwd = var.pwd
+	idfalist.phone = var.phone
+	idfalist.money = var.money
+	idfalist.pay = var.pay
+	return post(url,idfalist)
+end
 
 function up(name,other)
 	local url = 'http://idfa888.com/Public/idfa/?service=idfa.idfa'

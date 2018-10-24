@@ -342,7 +342,7 @@ function myRand(rnType,rnLen,rnUL)
 			myrandS=myrandS..math.random(0,9)
 		end
 	elseif rnType==2 then --生成手机号,rnLen,rn11无需设置
-		local mheader={"13","15"}
+		local mheader={"13","15","18"}
 		myrandS=mheader[math.random(#mheader)]
 		for r1=1,9 do
 			myrandS=myrandS..math.random(0,9)

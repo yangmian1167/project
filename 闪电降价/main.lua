@@ -23,14 +23,13 @@ bid.闪电降价 = {
 				['url']='https://lnk0.com/QZhE94',
 			}
 bid.闪电降价.url={}
---bid.闪电降价.url.iPhone01='https://lnk0.com/Vd0gk4'
---bid.闪电降价.url.iPhone02='https://lnk0.com/QZhE94'
-bid.闪电降价.url.iPhone03='https://lnk0.com/Vd0gk4'
-bid.闪电降价.url.iPhone04='https://lnk0.com/QZhE94'
---bid.闪电降价.url.iPhone05='https://lnk0.com/dEdI5k'
---bid.闪电降价.url.iPhone17='https://lnk0.com/Vd0gk4'
---bid.闪电降价.url.iPhone18='https://lnk0.com/QZhE94'
---bid.闪电降价.url.BBBBBBBB='https://lnk0.com/Vd0gk4'
+bid.闪电降价.url.iPhone01='https://lnk0.com/QZhE94'
+
+bid.闪电降价.url.iPhone02='https://lnk0.com/Vd0gk4'
+
+--bid.闪电降价.url.iPhone03='http://lnk0.com/toQNx9'
+bid.闪电降价.url.iPhone03='https://lnk0.com/dEdI5k'
+
 			
 bid.集享联盟 = {
 				['appbid']='com.maxxipoint.ios',
