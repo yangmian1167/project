@@ -27,9 +27,9 @@ bid.闪电降价.url.iPhone01='https://lnk0.com/QZhE94'
 
 bid.闪电降价.url.iPhone02='https://lnk0.com/Vd0gk4'
 
---bid.闪电降价.url.iPhone03='http://lnk0.com/toQNx9'
 bid.闪电降价.url.iPhone03='https://lnk0.com/dEdI5k'
 
+bid.闪电降价.url.iPhone04='http://lnk0.com/toQNx9'
 			
 bid.集享联盟 = {
 				['appbid']='com.maxxipoint.ios',

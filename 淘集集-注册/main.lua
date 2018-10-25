@@ -59,13 +59,13 @@ bid.淘集集注册.url['iPhone21']='http://uri6.com/tkio/3eUVjqa'
 bid.淘集集注册.url['iPhone22']='http://uri6.com/tkio/3eUVjqa'
 bid.淘集集注册.url['iPhone23']='http://uri6.com/tkio/3eUVjqa'
 bid.淘集集注册.url['iPhone24']='http://uri6.com/tkio/3eUVjqa'
-bid.淘集集注册.url['iPhone25']='http://uri6.com/tkio/3eUVjqa'
 
+bid.淘集集注册.url['iPhone25']='http://uri6.com/tkio/vuaYB3a'
 bid.淘集集注册.url['iPhone26']='http://uri6.com/tkio/vuaYB3a'
 bid.淘集集注册.url['iPhone27']='http://uri6.com/tkio/vuaYB3a'
 bid.淘集集注册.url['iPhone28']='http://uri6.com/tkio/vuaYB3a'
-bid.淘集集注册.url['iPhone29']='http://uri6.com/tkio/vuaYB3a'
-bid.淘集集注册.url['iPhone30']='http://uri6.com/tkio/vuaYB3a'
+
+
 
 
 

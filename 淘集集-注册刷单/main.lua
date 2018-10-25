@@ -87,6 +87,8 @@ var.bankphone = nil
 var.address = nil
 var.money = nil
 var.pay = nil
+var.sheng = 0
+var.diqu = 0
 
 
 
@@ -99,11 +101,13 @@ function up_wenfree()
 	idfalist.name = name
 	idfalist.idfa = idfa or phone
 	idfalist.ip = ip or get_ip() or  '192.168.1.1'
-	idfalist.account = var.account
+	idfalist.account = var.account or phone
 	idfalist.pwd = var.pwd
-	idfalist.phone = var.phone
+	idfalist.phone = phone
+	idfalist.bankphone = var.phone
 	idfalist.money = var.money
 	idfalist.pay = var.pay
+	log(idfalist)
 	return post(url,idfalist)
 end
 
@@ -272,7 +276,9 @@ buy.选择规格界面 = {{{615,  328, 0xa2a2a0},{597,  329, 0xa2a2a1},{ 49, 104
 buy.选择规格界面_挑选种类 = {{{ 29, 572, 0xf6f6f6},{ 30, 608, 0xf6f6f6},{113, 573, 0xf6f6f6},{112, 605, 0xf6f6f6},}, 85, 7, 311, 636, 1014}
 --buy.选择规格界面_挑选种类 = {{{ 31, 572, 0xff6632},{ 35, 599, 0xff6632},{104, 578, 0xff6632},{111, 606, 0xff6632},}, 85, 19, 526, 486, 767}
 buy.购物车界面 = {{{268, 69, 0x515151},{268, 99, 0x4d4d4d},{357, 99, 0x767676},{370, 91, 0x4c4c4c},{370, 72, 0x929292},{370, 71, 0xffffff},}, 85, 255, 55, 385, 111}
-buy.购物车界面_收货地址空 = {{{138, 204, 0xef0f0f},{157, 202, 0xee0101},{313, 207, 0xf34444},{509, 208, 0xee0000},}, 85, 106, 146, 559, 267}
+	buy.购物车界面_收货地址空 = {{{138, 204, 0xef0f0f},{157, 202, 0xee0101},{313, 207, 0xf34444},{509, 208, 0xee0000},}, 85, 106, 146, 559, 267}
+	buy.购物车界面_微信支付 = {{{448, 752, 0xffffff},{456, 738, 0x47d547},{440, 755, 0x47d547},{463, 760, 0x47d547},{576, 746, 0x333333},}, 85, 386, 589, 638, 1019}
+	buy.购物车界面_支付宝_提交订单 = {{{424, 1103, 0xfa4e22},{483,  764, 0x02a9f1},{494,  748, 0x02a9f1},{477,  748, 0x02a9f1},{477,  739, 0xffffff},}, 85, 404,387,543,1131}
 
 buy.收货信息界面 = {{{229, 71, 0x464646},{236, 98, 0x969696},{264, 98, 0x404040},{361, 96, 0x2b2b2b},{361, 97, 0xeaeaea},{347, 68, 0xb9b9b9},}, 85, 220, 64, 369, 104}
 buy.收货信息界面_新增地址 = {{{ 65, 1032, 0xff7d30},{ 73, 1095, 0xfd7c30},{583, 1041, 0xf43d18},{577, 1089, 0xf73c17},{291,  398, 0xffd6a6},{304,  469, 0xffb56b},}, 85, 41, 344, 619, 1110}
@@ -288,9 +294,13 @@ buy.返回箭头 = {{{60, 70, 0x333333},{48, 83, 0x373737},{60, 98, 0x333333},{5
 
 buy.提现界面 = {{{291, 68, 0x787878},{287, 98, 0x8a8a8a},{316, 96, 0x858585},{322, 70, 0x999999},{349, 70, 0x505050},{350, 92, 0xaeaeae},{350, 91, 0xffffff},}, 85, 284, 64, 355, 101}
 
+-----tips---------
+buy.tips_选择支付方式={{{ 47,  948, 0x02a9f1},{ 53,  854, 0x47d547},{275, 1079, 0xfe6932},}, 85, 17, 772, 634, 1132}
+
+
 function buys()
 
-	滑动次数 = rd(2,10)
+	滑动次数 = rd(2,8)
 	第一次滑动 = true
 	
 	while true do
@@ -305,58 +315,78 @@ function buys()
 					for i=1,rd(3,4) do
 						moveTo(268,618,300,374)
 					end
+				else
+					第一次滑动 = true
 				end
 			elseif d(buy.购物界面,"buy.购物界面",true) then
 			elseif d(buy.选择规格界面,"buy.选择规格界面",false) then
 			
-				d(buy.选择规格界面_确定,"选择规格界面_确定",true)
-				click(rd(43,226),rd(578,637))
-				click(57, 790)
-				d(buy.选择规格界面_确定,"选择规格界面_确定",true)
+--				d(buy.选择规格界面_确定,"选择规格界面_确定",true)
+--				click(rd(43,226),rd(578,637))
+--				click(57, 790)
+--				d(buy.选择规格界面_确定,"选择规格界面_确定",true)
 				delay(5)
 			
 			elseif d(buy.购物车界面,"buy.购物车界面",false) then
+
 				if d(buy.购物车界面_收货地址空,"buy.购物车界面_收货地址空",true) then
-					
+				elseif d(buy.购物车界面_微信支付,"buy.购物车界面_微信支付",true)then
+				elseif d(buy.购物车界面_支付宝_提交订单,"buy.购物车界面_支付宝_提交订单",false)then
+					local txt = screen.ocr_text( 99, 1059, 241, 1121)
+					var.money = txt:atrim()
+					if d(buy.购物车界面_支付宝_提交订单,"buy.购物车界面_支付宝_提交订单",true)then
+						up_wenfree()
+						os.exit()
+					end
 				end
+			
 			elseif d(buy.收货信息界面,"buy.收货信息界面",false) then
 				if d(buy.收货信息界面_新增地址,"buy.收货信息界面_新增地址",true) then
 				else
 					d(buy.返回箭头,"buy.返回箭头",true) 
 				end
+				
+			
 			elseif d(buy.新增地址界面,"buy.新增地址界面",false) then
 				if d(buy.新增地址界面_选择地区,"buy.新增地址界面_选择地区",true) then
 					if d(buy.新增地址界面_选择地区_确定和取消,"buy.新增地址界面_选择地区_确定和取消",false) then
-						v = rd(1,9)
-						v1 = rd(1,4)
-						for i =1,v do
+						var.sheng = rd(1,9)
+						var.diqu = rd(1,4)
+						for i =1,var.sheng do
 							click(112,958)
 						end	
-						for i= 1,v1 do
+						for i= 1,var.diqu do
 							click(322,970)
 						end	
 						d(buy.新增地址界面_选择地区_确定和取消,"buy.新增地址界面_选择地区_确定和取消",true)
 					end	
 					delay(1)
 				elseif d(buy.新增地址界面_输入姓名,"buy.新增地址界面_输入姓名",true) then
-					input(random_name())
+					var.name = random_name()
+					input(var.name)
 				elseif d(buy.新增地址界面_输入电话,"buy.新增地址界面_输入电话",true) then
-					input(myRand(2))
+					var.phone = myRand(2)
+					input(var.phone)
 				elseif d(buy.新增地址界面_输入详细地址,"buy.新增地址界面_输入详细地址",true) then
-					input(lastlocal())
+					var.address = lastlocal()
+					input(var.address)
 				else
 					d(buy.新增地址界面_保存,"buy.新增地址界面_保存",true)
 				end
+				
 			else
-				d(buy.返回箭头,"buy.返回箭头",true) 
+				if d(buy.tips_选择支付方式,"buy.tips_选择支付方式",true)then
+					click(285, 1078)
+				elseif d(buy.返回箭头,"buy.返回箭头",true) then
+				end
 			end	
 		end
 		delay(2)
 	end	
 end
 
-buys()
-os.exit()
+--buys()
+--os.exit()
 
 vpnx()
 delay(3)
