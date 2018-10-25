@@ -15,12 +15,12 @@ bid={}
 bid.淘集集 = {
 				['appbid']='com.huanshou.taojiji',
 				['url']={
-					['iPhone29']='http://uri6.com/tkio/3eUVjqa',   --jqa链接 
-					['iPhone30']='http://uri6.com/tkio/3eUVjqa',   --jqa链接 
+					['iPhone31']='http://uri6.com/tkio/3eUVjqa',   --jqa链接 
+					['iPhone32']='http://uri6.com/tkio/3eUVjqa',   --jqa链接 
 		
 					
-					['iPhone31']='http://uri6.com/tkio/vuaYB3a',   --B3a链接 
-					['iPhone32']='http://uri6.com/tkio/vuaYB3a',   --B3a链接 
+					['iPhone33']='http://uri6.com/tkio/vuaYB3a',   --B3a链接 
+					['iPhone34']='http://uri6.com/tkio/vuaYB3a',   --B3a链接 
 						}
 			}
 			
