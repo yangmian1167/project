@@ -120,6 +120,8 @@ bid.多多优惠券 = "com.zhuifeng.pinquanduoduo"
 bid['dido－見面追蹤小助手'] = "com.UniMax.iDido"
 bid.环球娱乐 = "BB10"
 bid.老虎机 = "com.igs.fafafa"
+bid.北京购车 = "com.personalcar.www"
+bid.孤王之战 = "com.game.zgqx1"
 --------------------------------------------------------在后面都加上 该app的 ID---------------------
 --newidfa(bid.玫瑰日记 ,300/8)		--A1组
 --newidfa(bid.佛滔命理大师,500/10)		--A组
@@ -129,13 +131,15 @@ bid.老虎机 = "com.igs.fafafa"
 --newidfa(bid.西十区,5/5)			--A组
 --newidfa(bid.闪电修,120/20)			--B组
 --newidfa(bid.地一森林舞会,620/10)		--B组
-newidfa(bid.四方坦克大战,1050/5)		--B2组
+--newidfa(bid.四方坦克大战,1050/5)		--B2组
 --newidfa(bid.熊猫网赚,3200/20)		--B组
 --newidfa(bid.银河战舰,1500/20)		--A组
 --newidfa(bid.多多优惠券,160/2)		--A组
 --newidfa(bid['dido－見面追蹤小助手'],520/20)		--B组
 --newidfa(bid.环球娱乐,4000/20)		--A组
 --newidfa(bid.老虎机,4000/20)		--A组
+--newidfa(bid.北京购车,4000/20)		--A组
+newidfa(bid.孤王之战,4000/20)		--A组
 
 
 

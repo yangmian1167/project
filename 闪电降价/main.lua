@@ -30,10 +30,12 @@ bid.闪电降价.url.iPhone02='https://lnk0.com/Vd0gk4'
 bid.闪电降价.url.iPhone03='https://lnk0.com/dEdI5k'
 
 bid.闪电降价.url.iPhone04='http://lnk0.com/toQNx9'
-bid.闪电降价.url.iPhone05='http://lnk0.com/toQNx9'
-bid.闪电降价.url.iPhone06='http://lnk0.com/toQNx9'
-bid.闪电降价.url.iPhone07='http://lnk0.com/toQNx9'
-bid.闪电降价.url.iPhone08='http://lnk0.com/toQNx9'
+--bid.闪电降价.url.iPhone31='http://lnk0.com/toQNx9'
+--bid.闪电降价.url.iPhone32='http://lnk0.com/toQNx9'
+--bid.闪电降价.url.iPhone33='http://lnk0.com/toQNx9'
+--bid.闪电降价.url.iPhone34='http://lnk0.com/toQNx9'
+--bid.闪电降价.url.iPhone35='http://lnk0.com/toQNx9'
+
 
 			
 --bid.集享联盟 = {

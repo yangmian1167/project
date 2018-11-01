@@ -17,19 +17,37 @@ bid.闪电降价 = {
 				['url']={
 					['iPhone05']='https://lnk0.com/QZhE94',
 					['iPhone06']='https://lnk0.com/QZhE94',
+--					['iPhone21']='https://lnk0.com/QZhE94',
+--					['iPhone22']='https://lnk0.com/QZhE94',
+--					['iPhone23']='https://lnk0.com/QZhE94',
+--					['iPhone24']='https://lnk0.com/QZhE94',
+--					['iPhone25']='https://lnk0.com/QZhE94',
 					
 					
 					['iPhone07']='https://lnk0.com/Vd0gk4',
 					['iPhone08']='https://lnk0.com/Vd0gk4',
+--					['iPhone26']='https://lnk0.com/Vd0gk4',
+--					['iPhone27']='https://lnk0.com/Vd0gk4',
+--					['iPhone28']='https://lnk0.com/Vd0gk4',
+--					['iPhone29']='https://lnk0.com/Vd0gk4',
+--					['iPhone30']='https://lnk0.com/Vd0gk4',
 					
 					
 					['iPhone09']='https://lnk0.com/dEdI5k',																	
 					['iPhone10']='https://lnk0.com/dEdI5k',																	
+--					['iPhone31']='https://lnk0.com/dEdI5k',																	
+--					['iPhone32']='https://lnk0.com/dEdI5k',																	
+--					['iPhone33']='https://lnk0.com/dEdI5k',																	
+--					['iPhone34']='https://lnk0.com/dEdI5k',																	
+--					['iPhone35']='https://lnk0.com/dEdI5k',																	
 				
 	
 					['iPhone39']='http://lnk0.com/toQNx9',
 					['iPhone40']='http://lnk0.com/toQNx9',
-					}
+--					['iPhone36']='http://lnk0.com/toQNx9',
+--					['iPhone37']='http://lnk0.com/toQNx9',
+--					['iPhone38']='http://lnk0.com/toQNx9',
+						}
 				}
 
 
