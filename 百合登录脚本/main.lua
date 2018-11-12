@@ -197,12 +197,12 @@ imgUrl = "http://image.baidu.com/channel/listjson?pn=15000&rn=1&tag1=%E7%BE%8E%E
 
 
 page={}
-page.切换登录按钮 ={{{450,275,0xe6dfd9},{473,480,0xf5aaa2},{216,277,0xffffff},}, 85, 80, 224, 599, 551} 
-page.登录界面 ={{{319,1024,0xdf0f4b},{288,1054,0xdf0f4b},{307,1054,0xffffff},{350,1071,0xdf0f4b},}, 85, 23, 993, 622, 1117}
-	page.登录按钮 ={{{336,679,0xffffff},{330,641,0xff615c},{329,698,0xff625c},}, 85, 205, 639, 408, 702}
+page.切换登录按钮 ={{{422, 119, 0xa7a7a7},{448, 104, 0x555555},{214, 119, 0xff9300},}, 85, 101, 79, 528, 170}
+page.登录界面 ={{{419, 117, 0xff9300},{405, 117, 0xff9300},{429, 150, 0xff6759},{215, 118, 0x5b5b5b},{216, 119, 0xffffff},}, 85, 165, 90, 519, 162}
+	page.登录按钮 ={{{310, 460, 0xffffff},{362, 460, 0xff5d5f},{115, 472, 0xff7b48},}, 85, 52, 271, 577, 858}
 	page.手机号 ={{{128,397,0xc7c7cd},{161,391,0xc7c7cd},{190,383,0xc7c7cd},}, 85, 27, 353, 589, 427}
 page.封号={{{163,646,0x1282fd},{397,647,0x007aff},{321,534,0x000000},{446,453,0xf9f9f9},},85}
-page.封号不存在={{{166,609,0x4c4c4c},{167,517,0x4c4c4c},{465,522,0x4c4c4c},}, 85, 139, 507, 491, 635}
+page.封号不存在={{{254, 575, 0xffffff},{325, 587, 0x4c3736},{437, 573, 0xf5f2f2},}, 85}
 
 function loginbh()
 	local TimeLine = os.time()
@@ -212,15 +212,14 @@ function loginbh()
 	while os.time()-TimeLine < OutTime do
 		if active(bid.app,5)then	
 			if d(page.切换登录按钮,"page.切换登录按钮",true)then
-				
 			elseif d(page.登录界面 ,"page.登录界面")then
-				if d(page.手机号,'page.手机号',true)then
-					click(534, 273)
+--				if d(page.手机号,'page.手机号',true)then
+					click(117, 232)
 					input(bhdata.data.phone)
-					click(130, 380)
+					click(101, 211)
 					input(bhdata.data.password)
 					d(page.登录按钮,"page.登录按钮",true)
-				end
+--				end
 				if d(page.封号不存在,"page.封号不存在")then
 					return false
 				elseif d(page.登录按钮,"page.登录按钮",true)then

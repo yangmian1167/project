@@ -259,26 +259,22 @@
 
 
 applist = {
-	
-{"策略", 300 },
-{"策略游戏", 200 },
-{"率土之滨", 500},
-
-
-
+{"掌上穿越火线", 450},
+{"蓝月传奇", 800 },
+{"飞车游戏", 750},
 
 }
 
-
+key = 1
 for k,v in ipairs(applist) do
 	for i=1, v[2] do
-		
 		print(v[1])
+		key = key + 1
 	end
 	
 end
 
-
+print(key)
 
 
 
