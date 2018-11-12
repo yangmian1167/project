@@ -521,7 +521,7 @@ function buys()
 	end	
 end
 
---buys()
+--buys()11-12
 
 vpnx()
 delay(3)

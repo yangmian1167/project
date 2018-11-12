@@ -145,7 +145,7 @@ bid.期货财富宝 = "com.qihuo.ios"
 --newidfa(bid.孤王之战,4000/20)		--A组
 --newidfa(bid.捞月狗,1200/20)		--B组
 --newidfa(bid.东方讯飞,80/1)		------
-newidfa(bid.期货财富宝,80/1)		------
+newidfa(bid.期货财富宝,80/1)		------B组
 
 
 
