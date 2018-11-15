@@ -377,15 +377,35 @@ buy.支付宝_请输入支付密码={{
 }, 85}
 buy.支付宝_重试={{{447, 626, 0x108ee9},{435, 637, 0x108ee9},{212, 622, 0x000000},{153, 617, 0x010101},{130, 635, 0xffffff},{373, 630, 0xffffff},}, 85, 50, 478, 572, 697}
 buy.支付宝_重新连接={{{446, 677, 0x108ee9},{521, 670, 0x51adef},{199, 677, 0x000000},}, 85}
---指定物品list = {
---	"七星莲花水晶玻璃酥油灯灯座",
---	"加持酥油蜡烛24小时酥油灯斗",
---	"6只装4小时彩色无烟香薰蜡烛煮茶蜡",
---	"纯天然老山檀香塔香",
---	"加持108颗佛珠手链",
---	"高温塑料防风杯",
---	"包邮檀香盘香",
---				}
+
+指定物品list = {
+	"七星莲花水晶玻璃酥油灯灯座",
+	"加持酥油蜡烛24小时酥油灯斗",
+	"6只装4小时彩色无烟香薰蜡烛煮茶蜡",
+	"纯天然老山檀香塔香",
+	"加持108颗佛珠手链",
+	"高温塑料防风杯",
+	"包邮檀香盘香",
+	"七彩梅花粒",
+	"克多多多彩iPhone6保护套",
+	"克多多多彩手机壳iPhone6保护套",
+	"克多多多彩壳硅胶",
+	"克多多多彩手机壳1227",
+	}
+随机廉价物品list = {
+	"苹果手机钢化膜",
+	"苹果6钢化膜iphone7手机膜蓝光防指纹",
+	"补水保湿去死皮手霜男女",
+	"5条毛巾装纯棉成人洗脸",
+	"韩卡通可爱小镜子",
+	"带手柄加厚海绵擦",
+	"黛丽塔油烟净",
+	"秋冬季棉鞋垫加绒加厚防臭吸汗",
+	"花卉浇水",
+	"空调出风口清洁软胶汽车用品车内除尘",
+	"大号滚刷子",
+	
+	}
 
 
 function buys()
@@ -399,7 +419,7 @@ function buys()
 		newbid = app.front_bid()
 		if newbid == bid.淘集集刷单.appbid or newbid == bid.支付宝 then
 			if d(buy.首页,"buy.首页",false) then
-				if  buyway == 0 then
+				if  buyway == 1 then
 					--直接搜索
 					click(330, 93)	
 				else
@@ -429,49 +449,41 @@ function buys()
 					elseif d(buy.支付宝_重新连接,"buy.支付宝_重新连接",true)  then
 					end	
 				end	
---			elseif d(buy.搜索界面,"buy.搜索界面",false) then
---				if d(buy.搜索界面_有结果,"搜索界面_有结果",true)then
+			elseif d(buy.搜索界面,"buy.搜索界面",false) then
+				if d(buy.搜索界面_有结果,"搜索界面_有结果",true)then
 					
---				else
---					click(510, 81)
---					input(指定物品list[rd(1,#指定物品list)])
---					click(559, 1095)
---				end
-				
+				else
+					click(510, 81)
+					input(指定物品list[rd(1,#指定物品list)])
+--					input(随机廉价物品list[rd(1,#随机廉价物品list)])
+					click(559, 1095)
+				end
 			elseif d(buy.购物界面,"buy.购物界面",true) then
 			elseif d(buy.选择规格界面,"buy.选择规格界面",false) then
-			
-
 --				d(buy.选择规格界面_色,"选择规格界面_色",true)
 --				d(buy.选择规格界面_色,"选择规格界面_色",true)
 				click(70, 592)
 				click(71, 731)
 				click(324, 1077)
 				delay(5)
-			
 			elseif d(buy.购物车界面,"buy.购物车界面",false) then
-
 				if d(buy.购物车界面_收货地址空,"buy.购物车界面_收货地址空",true) then
 				elseif d(buy.购物车界面_微信支付,"buy.购物车界面_微信支付",true)then
 				elseif d(buy.购物车界面_支付宝_提交订单,"buy.购物车界面_支付宝_提交订单",false)then
 					local txt = screen.ocr_text( 121, 1073, 240, 1101)
 					var.money = txt:atrim()
 --					sys.alert(txt)
-					
 					delay(1)
 					if d(buy.购物车界面_支付宝_提交订单,"buy.购物车界面_支付宝_提交订单",true)then
 						var.pay = "准备付款"
 						up_wenfree()
 					end
 				end
-			
 			elseif d(buy.收货信息界面,"buy.收货信息界面",false) then
 				if d(buy.收货信息界面_新增地址,"buy.收货信息界面_新增地址",true) then
 				else
 					d(buy.返回箭头,"buy.返回箭头",true) 
 				end
-				
-			
 			elseif d(buy.新增地址界面,"buy.新增地址界面",false) then
 				if d(buy.新增地址界面_选择地区,"buy.新增地址界面_选择地区",true) then
 					if d(buy.新增地址界面_选择地区_确定和取消,"buy.新增地址界面_选择地区_确定和取消",false) then
@@ -484,7 +496,6 @@ function buys()
 								return shengshui()
 							end
 						end
-
 						var.sheng = shengshui()
 						var.diqu = rd(1,4)
 						for i =1,var.sheng do
@@ -508,7 +519,6 @@ function buys()
 				else
 					d(buy.新增地址界面_保存,"buy.新增地址界面_保存",true)
 				end
-				
 			else
 				if d(buy.tips_选择支付方式,"buy.tips_选择支付方式",true)then
 					click(285, 1078)
@@ -568,7 +578,6 @@ while true do
 	delay(5)
 end
 ------]]
-
 
 
 

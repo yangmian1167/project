@@ -81,6 +81,12 @@ bid.淘集集注册.url['iPhone23']='http://uri6.com/tkio/3eUVjqa'
 bid.淘集集注册.url['iPhone24']='http://uri6.com/tkio/3eUVjqa'
 bid.淘集集注册.url['iPhone25']='http://uri6.com/tkio/3eUVjqa'
 
+bid.淘集集注册.url['AAAAAAAA']='http://uri6.com/tkio/3eUVjqa'
+bid.淘集集注册.url['xxt-5s']='http://uri6.com/tkio/3eUVjqa'
+bid.淘集集注册.url['iPhone11']='http://uri6.com/tkio/3eUVjqa'
+bid.淘集集注册.url['iPhone18']='http://uri6.com/tkio/3eUVjqa'
+bid.淘集集注册.url['iPhone19']='http://uri6.com/tkio/3eUVjqa'
+bid.淘集集注册.url['iPhone20']='http://uri6.com/tkio/3eUVjqa'
 
 
 bid.淘集集注册.url['iPhone26']='http://uri6.com/tkio/vuaYB3a'
@@ -88,6 +94,8 @@ bid.淘集集注册.url['iPhone27']='http://uri6.com/tkio/vuaYB3a'
 bid.淘集集注册.url['iPhone28']='http://uri6.com/tkio/vuaYB3a'
 bid.淘集集注册.url['iPhone29']='http://uri6.com/tkio/vuaYB3a'
 bid.淘集集注册.url['iPhone30']='http://uri6.com/tkio/vuaYB3a'
+
+
 
 
 
