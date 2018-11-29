@@ -125,6 +125,8 @@ bid.孤王之战 = "com.game.zgqx1"
 bid.捞月狗 = "com.hainanlexin.laoyuegou.app"
 bid.东方讯飞 = "com.dfxf.righting"
 bid.期货财富宝 = "com.qihuo.ios"
+bid.车开新二手车 = "com.shyohan.carHappy"
+bid.音遇 = "io.liuliu.music"
 --------------------------------------------------------在后面都加上 该app的 ID---------------------
 --newidfa(bid.玫瑰日记 ,300/8)		--A1组
 --newidfa(bid.佛滔命理大师,500/10)		--A组
@@ -145,7 +147,9 @@ bid.期货财富宝 = "com.qihuo.ios"
 --newidfa(bid.孤王之战,4000/20)		--A组
 --newidfa(bid.捞月狗,1200/20)		--B组
 --newidfa(bid.东方讯飞,80/1)		------
-newidfa(bid.期货财富宝,80/1)		------B组
+--newidfa(bid.期货财富宝,80/1)		------B组
+--newidfa(bid.车开新二手车,80/1)		------B组
+newidfa(bid.音遇,51/1)		------B组
 
 
 

@@ -75,12 +75,15 @@ bid.淘集集刷单 = {
 		}
 			
 bid.淘集集刷单.url = {}
-bid.淘集集刷单.url.AAAAAAAA='http://uri6.com/tkio/3eUVjqa'
 bid.淘集集刷单.url['xxt-5s']='http://uri6.com/tkio/3eUVjqa'
 bid.淘集集刷单.url['iPhone11']='http://uri6.com/tkio/3eUVjqa'
+bid.淘集集刷单.url['iPhone15']='http://uri6.com/tkio/3eUVjqa'
 bid.淘集集刷单.url['iPhone18']='http://uri6.com/tkio/3eUVjqa'
-bid.淘集集刷单.url['iPhone20']='http://uri6.com/tkio/3eUVjqa'
 bid.淘集集刷单.url['iPhone19']='http://uri6.com/tkio/3eUVjqa'
+bid.淘集集刷单.url['iPhone20']='http://uri6.com/tkio/3eUVjqa'
+bid.淘集集刷单.url['iPhone01']='http://uri6.com/tkio/3eUVjqa'
+bid.淘集集刷单.url['iPhone02']='http://uri6.com/tkio/3eUVjqa'
+
 
 
 bid.淘集集刷单.url['iPhone12']='http://uri6.com/tkio/vuaYB3a'
@@ -89,10 +92,8 @@ bid.淘集集刷单.url['iPhone14']='http://uri6.com/tkio/vuaYB3a'
 bid.淘集集刷单.url['iPhone16']='http://uri6.com/tkio/vuaYB3a'
 bid.淘集集刷单.url['iPhone17']='http://uri6.com/tkio/vuaYB3a'
 bid.淘集集刷单.url['张德shuai']='http://uri6.com/tkio/vuaYB3a'
---bid.淘集集刷单.url['张德shuai']='http://uri6.com/tkio/vuaYB3a'
---bid.淘集集刷单.url['iPhone16']='http://uri6.com/tkio/vuaYB3a'
---bid.淘集集刷单.url['iPhone11']='http://uri6.com/tkio/vuaYB3a'
---bid.淘集集刷单.url['iPhone12']='http://uri6.com/tkio/vuaYB3a'
+bid.淘集集刷单.url['iPhone03']='http://uri6.com/tkio/vuaYB3a'
+bid.淘集集刷单.url['iPhone04']='http://uri6.com/tkio/vuaYB3a'
 
 
 
@@ -181,10 +182,14 @@ function appname(bid)
 end
 
 function lastlocal()
-	地址 = getlocal()
-	last = string.split(地址.regeocode.formatted_address,"区")
-	log(last[#last]..math.random(1,5).."号街"..math.random(1,10).."号楼")
-	return last[#last]..math.random(1,5).."号街"..math.random(1,10).."号楼"
+	local 地址 = getlocal()
+	if 地址 ~= nil then
+		last = string.split(地址.regeocode.formatted_address,"区")
+		log(last[#last]..math.random(1,5).."号街"..math.random(1,10).."号楼")
+		return last[#last]..math.random(1,5).."号街"..math.random(1,10).."号楼"
+	else
+		return math.random(1,5).."号街"..math.random(1,10).."号楼"
+	end
 end
 
 --openUrl("https://m.weibo.cn/status/4258678762614093?wm=3333_2001&from=1087093010&sourcetype=weixin&featurecode=newtitle")
@@ -334,7 +339,7 @@ buy.选择规格界面_挑选种类 = {{{ 29, 572, 0xf6f6f6},{ 30, 608, 0xf6f6f6
 buy.购物车界面 = {{{268, 69, 0x515151},{268, 99, 0x4d4d4d},{357, 99, 0x767676},{370, 91, 0x4c4c4c},{370, 72, 0x929292},{370, 71, 0xffffff},}, 85, 255, 55, 385, 111}
 	buy.购物车界面_收货地址空 = {{{138, 204, 0xef0f0f},{157, 202, 0xee0101},{313, 207, 0xf34444},{509, 208, 0xee0000},}, 85, 106, 146, 559, 267}
 	buy.购物车界面_微信支付 = {{{448, 752, 0xffffff},{456, 738, 0x47d547},{440, 755, 0x47d547},{463, 760, 0x47d547},{576, 746, 0x333333},}, 85, 386, 589, 638, 1019}
-	buy.购物车界面_支付宝_提交订单 = {{{607, 1099, 0xef1c04},{534, 1079, 0xfeefed},{488,  866, 0x02a9f1},{577,  761, 0x333333},{614,  766, 0x595959},}, 85, 457, 681, 631, 1132}
+	buy.购物车界面_支付宝_提交订单 = {{{565, 1070, 0xf0260b},{465,  771, 0x02a9f1},{577,  683, 0x333333},{608,  676, 0xa8a8a8},}, 85, 413, 612, 619, 1133}
 
 buy.收货信息界面 = {{{229, 71, 0x464646},{236, 98, 0x969696},{264, 98, 0x404040},{361, 96, 0x2b2b2b},{361, 97, 0xeaeaea},{347, 68, 0xb9b9b9},}, 85, 220, 64, 369, 104}
 buy.收货信息界面_新增地址 = {{{ 65, 1032, 0xff7d30},{ 73, 1095, 0xfd7c30},{583, 1041, 0xf43d18},{577, 1089, 0xf73c17},{291,  398, 0xffd6a6},{304,  469, 0xffb56b},}, 85, 41, 344, 619, 1110}
@@ -351,7 +356,8 @@ buy.返回箭头 = {{{45,  83, 0x333333},{57,  67, 0xd1d1d1},{57, 100, 0xb8b8b8}
 buy.新人特价返回箭头 = {{{ 48,  84, 0x3a3a3a},{120,  80, 0x979797},{158,  80, 0xb3b3b3},{124, 101, 0xb8b8b8},{154, 101, 0xcdcdcd},{552,  86, 0xd6d6d6},}, 85, 35, 62, 582, 105}
 buy.搜索界面 = {{{ 42, 70, 0x9f9f9d},{ 42, 93, 0xc4c4c3},{559, 74, 0xafafaf},{559, 92, 0x9c9c9c},{567, 95, 0xbebebe},{580, 93, 0x838383},}, 85, 32, 65, 583, 101}
 	buy.搜索界面_有结果 = {{{21, 612, 0xee0000},{32, 613, 0xffffff},{21, 615, 0xee0000},}, 85, 4, 138, 608, 962}
-
+	buy.搜索界面_加载中 = {{{300, 653, 0x313131},{301, 610, 0x313131},{349, 638, 0x313131},}, 85, 280, 590, 370, 683}
+	buy.搜索界面_加载中1 = {{{291, 700, 0x010101},{291, 737, 0x010101},{345, 736, 0x010101},}, 85, 253, 660, 370, 777}
 buy.提现界面 = {{{291, 68, 0x787878},{287, 98, 0x8a8a8a},{316, 96, 0x858585},{322, 70, 0x999999},{349, 70, 0x505050},{350, 92, 0xaeaeae},{350, 91, 0xffffff},}, 85, 284, 64, 355, 101}
 
 -----tips---------
@@ -382,29 +388,27 @@ buy.支付宝_重新连接={{{446, 677, 0x108ee9},{521, 670, 0x51adef},{199, 677
 	"七星莲花水晶玻璃酥油灯灯座",
 	"加持酥油蜡烛24小时酥油灯斗",
 	"6只装4小时彩色无烟香薰蜡烛煮茶蜡",
-	"纯天然老山檀香塔香",
-	"加持108颗佛珠手链",
-	"高温塑料防风杯",
-	"包邮檀香盘香",
+	"纯天然老山檀香塔香香薰印度香熏70粒",
+	"加持108颗佛珠手链新款民族风饰品手工原创五色佛珠檀香木",
+	"高温塑料防风杯酥油灯造型塑料杯防风阻燃200个",
+	"包邮檀香盘香老山檀香线香卧香纯天然香薰香佛像檀香供香",
 	"七彩梅花粒",
-	"克多多多彩iPhone6保护套",
-	"克多多多彩手机壳iPhone6保护套",
-	"克多多多彩壳硅胶",
-	"克多多多彩手机壳1227",
+	"克多多多彩iPhone6保护套2017",
+	"克多多多彩手机壳iPhone6保护套1109",
+	"克多多多彩壳硅胶抖音潮牌网红3017",
+	"克多多多彩手机壳1227软壳女P清新创意套抖音潮牌网红",
+--	"苹果6splus手机壳iPhone6保护套6-6s-7-8-plus硅胶防摔全包超薄",
+	"大促iPhone硅胶防摔清新创意套抖音潮牌网红",
+--	"苹果6splus手机壳iPhone6保护套6-6s硅胶防摔全包超薄",
+	"iPhone硅胶防摔全包超薄软壳女P清新创意套抖音潮牌网红",
 	}
 随机廉价物品list = {
-	"苹果手机钢化膜",
-	"苹果6钢化膜iphone7手机膜蓝光防指纹",
-	"补水保湿去死皮手霜男女",
-	"5条毛巾装纯棉成人洗脸",
-	"韩卡通可爱小镜子",
-	"带手柄加厚海绵擦",
-	"黛丽塔油烟净",
-	"秋冬季棉鞋垫加绒加厚防臭吸汗",
-	"花卉浇水",
-	"空调出风口清洁软胶汽车用品车内除尘",
-	"大号滚刷子",
-	
+	"3条装安卓快充数据线oppo手机充电器线vivo红米充电2A通用",
+	"买二送一一擦即亮无色亮鞋护鞋海绵鞋蜡鞋擦皮鞋保养双面海绵",
+	"1-3瓶装搓泥宝去死皮全身去角质搓澡泥搓泥浴宝搓泥宝贝",
+--	"黛丽塔油烟净",
+	"5条装纯棉毛巾成人洗脸 家用柔软吸水厚好回礼品全棉面巾",
+	"快充安卓数据线oppo手机充电器线vivo红米充电线通用",
 	}
 
 
@@ -451,9 +455,12 @@ function buys()
 				end	
 			elseif d(buy.搜索界面,"buy.搜索界面",false) then
 				if d(buy.搜索界面_有结果,"搜索界面_有结果",true)then
-					
+				elseif d(buy.搜索界面_加载中,"搜索界面_加载中")then
+				elseif d(buy.搜索界面_加载中1,"搜索界面_加载中1")then
+				
 				else
 					click(510, 81)
+			----------------------------------选择商品-------------------------------------------
 					input(指定物品list[rd(1,#指定物品list)])
 --					input(随机廉价物品list[rd(1,#随机廉价物品list)])
 					click(559, 1095)
@@ -465,7 +472,7 @@ function buys()
 				click(70, 592)
 				click(71, 731)
 				click(324, 1077)
-				delay(5)
+				delay(8)
 			elseif d(buy.购物车界面,"buy.购物车界面",false) then
 				if d(buy.购物车界面_收货地址空,"buy.购物车界面_收货地址空",true) then
 				elseif d(buy.购物车界面_微信支付,"buy.购物车界面_微信支付",true)then
@@ -553,7 +560,12 @@ phonepwd['AAAAAAAA']="123124"
 phonepwd['iPhone20']="024290"
 phonepwd['iPhone18']="051268"
 phonepwd['iPhone16']="024290"
+phonepwd['iPhone15']="123124"
 phonepwd['iPhone14']="051268"
+phonepwd['iPhone01']="051268"
+phonepwd['iPhone02']="406810"
+phonepwd['iPhone03']="406810"
+phonepwd['iPhone04']="406810"
 
 
 if phonepwd[device.name()] then
@@ -578,7 +590,6 @@ while true do
 	delay(5)
 end
 ------]]
-
 
 
 

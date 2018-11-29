@@ -45,6 +45,7 @@ bid.赚钱啦 = "sz.parttimejob"
 bid.四方坦克大战 = "com.sfgame.sftkdz"
 bid.融360 = "com.rong360.victor"
 bid.全日空海淘 = "acd.mall.apps.20170619"
+bid.无忧行 = "com.cmi.jegotrip"
 
 
 screen.init(0)
@@ -88,7 +89,7 @@ web.open={{{526,632,0x007aff},{396,622,0x3897ff},{393,623,0xffffff},},85}
 --融360
 --urls = "http://m.rong360.com/app/osdown/?ios=https://itunes.apple.com/cn/app/id1026689855?mt=8&android=https://campaign.rong360.com/applanding/rongapp/landing_22.html?&weixin=&from=zckj_xgxyk_ceshi01"
 --全日空海淘
-urls = "https://at.umeng.com/jCmiqi"
+urls = "https://at.umeng.com/GPPbma"
 function open(urls)
 	openUrl(urls)
 	delay(3)
@@ -104,33 +105,70 @@ function open(urls)
 	log("open time ",true)
 end
 
+function get_task()
+	local url = 'http://wenfree.cn/api/Public/tjj/?service=Tjj.gettask'
+	local postArr = {}
+	postArr.phonename = phonename or device.name()
+	postArr.imei = phoneimei or sys.mgcopyanswer("SerialNumber")
+	local taskData = post(url,postArr)
+	
+	if taskData ~= nil then
+		taskData = json.decode(taskData)
+		log(taskData)
+		
+		if taskData.data == "新增手机" or taskData.data == "暂无任务" then
+			log(taskData.data,true)
+			delay(30)
+			return false
+		else
+			return taskData.data
+		end
+	end
+end
 
+function ends()
+	
+	for _,bid in ipairs(app.bundles()) do
+		app.quit(bid)
+	end
+	vpnx()
+	sys.msleep(2000)
+	
+end
 
+function back_pass(task_id,success)
+	local url = 'http://wenfree.cn/api/Public/tjj/?service=Tjj.backpass'
+	local postArr = {}
+	postArr.task_id = task_id
+	postArr.success = success
+	log( post(url,postArr) )
+end
 
-function newidfa(bids,times)
+function newidfa(keys,times)
 	for i= 1,times do
 		if false or vpn()then
 			XXTfakerNewPhone('com.apple.mobilesafari')
 			delay(1)
 			if open(urls) then
-				if XXTfakerNewPhone(bids)then
-					idfa = XXTfakerGetinfo(bids)['IDFA']
+				if XXTfakerNewPhone(bid[keys])then
+					idfa = XXTfakerGetinfo(bid[keys])['IDFA']
 					local TIMEline = os.time()
-					local OUTtime = rd(150,200)
+					local OUTtime = rd(45,50)
 					while os.time()- TIMEline < OUTtime do
-						if active(bids,4)then
+						if active(bid[keys],4)then
 							if d(apparr.right,"apparr.right",true)then
 							else
 								moveTo(600,300,100,100,30,50)
 								delay(1)
-			--							click(321, 978)
-			--							delay(1)
-			--							click(462, 666)
-			--							delay(1)
+										click(321, 978)
+										delay(1)
+										click(462, 666)
+										delay(1)
 							end
 						end
 					end
-					up(appname(bids),'初次上传')
+					up(appname(bid[keys]),'初次上传')
+					back_pass(task_id,"ok")
 				end
 			end	
 		end
@@ -142,12 +180,23 @@ end
 
 
 
---newidfa(bid.大码微拍,540/10)		--B组
---newidfa(bid.开天斩龙,1100/10)		--B组	
---newidfa(bid.赚钱啦,250/1)		--B组
---newidfa(bid.四方坦克大战,220/10)		--B2组
---newidfa(bid.融360,100/1)		--A组
-newidfa(bid.全日空海淘,20/1)		--AAAAAAAAA测试机
+while true do
+	log("vpn-key")
+
+	-----------------------------------
+			local TaskDate = ( get_task() )
+			if TaskDate then
+				for i,v in ipairs(TaskDate) do
+					work = v.work
+					task_id = v.task_id
+					if bid[work] ~= nil then
+						newidfa(work,1)
+					end
+				end
+			end
+	------------------------------------
+	ends()
+end
 
 
 	
