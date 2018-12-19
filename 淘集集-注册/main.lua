@@ -99,7 +99,25 @@ bid.淘集集注册.url['iPhone29']='http://uri6.com/tkio/vuaYB3a'
 bid.淘集集注册.url['iPhone30']='http://uri6.com/tkio/vuaYB3a'
 
 
+bid.淘集集注册.url['xxt-5s']='http://uri6.com/tkio/3eUVjqa'
+bid.淘集集注册.url['iPhone11']='http://uri6.com/tkio/3eUVjqa'
+bid.淘集集注册.url['iPhone15']='http://uri6.com/tkio/3eUVjqa'
+bid.淘集集注册.url['iPhone18']='http://uri6.com/tkio/3eUVjqa'
+bid.淘集集注册.url['iPhone19']='http://uri6.com/tkio/3eUVjqa'
+bid.淘集集注册.url['iPhone20']='http://uri6.com/tkio/3eUVjqa'
+--bid.淘集集刷单.url['iPhone01']='http://uri6.com/tkio/3eUVjqa'
+--bid.淘集集刷单.url['iPhone02']='http://uri6.com/tkio/3eUVjqa'
 
+
+
+bid.淘集集注册.url['iPhone12']='http://uri6.com/tkio/vuaYB3a'
+bid.淘集集注册.url['iPhone13']='http://uri6.com/tkio/vuaYB3a'
+bid.淘集集注册.url['iPhone14']='http://uri6.com/tkio/vuaYB3a'
+bid.淘集集注册.url['iPhone10']='http://uri6.com/tkio/vuaYB3a'
+bid.淘集集注册.url['iPhone17']='http://uri6.com/tkio/vuaYB3a'
+bid.淘集集注册.url['张德shuai']='http://uri6.com/tkio/vuaYB3a'
+--bid.淘集集刷单.url['iPhone03']='http://uri6.com/tkio/vuaYB3a'
+--bid.淘集集刷单.url['iPhone04']='http://uri6.com/tkio/vuaYB3a'
 
 
 

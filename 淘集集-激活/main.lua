@@ -14,8 +14,8 @@ phonename = device.name()
 bid={}
 bid.淘集集 = {
 				['appbid']='com.huanshou.taojiji',
---				['url']="http://uri6.com/tkio/3eUVjqa",    --B3a链接 31 32 33 34
-				['url']="http://uri6.com/tkio/vuaYB3a",     --B3a链接 35 36 37 38
+				['url']="http://uri6.com/tkio/3eUVjqa",    --B3a链接 31 32 33 34
+--				['url']="http://uri6.com/tkio/vuaYB3a",     --B3a链接 35 36 37 38
 			}				
 			
 --phonelist_url = {

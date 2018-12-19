@@ -27,16 +27,16 @@ function atexit(callback) -- 参数为一个函数，使用 atexit(一个函数)
 	end
 end
 
-atexit(function() 
-		sys.toast('脚本结束了！')
-		vpnx()
-		local appbids = app.front_bid()
-		if appbids ~= "com.apple.springboard" then
-			app.quit(appbids)
-			--closeX(appbids)
-		end
-		sys.msleep(500)
-	end)
+--atexit(function() 
+--		sys.toast('脚本结束了！')
+--		vpnx()
+--		local appbids = app.front_bid()
+--		if appbids ~= "com.apple.springboard" then
+--			app.quit(appbids)
+--			--closeX(appbids)
+--		end
+--		sys.msleep(500)
+--	end)
 
 bid={}
 bid.大码微拍 = "com.xmfg.dmwp"
@@ -105,7 +105,7 @@ function open(urls)
 	end
 	log("open time ",true)
 end
-
+--[[
 function get_task()
 	local url = 'http://wenfree.cn/api/Public/tjj/?service=Tjj.gettask'
 	local postArr = {}
@@ -199,13 +199,14 @@ while true do
 	ends()
 end
 
-
+--]]--
 	
 
 
 
-
-
+open(urls)
+delay(10)
+XXTfakerNewPhone(bid.独角秀)
 
 
 

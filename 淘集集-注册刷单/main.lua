@@ -83,17 +83,19 @@ bid.淘集集刷单.url['iPhone19']='http://uri6.com/tkio/3eUVjqa'
 bid.淘集集刷单.url['iPhone20']='http://uri6.com/tkio/3eUVjqa'
 bid.淘集集刷单.url['iPhone01']='http://uri6.com/tkio/3eUVjqa'
 bid.淘集集刷单.url['iPhone02']='http://uri6.com/tkio/3eUVjqa'
+bid.淘集集刷单.url['iPhone06']='http://uri6.com/tkio/3eUVjqa'
 
 
 
 bid.淘集集刷单.url['iPhone12']='http://uri6.com/tkio/vuaYB3a'
 bid.淘集集刷单.url['iPhone13']='http://uri6.com/tkio/vuaYB3a'
 bid.淘集集刷单.url['iPhone14']='http://uri6.com/tkio/vuaYB3a'
-bid.淘集集刷单.url['iPhone16']='http://uri6.com/tkio/vuaYB3a'
+bid.淘集集刷单.url['iPhone10']='http://uri6.com/tkio/vuaYB3a'
 bid.淘集集刷单.url['iPhone17']='http://uri6.com/tkio/vuaYB3a'
 bid.淘集集刷单.url['张德shuai']='http://uri6.com/tkio/vuaYB3a'
 bid.淘集集刷单.url['iPhone03']='http://uri6.com/tkio/vuaYB3a'
 bid.淘集集刷单.url['iPhone04']='http://uri6.com/tkio/vuaYB3a'
+bid.淘集集刷单.url['iPhone05']='http://uri6.com/tkio/vuaYB3a'
 
 
 
@@ -120,7 +122,7 @@ var.diqu = 0
 
 function checkip()
 	ip = get_ip() or "192.168.1.1"
-	local url = 'http://hlj.51-gx.com/Public/idfa/?service=idfa.checkip&ip='..ip
+	local url = 'http://idfa888.com/Public/idfa/?service=idfa.checkip&ip='..ip
 	local getdata = get(url)
 	if getdata ~= nil then
 		local data = json.decode(getdata)
@@ -139,7 +141,7 @@ function up_wenfree()
 	local idfalist ={}
 	idfalist.phonename = var.phonename or device.name()
 	idfalist.imei = var.phoneimei or sys.mgcopyanswer("SerialNumber")
-	idfalist.name = name
+	idfalist.name = var.id or var.name
 	idfalist.idfa = idfa or phone
 	idfalist.ip = ip or get_ip() or  '192.168.1.1'
 	idfalist.account = var.account or phone
@@ -148,7 +150,7 @@ function up_wenfree()
 	idfalist.phone = phone
 	idfalist.bank = var.sheng.."-"..var.diqu
 	idfalist.bankphone = var.phone
-	idfalist.address = var.address
+	idfalist.address = var.area
 	idfalist.money = var.money
 	idfalist.pay = var.pay
 	idfalist.whos = "ym"
@@ -173,6 +175,31 @@ function up(name,other)
 	return post(url,idfalist)
 end
 
+function get_wenfree_address()
+	local url = "http://wenfree.cn/api/Public/tjj/?service=Address.getOne"
+	local address = {}
+	return post(url,address)
+end
+
+
+function get_address()
+	 address = get_wenfree_address()
+
+	if address ~= nil then
+		address = json.decode(address)
+		log(address)
+		var.id = address.data.id 
+		var.name =	address.data.address_name
+		var.phone =	address.data.address_phone
+		var.sheng =	address.data.address_sheng
+		var.shi =	address.data.address_shi
+		var.qu =	address.data.address_qu
+		var.area =	address.data.address_area
+		var.note =	address.data.note
+	end
+end
+
+
 function rd(n,k)
 	return math.random(n,k)
 end
@@ -191,6 +218,9 @@ function lastlocal()
 		return math.random(1,5).."号街"..math.random(1,10).."号楼"
 	end
 end
+
+
+
 
 --openUrl("https://m.weibo.cn/status/4258678762614093?wm=3333_2001&from=1087093010&sourcetype=weixin&featurecode=newtitle")
 --os.exit()
@@ -386,22 +416,30 @@ buy.支付宝_重新连接={{{446, 677, 0x108ee9},{521, 670, 0x51adef},{199, 677
 
 指定物品list = {
 	"七星莲花水晶玻璃酥油灯灯座",
-	"加持酥油蜡烛24小时酥油灯斗",
+--	"加持酥油蜡烛24小时酥油灯斗",
 	"6只装4小时彩色无烟香薰蜡烛煮茶蜡",
 	"纯天然老山檀香塔香香薰印度香熏70粒",
-	"加持108颗佛珠手链新款民族风饰品手工原创五色佛珠檀香木",
+--	"加持108颗佛珠手链新款民族风饰品手工原创五色佛珠檀香木",
 	"高温塑料防风杯酥油灯造型塑料杯防风阻燃200个",
-	"包邮檀香盘香老山檀香线香卧香纯天然香薰香佛像檀香供香",
+--	"包邮檀香盘香老山檀香线香卧香纯天然香薰香佛像檀香供香",
 	"七彩梅花粒",
 	"克多多多彩iPhone6保护套2017",
-	"克多多多彩手机壳iPhone6保护套1109",
-	"克多多多彩壳硅胶抖音潮牌网红3017",
+--	"克多多多彩手机壳iPhone6保护套1109",
+--	"克多多多彩壳硅胶抖音潮牌网红3017",
 	"克多多多彩手机壳1227软壳女P清新创意套抖音潮牌网红",
 --	"苹果6splus手机壳iPhone6保护套6-6s-7-8-plus硅胶防摔全包超薄",
 	"大促iPhone硅胶防摔清新创意套抖音潮牌网红",
---	"苹果6splus手机壳iPhone6保护套6-6s硅胶防摔全包超薄",
+	"苹果6splus手机壳iPhone6保护套6-6s硅胶防摔全包超薄",
 	"iPhone硅胶防摔全包超薄软壳女P清新创意套抖音潮牌网红",
+	
+	
+	
+	
+	
+	
+	
 	}
+
 随机廉价物品list = {
 	"3条装安卓快充数据线oppo手机充电器线vivo红米充电2A通用",
 	"买二送一一擦即亮无色亮鞋护鞋海绵鞋蜡鞋擦皮鞋保养双面海绵",
@@ -410,6 +448,27 @@ buy.支付宝_重新连接={{{446, 677, 0x108ee9},{521, 670, 0x51adef},{199, 677
 	"5条装纯棉毛巾成人洗脸 家用柔软吸水厚好回礼品全棉面巾",
 	"快充安卓数据线oppo手机充电器线vivo红米充电线通用",
 	}
+
+
+测试list = {
+	"私处护理28抽",
+	"桌面抽纸盒家用客厅简约塑料收纳盒",
+	"整理盒桌面置物架特大号化妆收纳架",
+	"毛巾衣服衣物的袋子卡通鞋子收纳袋",
+	"防尘防水加厚防潮大号行李袋整理袋子",
+	"创意升降式塑料纸巾盒客厅茶几抽纸盒",
+	"家用客厅塑料化妆品梳妆台多功能收纳",
+	"三连旋转挂钩强力浴室墙壁置物架免打孔无痕粘钩",
+	"创意挂钩强力粘胶毛巾挂架浴室墙壁置物",
+	"卫生间厕纸盒免打孔防水厕所置物架抽纸盒卫生纸创意卷纸架纸巾盒",
+	"创意旅游情侣漱口杯套装盒",
+	
+
+}
+
+
+
+
 
 
 function buys()
@@ -441,7 +500,12 @@ function buys()
 					end
 				end
 			elseif newbid == bid.支付宝 then
-				if d(buy.支付宝_立即支付,"buy.支付宝_立即支付",true) then
+				if d(buy.支付宝_立即支付,"buy.支付宝_立即支付",false) then
+					local txt = screen.ocr_text( 138, 481, 516, 612)
+					var.money = txt:atrim()
+--					sys.alert(txt)
+					delay(1)
+					d(buy.支付宝_立即支付,"buy.支付宝_立即支付",true)
 				elseif d(buy.支付宝_请输入支付密码,"buy.支付宝_请输入支付密码",false) then
 				
 					phoneKey(var.pwd)
@@ -461,7 +525,7 @@ function buys()
 				else
 					click(510, 81)
 			----------------------------------选择商品-------------------------------------------
-					input(指定物品list[rd(1,#指定物品list)])
+					input(测试list[rd(1,#测试list)])
 --					input(随机廉价物品list[rd(1,#随机廉价物品list)])
 					click(559, 1095)
 				end
@@ -477,10 +541,7 @@ function buys()
 				if d(buy.购物车界面_收货地址空,"buy.购物车界面_收货地址空",true) then
 				elseif d(buy.购物车界面_微信支付,"buy.购物车界面_微信支付",true)then
 				elseif d(buy.购物车界面_支付宝_提交订单,"buy.购物车界面_支付宝_提交订单",false)then
-					local txt = screen.ocr_text( 121, 1073, 240, 1101)
-					var.money = txt:atrim()
---					sys.alert(txt)
-					delay(1)
+					
 					if d(buy.购物车界面_支付宝_提交订单,"buy.购物车界面_支付宝_提交订单",true)then
 						var.pay = "准备付款"
 						up_wenfree()
@@ -495,34 +556,32 @@ function buys()
 				if d(buy.新增地址界面_选择地区,"buy.新增地址界面_选择地区",true) then
 					if d(buy.新增地址界面_选择地区_确定和取消,"buy.新增地址界面_选择地区_确定和取消",false) then
 						
-						function shengshui()
-							local mun = rd(1,14)
-							if mun ~= 7 and mun ~= 3 then
-								return mun
-							else
-								return shengshui()
+						function area(left,mun)
+							local keymun = tonumber(mun)
+							if keymun == 0 then
+								return
+							end
+							for i=1,keymun do
+								click(left,955)
 							end
 						end
-						var.sheng = shengshui()
-						var.diqu = rd(1,4)
-						for i =1,var.sheng do
-							click(112,958)
-						end	
-						for i= 1,var.diqu do
-							click(322,970)
-						end	
+						
+						area(111,var.sheng)
+						area(319,var.shi)
+						area(536,var.qu)
+						
 						d(buy.新增地址界面_选择地区_确定和取消,"buy.新增地址界面_选择地区_确定和取消",true)
 					end	
 					delay(1)
 				elseif d(buy.新增地址界面_输入姓名,"buy.新增地址界面_输入姓名",true) then
-					var.name = random_name()
+--					var.name = random_name()
 					input(var.name)
 				elseif d(buy.新增地址界面_输入电话,"buy.新增地址界面_输入电话",true) then
-					var.phone = myRand(2)
+--					var.phone = myRand(2)
 					input(var.phone)
 				elseif d(buy.新增地址界面_输入详细地址,"buy.新增地址界面_输入详细地址",true) then
-					var.address = lastlocal()
-					input(var.address)
+--					var.address = lastlocal()
+					input(var.area)
 				else
 					d(buy.新增地址界面_保存,"buy.新增地址界面_保存",true)
 				end
@@ -559,7 +618,7 @@ phonepwd['iPhone11']="123124"
 phonepwd['AAAAAAAA']="123124"
 phonepwd['iPhone20']="024290"
 phonepwd['iPhone18']="051268"
-phonepwd['iPhone16']="024290"
+phonepwd['iPhone10']="024290"
 phonepwd['iPhone15']="123124"
 phonepwd['iPhone14']="051268"
 phonepwd['iPhone01']="051268"
@@ -572,7 +631,7 @@ if phonepwd[device.name()] then
 	var.pwd=phonepwd[device.name()]
 end
 
-
+--[[]]
 
 
 while true do
@@ -580,6 +639,7 @@ while true do
 		if checkip() then
 			if open(bid['淘集集刷单']['url'][device.name()])then
 				if newidfa() then
+					get_address()
 					buys()
 				end	
 			end
@@ -589,7 +649,19 @@ while true do
 	vpnx()
 	delay(5)
 end
-------]]
+--]]--
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

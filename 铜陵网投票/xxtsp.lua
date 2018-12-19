@@ -256,7 +256,7 @@ function post(url,tables)
 		end
 	end
 	
-	local safari = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_3)'
+	safari = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_3)'
 	local code, res_headers, body = http.post(server, 15, {
 		["User-Agent"] = safari, -- 模拟 safari
 	}, post_data)
@@ -342,7 +342,7 @@ function myRand(rnType,rnLen,rnUL)
 			myrandS=myrandS..math.random(0,9)
 		end
 	elseif rnType==2 then --生成手机号,rnLen,rn11无需设置
-		local mheader={"13","15","18"}
+		local mheader={"13","15"}
 		myrandS=mheader[math.random(#mheader)]
 		for r1=1,9 do
 			myrandS=myrandS..math.random(0,9)

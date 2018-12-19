@@ -100,39 +100,127 @@ require('xxtsp')
 --	d(登录,"登录",true,1)
 
 
-vpnlist ={
-		dispName = '40',
-		VPNType = "L2TP",
-		server = 'yhtip.com',
-		authorization = 'ahy65',
-		password = '1',           -- 密码
-		secret = '1',            -- 密钥，PPTP 可不填
-		encrypLevel = 1,               -- 加密级别，选填，默认 1
-		group = '',                    -- 群组名称，选填，默认 ""
-		VPNSendAllTraffic = 1,         -- 是否发送所有流量，选填，默认 1
+--vpnlist ={
+--		dispName = '40',
+--		VPNType = "L2TP",
+--		server = 'yhtip.com',
+--		authorization = 'ahy65',
+--		password = '1',           -- 密码
+--		secret = '1',            -- 密钥，PPTP 可不填
+--		encrypLevel = 1,               -- 加密级别，选填，默认 1
+--		group = '',                    -- 群组名称，选填，默认 ""
+--		VPNSendAllTraffic = 1,         -- 是否发送所有流量，选填，默认 1
+--	}
+----创建一个vpn
+--function creat_vpn(table)
+--	local success = vpnconf.create{
+--		dispName = table.dispName,
+--		VPNType = table.VPNType,
+--		server = table.server,
+--		authorization = table.authorization,
+--		password = table.password,
+--		secret = table.secret,
+--		encrypLevel = table.encrypLevel,
+--		group = table.group,
+--		VPNSendAllTraffic = table.VPNSendAllTraffic,
+--	}
+--	if success then
+--		return true
+--	else
+--		sys.toast('创建失败，确定人品没有问题？')
+--	end
+--end
+
+
+--creat_vpn(vpnlist)
+
+
+
+--log(app.bundles())
+
+--log(app.front_bid())
+--app.uninstall('com.shyohan.carHappy')
+
+--[[
+
+applist = {
+	
+	
+'com.yrt.gjj.gjjtwo',
+'wangmeng.BlueFriends',
+'com.onePiece.plusa.intentMoney',
+'com.fotao.fotaoapp',
+'com.script.killing',
+'com.xmfg.dmwp',
+'com.yrt.gjj.gjj.chaxun',
+'cn.fjyuai6.app',
+'com.qijing.wuniupai',
+'com.jianbing.gjj.pro',
+'FasteasyNote.Marcuswan65.app',
+'com.keji110.XiaoPengParent',
+'org.enshilesiqi.dyslwh',
+'com.rp.ltby',
+'com.sk2mobile.huaniaozi',
+'tw.9453play.xx',
+'com.kouyo.rexue.coo',
+'com.zdq.huketian.note.gtf',
+'com.floor.jobsqan.caroravel',
+'com.PenaMiguel.bitCoin',
+'sz.parttimejob',
+'com.3dBrickgame',
+'com.Suddenfix.SuddenFixCustomer',
+'com.miAudio.app',
+'com.mhjy.jinyou',
+'com.igs.fafafa',
+'com.sfgame.sftkdz',
+'com.hainanlexin.laoyuegou.app',
+'galaxy.empire',
+
+	
+
 	}
---创建一个vpn
-function creat_vpn(table)
-	local success = vpnconf.create{
-		dispName = table.dispName,
-		VPNType = table.VPNType,
-		server = table.server,
-		authorization = table.authorization,
-		password = table.password,
-		secret = table.secret,
-		encrypLevel = table.encrypLevel,
-		group = table.group,
-		VPNSendAllTraffic = table.VPNSendAllTraffic,
-	}
-	if success then
-		return true
-	else
-		sys.toast('创建失败，确定人品没有问题？')
+
+
+ key = 1
+for k = 1,#applist do
+	if app.localized_name(applist[key]) == nil then
+		log('搜索需要删除的app....',true)
+		key = key +1
+	elseif app.localized_name(applist[key]) then
+		log('正在删除'..app.localized_name(applist[key]),true)
+		if app.uninstall(applist[key]) then
+			delay(10)
+			key = key + 1
+		end
 	end
-end
+	delay(1)
+end	
+sys.alert('删除完成')
+os.exit()
+--]]--
 
 
-creat_vpn(vpnlist)
+for k = 1, 50 do
+	
+	nLog('18:'..math.random(12,20)..':'..math.random(1,60))
+	
+end	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
