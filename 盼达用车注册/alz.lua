@@ -1,5 +1,5 @@
 kfy={}
-kfy.id = '14294'
+kfy.id = '15255'
 kfy.action = 'loginIn'
 kfy.name = 's-cgy5paih'
 kfy.password = 'yangmian121'
@@ -74,7 +74,7 @@ function GET_Phone()
 		phone_list = string.split(res,'|')
 		if phone_list[1] == '1' then
 			phone = phone_list[2]
-			return phone
+			return true
 		end
 	end
 end

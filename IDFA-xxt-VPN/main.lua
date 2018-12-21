@@ -45,6 +45,7 @@ bid.赚钱啦 = "sz.parttimejob"
 bid.四方坦克大战 = "com.sfgame.sftkdz"
 bid.多多优惠券 = "com.zhuifeng.pinquanduoduo"
 bid.咸鱼 = "com.zhuifeng.xianyu"
+bid.斗鱼直播 = "tv.douyu.live"
 
 
 screen.init(0)
@@ -88,7 +89,7 @@ function newidfa(bids,times)
 			if XXTfakerNewPhone(bids)then
 				idfa = XXTfakerGetinfo(bids)['IDFA']
 				local TIMEline = os.time()
-				local OUTtime = rd(25,30)
+				local OUTtime = rd(20,25)
 				while os.time()- TIMEline < OUTtime do
 					if active(bids,4)then
 						if d(apparr.right,"apparr.right",true)then
@@ -118,7 +119,8 @@ end
 --newidfa(bid.赚钱啦,250/1)		--B组
 --newidfa(bid.四方坦克大战,220/1)		--B2组
 --newidfa(bid.多多优惠券,150/1)		--A组
-newidfa(bid.咸鱼,150/1)		--A组
+--newidfa(bid.咸鱼,150/1)		--A组
+newidfa(bid.斗鱼直播,15000/40)		--all
 
 
 

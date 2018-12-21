@@ -128,6 +128,7 @@ bid.期货财富宝 = "com.qihuo.ios"
 bid.车开新二手车 = "com.shyohan.carHappy"
 bid.音遇 = "io.liuliu.music"
 bid.上门帮 = "com.shangmb.client"
+bid.斗鱼直播 = "tv.douyu.live"
 --------------------------------------------------------在后面都加上 该app的 ID---------------------
 --newidfa(bid.玫瑰日记 ,300/8)		--A1组
 --newidfa(bid.佛滔命理大师,500/10)		--A组
@@ -150,8 +151,9 @@ bid.上门帮 = "com.shangmb.client"
 --newidfa(bid.东方讯飞,80/1)		------
 --newidfa(bid.期货财富宝,80/1)		------B组
 --newidfa(bid.车开新二手车,80/1)		------B组
-newidfa(bid.音遇,1310/3)		------B组
+--newidfa(bid.音遇,1510/3)		------B组
 --newidfa(bid.上门帮,101/1)		------B组
+newidfa(bid.斗鱼直播,15000/40)		------all组
 
 
 
