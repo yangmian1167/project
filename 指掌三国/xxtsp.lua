@@ -54,6 +54,14 @@ function click(x,y,t,wait,txt)
 	local offset = math.random(-3,3)
 	touch.tap(x+offset,y+offset,wait*1000,t*1000)
 end
+--随机取数值函数
+function rd(n,k)
+	return math.random(n,k)
+end
+
+function appname(bid)
+	return app.localized_name(bid) or '未安装'
+end
 --滑动函数(x1,y1,x2,y2,步长，每步延迟，弹起时间)
 function moveTo(x1,y1,x2,y2,setp,times,wait)
 	local setp = setp or 5
@@ -288,7 +296,9 @@ function get_ip()
     end)
     while (os.time() - outtime < 30) do
 --        local c, h, b = http.get("http://ip.chinaz.com/getip.aspx?ts="..tostring(sys.rnd()), 30)
+--		local c, h, b = http.get("https://ip.cn/", 30)
 		local c, h, b = http.get("http://pv.sohu.com/cityjson?ie=utf-8", 30)
+		log(b)
         if (c==200) then
             sys.toast("", -1)
             done = true

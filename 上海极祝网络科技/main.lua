@@ -64,7 +64,7 @@ bid.花上钱贷款 = {	["appid"] =  "1278376336", ["appbid"] = "com.jiucang.hua
 
 screen.init(0)
 var = {}
-var.source = "lixuanjishua"
+var.source = "32"
 
 
 function sign(adid,timestamp)
@@ -100,15 +100,12 @@ function back_pass(task_id,success)
 end
 
 function checkidfa(name)
-	local url = "http://m.cmzqian.com/API/common/repeat"
+	local url = "http://api.jizhukeji.com/union/checkidfa"
 	local postArr = {}
-	postArr.adid=bid[name]['adid']
+	postArr.appid=bid[name]['appid']
 	postArr.idfa=idfa
 	postArr.ip=ip or get_ip() or rd(1,255)..'.'..rd(1,255)..'.'..rd(1,255)..'.'..rd(1,255)
 	postArr.source=var.source
-	postArr.os_version = sys.version()
-	postArr.device = model
-	postArr.keyword = keyword or bid[name]['keyword']
 
 	index = 0
 	post_data = ''
@@ -140,20 +137,17 @@ function checkidfa(name)
 end
 
 
-function clickidfa(name)
-	local url = "http://m.cmzqian.com/API/common/checkClick"
+function clickidfa(name,callbackkey)
+	local url = "http://api.jizhukeji.com/union/clickidfa"
 	local postArr = {}
-	postArr.adid=bid[name]['adid']
+	postArr.appid=bid[name]['appid']
 	postArr.idfa=idfa
 	postArr.ip=ip or get_ip() or rd(1,255)..'.'..rd(1,255)..'.'..rd(1,255)..'.'..rd(1,255)
 	postArr.source=var.source
-	postArr.os_version = sys.version()
-	postArr.device = model
-	postArr.keyword = keyword or bid[name]['keyword']
 	
 	----------------------
 --	postArr.keyword = e:escape(bid[name]['keyword'])
-	if callbackid then
+	if callbackkey and callbackid then
 		postArr.callback  = "http://idfa888.com/Public/idfa/?service=idfa.callback&id="..callbackid
 	end
 	
@@ -175,7 +169,7 @@ function clickidfa(name)
 	if getdata ~= nil then
 		local data = json.decode(getdata)
 		log(data or "nil")
-		if tonumber(data.status) == 1 then
+		if tonumber(data.status) == 1 or data.message == 'ok' then
 			log("点击成功: OK.",true)
 			return true
 		else
@@ -186,22 +180,13 @@ end
 
 
 function activeidfa(name)
-	local url = "http://m.cmzqian.com/API/common/activate"
+	local url = "http://api.jizhukeji.com/union/directactiveidfa"
 	local postArr = {}
-	postArr.adid=bid[name]['adid']
+	postArr.appid=bid[name]['appid']
 	postArr.idfa=idfa
 	postArr.ip=ip or get_ip() or rd(1,255)..'.'..rd(1,255)..'.'..rd(1,255)..'.'..rd(1,255)
 	postArr.source=var.source
-	postArr.os_version = sys.version()
-	postArr.device = model
-	postArr.keyword = keyword or bid[name]['keyword']
 	
-	----------------------
---	postArr.keyword = e:escape(bid[name]['keyword'])
---	postArr.keyword = bid[name]['keyword']
-	if callbackid then
-		--postArr.callbackurl  = "http://idfa888.com/Public/idfa/?service=idfa.callback&id="..callbackid
-	end
 	
 	index = 0
 	post_data = ''
@@ -221,8 +206,9 @@ function activeidfa(name)
 	if getdata ~= nil then
 		local data = json.decode(getdata)
 		log(data or "nil")
-		if tonumber(data.status) == 1 then
+		if tonumber(data.status) == 1 or data.message == 'ok' then
 			log("激活成功: OK.",true)
+			back_pass(task_id,"ok")
 			return true
 		else
 			log("idfa-激活失败",true)
@@ -255,7 +241,7 @@ function callbackapi(name)
 			callbackid = json.decode(dtassss)['data']['id']
 			if callbackid ~= nil then
 				if checkidfa(name)then
-					if clickidfa(name)then
+					if clickidfa(name,true)then
 						delay(rd(10,20))
 						newidfa(name,1)
 					end
@@ -303,9 +289,6 @@ function onlyactive(name)
 					delay(rd(3,6))
 					newidfa(name,1)
 					if activeidfa(name)then
-						if task_id ~= nil then
-							back_pass(task_id,"ok")
-						end
 						up(name,bid[name]['keyword'].."-激活成功")
 					end
 
@@ -352,16 +335,16 @@ end
 
 apparr={}
 apparr.right={{{462,666,0x007aff},{225,666,0x007aff},}, 85, 54, 394, 590, 809}
-
+apparr.cancel={{{173, 654, 0x2587f8},{430, 649, 0x007aff},{485, 639, 0x007aff},}, 85, 138, 611, 529, 680}
 function newidfa(name,times)
 	for i= 1,times do
 
 		local TIMEline = os.time()
-		local OUTtime = rd(28,30)
+		local OUTtime = rd(30,35)
 		while os.time()- TIMEline < OUTtime do
 			if active(bid[name]['appbid'],4)then
-				if d(apparr.right,"apparr.right",true)then
-
+				if d(apparr.cancel,"apparr.cancel",true)then
+				elseif d(apparr.right,"apparr.right",true)then
 				else
 					moveTo(600,300,100,100,30,50)
 					delay(1)
@@ -387,20 +370,6 @@ function beewallidfa(name)
 	delay(1)
 end
 
-
-bid.花上钱贷款 = {	["appid"] =  "1278376336", ["appbid"] = "com.jiucang.huashangqian", ["adid"]= '1032', ["keyword"]="花上钱贷款" }
-bid.拓道财富 = {	["appid"] =  "1428159989", ["appbid"] = "com.tuodao.tdcaifu", ["adid"]= '1036', ["keyword"]="拓道财富" }
-bid.信贷360 = {	["appid"] =  "1399516881", ["appbid"] = "com.block.xd360", ["adid"]= '1019', ["keyword"]="信贷360" }
-bid.壹亿钱包 = {	["appid"] =  "1334529411", ["appbid"] = "com.yiyiqianbao.lishu", ["adid"]= '1021', ["keyword"]="壹亿钱包" }
-bid.铜掌柜 = {	["appid"] =  "988621288", ["appbid"] = "cn.tzg.TZG", ["adid"]= '1044', ["keyword"]="铜掌柜" }
-bid.快猫 = {	["appid"] =  "1438487261", ["appbid"] = "com.junpeng.yeliao", ["adid"]= '1045', ["keyword"]="夜聊" }
-bid.仙侠物语 = {	["appid"] =  "1354411312", ["appbid"] = "com.zhou.xxwyios", ["adid"]= '1048', ["keyword"]="仙侠物语" }
-bid.信融投资 = {	["appid"] =  "1014865736", ["appbid"] = "com.jinding.xinrongtouzi", ["adid"]= '1047', ["keyword"]="信融投资" }
-bid.大麦理财 = {	["appid"] =  "950911786", ["appbid"] = "com.damai", ["adid"]= '1050', ["keyword"]="大麦理财" }
-bid.聪明钱包兴辉版 = {	["appid"] =  "1398735552", ["appbid"] = "com.congming.app", ["adid"]= '1051', ["keyword"]="钱包" }
-
-
-
 function get_task()
 	local url = 'http://wenfree.cn/api/Public/tjj/?service=Tjj.gettask'
 	local postArr = {}
@@ -423,7 +392,22 @@ function get_task()
 end
 
 
---[[]]
+
+bid.吐槽 = {	["appid"] =  "1030314779", ["appbid"] = "com.xiaoge.tucao", ["adid"]= '1032', ["keyword"]="吐槽" }
+bid.便捷生成助手 = {	["appid"] =  "1205269443", ["appbid"] = "cn.6ag.AppScreenshots", ["adid"]= '1032', ["keyword"]="便捷生成助手" }
+bid.贵金属期货 = {	["appid"] =  "1386652458", ["appbid"] = "com.QQapp.RXGuiJinShuqh", ["adid"]= '1032', ["keyword"]="贵金属期货" }
+bid.外汇软件 = {	["appid"] =  "1371579306", ["appbid"] = "com.PL.WHRJ", ["adid"]= '1032', ["keyword"]="外汇软件" }
+bid.原油投资 = {	["appid"] =  "1399420481", ["appbid"] = "com.yuanyoutouzi.cn", ["adid"]= '1032', ["keyword"]="原油投资" }
+bid.电网棋牌 = {	["appid"] =  "1267747194", ["appbid"] = "com.shijiandingji", ["adid"]= '1032', ["keyword"]="电网棋牌" }
+bid.掌上玩久久 = {	["appid"] =  "1442909213", ["appbid"] = "com.liang.zhengkao", ["adid"]= '1032', ["keyword"]="掌上玩久久" }
+bid.期货投资 = {	["appid"] =  "1272193616", ["appbid"] = "com.app.QHRJ", ["adid"]= '1032', ["keyword"]="期货投资" }
+bid.yc平台 = {	["appid"] =  "1442074623", ["appbid"] = "com.Equipment.LY.www", ["adid"]= '1032', ["keyword"]="yc平台" }
+bid.趣平台 = {	["appid"] =  "1441503468", ["appbid"] = "snx.com.quweixingzuo", ["adid"]= '1032', ["keyword"]="趣平台" }
+bid.孝感棋牌 = {	["appid"] =  "1445687270", ["appbid"] = "com.xiaoganwujinjiancaishangcheng.wjjc", ["adid"]= '1032', ["keyword"]="孝感棋牌" }
+bid.石出采集 = {	["appid"] =  "1436169963", ["appbid"] = "com.MilkL.BenefitParking", ["adid"]= '1032', ["keyword"]="石出采集" }
+bid.天天保障平台 = {	["appid"] =  "1445199620", ["appbid"] = "com.samiee.wuyedongting", ["adid"]= '1032', ["keyword"]="天天保障平台" }
+bid["Học vui."] = {	["appid"] =  "1446714196", ["appbid"] = "com.FunStudy.app", ["adid"]= '1032', ["keyword"]="Học vui." }
+bid.KINGDOM = {	["appid"] =  "1438480746", ["appbid"] = "jd.KingDom.com", ["adid"]= '1032', ["keyword"]="KINGDOM" }
 
 function ends()
 	
@@ -438,23 +422,21 @@ end
 
 while true do
 	log("vpn-key")
-	if vpn() then
+	if false or  vpn() then
 		if checkip()then
-		--------------------------------------------------	
-			TaskDate = {
-				{1},
-				}
+	-----------------------------------
 			local TaskDate = ( get_task() )
-
 			if TaskDate then
 				for i,v in ipairs(TaskDate) do
 					work = v.work
 					task_id = v.task_id
---					log(work)
-					onlyactive(work)
+					log(work)
+					if bid[work]['appbid'] ~= nil then
+						onlyactive(work)
+					end
 				end
 			end
-		--------------------------------------------------
+	------------------------------------
 		end
 	end
 	ends()

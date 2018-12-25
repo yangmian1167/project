@@ -66,6 +66,31 @@ function up(name,other)
 end
 
 
+
+
+function get_task()
+	local url = 'http://wenfree.cn/api/Public/tjj/?service=Tjj.gettask'
+	local postArr = {}
+	postArr.phonename = phonename or device.name()
+	postArr.imei = phoneimei or sys.mgcopyanswer("SerialNumber")
+	local taskData = post(url,postArr)
+	
+	if taskData ~= nil then
+		taskData = json.decode(taskData)
+		log(taskData)
+		
+		if taskData.data == "新增手机" or taskData.data == "暂无任务" then
+			log(taskData.data,true)
+			delay(30)
+			return false
+		else
+			return taskData.data
+		end
+	end
+end
+
+
+
 function rd(n,k)
 	return math.random(n,k)
 end
@@ -151,9 +176,9 @@ bid.斗鱼直播 = "tv.douyu.live"
 --newidfa(bid.东方讯飞,80/1)		------
 --newidfa(bid.期货财富宝,80/1)		------B组
 --newidfa(bid.车开新二手车,80/1)		------B组
---newidfa(bid.音遇,1510/3)		------B组
+newidfa(bid.音遇,1210/10)		------B组
 --newidfa(bid.上门帮,101/1)		------B组
-newidfa(bid.斗鱼直播,15000/40)		------all组
+--newidfa(bid.斗鱼直播,15000/40)		------all组
 
 
 

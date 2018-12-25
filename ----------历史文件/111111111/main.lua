@@ -141,7 +141,7 @@ require('xxtsp')
 --log(app.front_bid())
 --app.uninstall('com.shyohan.carHappy')
 
---[[
+--[[]]
 
 applist = {
 	
@@ -176,7 +176,23 @@ applist = {
 'com.hainanlexin.laoyuegou.app',
 'galaxy.empire',
 
-	
+'com.51qiniu.pay',
+'com.shuqu.banyan',
+'com.bj.pk',
+'com.dongao.app.dongaocloudclass',
+'com.zuzuche.ios.UN4656TH2V',
+'com.cb.AutoArrangeFive',
+'com.yrt.gjj.gjj.gjjjk',
+'com.Lottery.TC.XL',
+'cn.com.workapp.auto.niudi',
+'com.xiesheng.wufulc',
+'com.duoorngcf.www',
+
+
+
+
+
+
 
 	}
 
@@ -200,19 +216,17 @@ os.exit()
 --]]--
 
 
-for k = 1, 50 do
+--for k = 1, 50 do
 	
-	nLog('18:'..math.random(12,20)..':'..math.random(1,60))
+--	nLog('18:'..math.random(12,20)..':'..math.random(1,60))
 	
-end	
+--end	
 
 
 
 
 
-
-
-
+log(app.front_bid())
 
 
 
