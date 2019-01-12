@@ -120,13 +120,13 @@ end
 --newidfa(bid.四方坦克大战,220/1)		--B2组
 --newidfa(bid.多多优惠券,150/1)		--A组
 --newidfa(bid.咸鱼,150/1)		--A组
-newidfa(bid.斗鱼直播,15000/40)		--all
+--newidfa(bid.斗鱼直播,15000/40)		--all
 
 
 
 	
 
-
+XXTfakerNewPhone('com.xunmeng.pinduoduo')
 
 
 

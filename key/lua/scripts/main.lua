@@ -207,17 +207,17 @@
 
 
 
---vpnlist ={
-----		dispName = 'adad01',
-----		VPNType = "L2TP",
---		server = 't.yhtip.com',
-----		authorization = 'adad01',
-----		password = 'Aa112211',           -- 密码
-----		secret = '1',            -- 密钥，PPTP 可不填
-----		encrypLevel = 1,               -- 加密级别，选填，默认 1
-----		group = '',                    -- 群组名称，选填，默认 ""
-----		VPNSendAllTraffic = 1,         -- 是否发送所有流量，选填，默认 1
---	}
+vpnlist ={
+		dispName = 'sy001',
+		VPNType = "L2TP",
+		server = 't.yhtip.com',
+		authorization = 'sy001',
+		password = 'Aa112211',           -- 密码
+		secret = '1',            -- 密钥，PPTP 可不填
+		encrypLevel = 1,               -- 加密级别，选填，默认 1
+		group = '',                    -- 群组名称，选填，默认 ""
+		VPNSendAllTraffic = 1,         -- 是否发送所有流量，选填，默认 1
+	}
 
 
 
@@ -231,33 +231,33 @@
 
 
 
---function creat_vpn(table)
---	local success = vpnconf.create{
---		dispName = table.dispName,
---		VPNType = table.VPNType,
---		server = table.server,
---		authorization = table.authorization,
---		password = table.password,
---		secret = table.secret,
---		encrypLevel = table.encrypLevel,
---		group = table.group,
---		VPNSendAllTraffic = table.VPNSendAllTraffic,
---	}
---	if success then
---		return true
---	else
---		sys.toast('创建失败，确定人品没有问题？')
---	end
---end
+function creat_vpn(table)
+	local success = vpnconf.create{
+		dispName = table.dispName,
+		VPNType = table.VPNType,
+		server = table.server,
+		authorization = table.authorization,
+		password = table.password,
+		secret = table.secret,
+		encrypLevel = table.encrypLevel,
+		group = table.group,
+		VPNSendAllTraffic = table.VPNSendAllTraffic,
+	}
+	if success then
+		return true
+	else
+		sys.toast('创建失败，确定人品没有问题？')
+	end
+end
 
 
 
---creat_vpn(vpnlist)
+creat_vpn(vpnlist)
 
 
 
 ---随机顺序关键词
---[[]]
+--[[
 applist = {
 {"虎牙直播",1500                  ,},
 {"yy直播",2200                    ,},
