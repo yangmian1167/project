@@ -335,18 +335,16 @@ end
 
 apparr={}
 apparr.right={{{462,666,0x007aff},{225,666,0x007aff},}, 85, 54, 394, 590, 809}
-apparr.cancel={{{173, 654, 0x2587f8},{430, 649, 0x007aff},{485, 639, 0x007aff},}, 85, 138, 611, 529, 680}
+
 function newidfa(name,times)
 	for i= 1,times do
 
 		local TIMEline = os.time()
-		local OUTtime = rd(20,25)
+		local OUTtime = rd(15,20)
 		while os.time()- TIMEline < OUTtime do
-			if d(apparr.cancel,"apparr.cancel",true)then
-			end
 			if active(bid[name]['appbid'],4)then
-				if d(apparr.cancel,"apparr.cancel",true)then
-				elseif d(apparr.right,"apparr.right",true)then
+				if d(apparr.right,"apparr.right",true)then
+
 				else
 					moveTo(600,300,100,100,30,50)
 					delay(1)
@@ -406,10 +404,13 @@ bid.期货投资 = {	["appid"] =  "1272193616", ["appbid"] = "com.app.QHRJ", ["a
 bid.yc平台 = {	["appid"] =  "1442074623", ["appbid"] = "com.Equipment.LY.www", ["adid"]= '1032', ["keyword"]="yc平台" }
 bid.趣平台 = {	["appid"] =  "1441503468", ["appbid"] = "snx.com.quweixingzuo", ["adid"]= '1032', ["keyword"]="趣平台" }
 bid.孝感棋牌 = {	["appid"] =  "1445687270", ["appbid"] = "com.xiaoganwujinjiancaishangcheng.wjjc", ["adid"]= '1032', ["keyword"]="孝感棋牌" }
-bid.石出采集 = {	["appid"] =  "1436169963", ["appbid"] = "com.MilkL.BenefitParking", ["adid"]= '1032', ["keyword"]="石出采集" }
-bid.天天保障平台 = {	["appid"] =  "1445199620", ["appbid"] = "com.samiee.wuyedongting", ["adid"]= '1032', ["keyword"]="天天保障平台" }
-bid["Học vui."] = {	["appid"] =  "1446714196", ["appbid"] = "com.FunStudy.app", ["adid"]= '1032', ["keyword"]="Học vui." }
 bid.KINGDOM = {	["appid"] =  "1438480746", ["appbid"] = "jd.KingDom.com", ["adid"]= '1032', ["keyword"]="KINGDOM" }
+bid.乐悦智能 = {	["appid"] =  "1445376355", ["appbid"] = "com.SafetyMonitor.sjq", ["adid"]= '1032', ["keyword"]="乐悦智能" }
+bid['特摩ネットディスクの助手'] = {	["appid"] =  "590402807", ["appbid"] = "com.slavamax.tOpener", ["adid"]= '1032', ["keyword"]="特摩ネットディスクの助手" }
+bid['安全守护伴侣'] = {	["appid"] =  "1446730742", ["appbid"] = "com.aqblIos.preject.www", ["adid"]= '1032', ["keyword"]="安全守护伴侣" }
+bid['古龍经典'] = {	["appid"] =  "1442167818", ["appbid"] = "com.yubery.gulongClassic", ["adid"]= '1032', ["keyword"]="古龍经典" }
+bid['轻松学广场舞视频教学'] = {	["appid"] =  "1082180369", ["appbid"] = "com.dupeifu.qsxgcw", ["adid"]= '1032', ["keyword"]="轻松学广场舞视频教学" }
+
 
 function ends()
 	
@@ -421,9 +422,10 @@ function ends()
 	
 end
 --]]
-
+function main()
 while true do
 	log("vpn-key")
+	
 	if false or  vpn() then
 		if checkip()then
 	-----------------------------------
@@ -443,8 +445,17 @@ while true do
 	end
 	ends()
 end
+end
 
 
+while (true) do
+	local ret,errMessage = pcall(main)
+	if ret then
+	else
+		sys.alert(errMessage, 15)
+		delay(1)
+	end
+end
 
 
 
