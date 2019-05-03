@@ -236,15 +236,9 @@ require("xxtsp")
 --end
 
 
-
-	
-for a = 1, 30 do
-	nLog('---')
-	
-	
-end	
-
-
+for i=1,600 do
+	print(myRand(4,math.random(8,12)))
+end
 
 
 

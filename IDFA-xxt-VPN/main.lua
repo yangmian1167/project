@@ -35,6 +35,7 @@ atexit(function()
 			app.quit(appbids)
 			--closeX(appbids)
 		end
+		
 		sys.msleep(500)
 	end)
 
@@ -46,7 +47,15 @@ bid.四方坦克大战 = "com.sfgame.sftkdz"
 bid.多多优惠券 = "com.zhuifeng.pinquanduoduo"
 bid.咸鱼 = "com.zhuifeng.xianyu"
 bid.斗鱼直播 = "tv.douyu.live"
-
+bid.今日快赚 = "com.snsbao"
+bid.拍读 = "com.qmaple.snapreadpro"
+bid.悦美 = "com.yuemei.kw"
+bid.现金抽屉 = "com.xjchouti.ios"
+bid.口袋三国无双 = "com.kdsgws.njk"
+bid.剧能玩 = "com.junengwantv.chuyingCompany"
+bid.粤交易	 = "com.yue.invest"
+bid.美逛 = "com.zutuan.app"
+	
 
 screen.init(0)
 var = {}
@@ -121,12 +130,20 @@ end
 --newidfa(bid.多多优惠券,150/1)		--A组
 --newidfa(bid.咸鱼,150/1)		--A组
 --newidfa(bid.斗鱼直播,15000/40)		--all
+--newidfa(bid.今日快赚,202/1)		--all
+--newidfa(bid.拍读,315/1)		--all
+--newidfa(bid.悦美,60/1)		--all
+--newidfa(bid.现金抽屉,52/1)		--all
+--newidfa(bid.口袋三国无双,160/1)		--all
+--newidfa(bid.剧能玩,25/1)		--all
+--newidfa(bid.粤交易,155/1)		--all
+newidfa(bid.美逛,155/1)		--all
 
 
 
 	
 
-XXTfakerNewPhone('com.xunmeng.pinduoduo')
+
 
 
 

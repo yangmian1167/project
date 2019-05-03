@@ -100,39 +100,76 @@ require('xxtsp')
 --	d(登录,"登录",true,1)
 
 
---vpnlist ={
---		dispName = '40',
---		VPNType = "L2TP",
---		server = 'yhtip.com',
---		authorization = 'ahy65',
---		password = '1',           -- 密码
---		secret = '1',            -- 密钥，PPTP 可不填
---		encrypLevel = 1,               -- 加密级别，选填，默认 1
---		group = '',                    -- 群组名称，选填，默认 ""
---		VPNSendAllTraffic = 1,         -- 是否发送所有流量，选填，默认 1
---	}
+
+
+
+
 ----创建一个vpn
---function creat_vpn(table)
---	local success = vpnconf.create{
---		dispName = table.dispName,
---		VPNType = table.VPNType,
---		server = table.server,
---		authorization = table.authorization,
---		password = table.password,
---		secret = table.secret,
---		encrypLevel = table.encrypLevel,
---		group = table.group,
---		VPNSendAllTraffic = table.VPNSendAllTraffic,
---	}
---	if success then
---		return true
---	else
---		sys.toast('创建失败，确定人品没有问题？')
---	end
+vpnlist ={
+		dispName = 'ymjfq',
+		VPNType = "L2TP",
+		server = 'ip9.com',
+		authorization = 'ymjfq',
+		password = 'Aa112211',           -- 密码
+		secret = '1',            -- 密钥，PPTP 可不填
+		encrypLevel = 1,               -- 加密级别，选填，默认 1
+		group = '',                    -- 群组名称，选填，默认 ""
+		VPNSendAllTraffic = 1,         -- 是否发送所有流量，选填，默认 1
+	}
+
+function creat_vpn(table)
+	local success = vpnconf.create{
+		dispName = table.dispName,
+		VPNType = table.VPNType,
+		server = table.server,
+		authorization = table.authorization,
+		password = table.password,
+		secret = table.secret,
+		encrypLevel = table.encrypLevel,
+		group = table.group,
+		VPNSendAllTraffic = table.VPNSendAllTraffic,
+	}
+	if success then
+		return true
+	else
+		sys.toast('创建失败，确定人品没有问题？')
+	end
+end
+
+
+creat_vpn(vpnlist)
+
+-------选择一个VPN
+--local success = vpnconf.select('ymjfq')
+--if success then
+--    sys.alert('操作成功')
+--else
+--    sys.alert('操作失败，确认你要选中的 VPN 配置存在？')
 --end
 
 
---creat_vpn(vpnlist)
+-----删除所有VPN
+
+--local vpnlist = vpnconf.list()
+--if vpnlist then
+--    for _,v in ipairs(vpnlist) do
+--        if (vpnconf.delete(v.VPNID)) then
+--            sys.log('成功删除：'..v.dispName..'('..v.VPNID..')')
+--        else
+--            sys.log('无法删除：'..v.dispName..'('..v.VPNID..')')
+--        end
+--    end
+--    sys.alert('操作完成！')
+--else
+--    sys.alert('获取列表失败，确定人品没有问题？')
+--end
+
+
+
+
+
+
+
 
 
 
@@ -141,7 +178,7 @@ require('xxtsp')
 --log(app.front_bid())
 --app.uninstall('com.shyohan.carHappy')
 
---[[]]
+--[[
 
 applist = {
 	
@@ -222,11 +259,6 @@ os.exit()
 	
 --end	
 
-
-
-
-
-log(app.front_bid())
 
 
 

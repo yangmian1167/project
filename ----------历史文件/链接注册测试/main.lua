@@ -202,11 +202,11 @@ end
 --]]--
 	
 
-
-
+urls = 'http://e.cn.miaozhen.com/r/k=2114350&p=7Mg1m&dx=__IPDX__&rt=2&ns=__IP__&ni=__IESID__&v=__LOC__&xa=__ADPLATFORM__&tr=__REQUESTID__&mo=__OS__&m0=__OPENUDID__&m0a=__DUID__&m1=__ANDROIDID1__&m1a=__ANDROIDID__&m2=__IMEI__&m4=__AAID__&m5=__IDFA__&m6=__MAC1__&m6a=__MAC__&vo=337a1aadb&vr=2&o=https%3A%2F%2Flnk0.com%2Feasylink%2FELBdQJpo'
+bid.kfc = 'com.yum.kfc.brand'
 open(urls)
-delay(10)
-XXTfakerNewPhone(bid.独角秀)
+delay(5)
+XXTfakerNewPhone(bid.kfc)
 
 
 
