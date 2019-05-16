@@ -12,10 +12,10 @@ require('xxtsp')
 }, 85, 137, 442, 498, 501}
 
 click(116, 335)
-input('m13550633684_4@163.com')
+input('a@gemehouse.com')
 delay(2)
 click(124, 384)
-input('Jfw778899')
+input('Whoami@520')
 delay(2)
 
 

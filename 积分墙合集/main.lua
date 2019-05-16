@@ -16,7 +16,8 @@ require("jry")
 require("szry")
 require("wdd")
 require("yzdd")
-
+require("aqj")
+require("idf")
 function get_task()
 	local url = 'http://wenfree.cn/api/Public/tjj/?service=Tjj.gettask'
 	local postArr = {}
@@ -68,6 +69,16 @@ function all()
 				package.loaded['szry'] = nil
 				require("szry")
 				main(v)
+			elseif v.way == "深圳鱼-爱钱进" then
+				package.loaded['aqj'] = nil
+				require("aqj")
+				main(v)
+			
+			elseif v.way == "IDFA" then
+				package.loaded['idf'] = nil
+				require("idf")
+				main(v)
+
 			end
 			
 		end

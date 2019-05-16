@@ -210,46 +210,26 @@ function ends()
 	
 end
 --]]
-function main()
-while true do
-	log("vpn-key")
-	if false or  vpn() then
+
+
+function main(v)
+	----------------------------------
+	if vpn() then
 		if true or checkip()then
-	-----------------------------------
-			local TaskDate = ( get_task() )
-			if TaskDate then
-				for i,v in ipairs(TaskDate) do
-					work = v.work
-					task_id = v.task_id
-					bid={}
-					bid[work]={}
-					bid[work]['keyword']=v.keyword
-					if string.len(v.appbid)>5 then	bid[work]['appbid']=v.appbid end
-					if string.len(v.appid)>5 then	bid[work]['appid']=v.appid	end
-					if bid[work] ~= nil then
-						newidfa(bid[work]['appbid'])
-					else
-						log('没有设置app')
-					end
-				end
-			end
-	------------------------------------
+			log(v)
+			work = v.work
+			task_id = v.task_id
+			bid[work]={}
+			bid[work]['keyword']=v.keyword
+			if string.len(v.appbid)>5 then	bid[work]['appbid']=v.appbid end
+			if string.len(v.appid)>5 then	bid[work]['appid']=v.appid	end
+			log("act")
+			newidfa(bid[work]['appbid'])
 		end
-	end
-	ends()
-end
-end
-
-
-while (true) do
-	local ret,errMessage = pcall(main)
-	if ret then
-	else
-		sys.alert(errMessage, 15)
-		delay(1)
+		vpnx()
+		delay(2)
 	end
 end
-
 
 
 

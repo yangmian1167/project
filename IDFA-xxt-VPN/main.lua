@@ -104,7 +104,7 @@ function newidfa(bids,times)
 			if XXTfakerNewPhone(bids)then
 				idfa = XXTfakerGetinfo(bids)['IDFA']
 				local TIMEline = os.time()
-				local OUTtime = rd(15,18)
+				local OUTtime = rd(22,25)
 				while os.time()- TIMEline < OUTtime do
 					if active(bids,4)then
 						if d(apparr.right,"apparr.right",true)then
@@ -146,12 +146,12 @@ end
 --newidfa(bid.美逛,155/1)		--all
 --newidfa(bid.触触交友,1050/7)		--all
 --newidfa(bid.GuabiLife,6500/7)		--all
---newidfa(bid.爱卡之家,650/7)		--all
+newidfa(bid.爱卡之家,210/1)		--all
 --newidfa(bid.挂机暴风城,550/7)		--all
 --newidfa(bid['164法律服务'],320/7)		--all
---newidfa(bid.上门帮,85/1)		--all
+--newidfa(bid.上门帮,150/1)		--all
 --newidfa(bid['Italian cuisine'] ,10000/1)		--all
-newidfa(bid['Raybet雷竞技'] ,220/2)		--all
+--newidfa(bid['Raybet雷竞技'] ,220/2)		--all
 
 
 

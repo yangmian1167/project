@@ -109,7 +109,7 @@ function checkidfa(name)
 	postArr.ip=ip or get_ip() or rd(1,255)..'.'..rd(1,255)..'.'..rd(1,255)..'.'..rd(1,255)
 	postArr.source = var.source
 	postArr.keyword = bid[name]['keyword']
-	postArr.os_version = sys.version()
+	postArr.os_version = '12.0.1'
 	postArr.device = model
 
 	post_data = ''
@@ -143,7 +143,7 @@ function clickidfa(name,callbackkey)
 	postArr.ip=ip or get_ip() or rd(1,255)..'.'..rd(1,255)..'.'..rd(1,255)..'.'..rd(1,255)
 	postArr.source = var.source
 	postArr.keyword = bid[name]['keyword']
-	postArr.os_version = sys.version()
+	postArr.os_version = '12.0.1'
 	postArr.device = model
 	
 	----------------------
@@ -190,7 +190,7 @@ function activeidfa(name)
 	postArr.ip=ip or get_ip() or rd(1,255)..'.'..rd(1,255)..'.'..rd(1,255)..'.'..rd(1,255)
 	postArr.source = var.source
 	postArr.keyword = bid[name]['keyword']
-	postArr.os_version = sys.version()
+	postArr.os_version = '12.0.1'
 	postArr.device = model
 
 	log(url.."?"..table.concat( postArr ))
@@ -326,7 +326,7 @@ function newidfa(name,times)
 	for i= 1,times do
 
 		local TIMEline = os.time()
-		local OUTtime = rd(30,30)
+		local OUTtime = rd(180,240)
 		while os.time()- TIMEline < OUTtime do
 			if active(bid[name]['appbid'],4)then
 				if d(apparr.right,"apparr.right",true)then
