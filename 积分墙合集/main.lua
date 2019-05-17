@@ -1,6 +1,46 @@
+
 nLog = require('nLog')()
+require('faker')
+require('xxtsp')
 
+local curl = require('lcurl')
+local e = curl.easy()
 
+if not(xxtinstall())then
+	log("伪装失效")
+	os.exit()
+else
+	XXTFaker = require("XXTFaker")()
+end
+
+function atexit(callback) -- 参数为一个函数，使用 atexit(一个函数) 注册一个函数在脚本结束时执行，建议不要耗时太长
+	____atexit_guard____ = ____atexit_guard____ or {}
+	if type(____atexit_guard____) == 'table' then
+		if not getmetatable(____atexit_guard____) then
+			setmetatable(____atexit_guard____, {
+					__gc = function(self)
+						if type(self.callback) == 'function' then
+							pcall(self.callback)
+						end
+					end
+				})
+		end
+		____atexit_guard____.callback = callback
+	else
+		error('别用 `____atexit_guard____` 命名你的变量。')
+	end
+end
+
+atexit(function() 
+		sys.toast('脚本结束了！')
+		vpnx()
+		local appbids = app.front_bid()
+		if appbids ~= "com.apple.springboard" then
+			app.quit(appbids)
+			--closeX(appbids)
+		end
+		sys.msleep(500)
+	end)
 
 
 
@@ -9,15 +49,6 @@ nLog = require('nLog')()
 
 -- 总的脚本, 用渠道名来区分脚本
 
-
-
-package.loaded['jry'] = nil
-require("jry")
-require("szry")
-require("wdd")
-require("yzdd")
-require("aqj")
-require("idf")
 function get_task()
 	local url = 'http://wenfree.cn/api/Public/tjj/?service=Tjj.gettask'
 	local postArr = {}
@@ -68,17 +99,15 @@ function all()
 			elseif v.way == "深圳鱼-热云" then
 				package.loaded['szry'] = nil
 				require("szry")
-				main(v)
+				main(v)			
+			elseif v.way == "安徽-聪明钱" then
+				package.loaded['cmq'] = nil
+				require("cmq")
+				main(v)			
 			elseif v.way == "深圳鱼-爱钱进" then
 				package.loaded['aqj'] = nil
 				require("aqj")
 				main(v)
-			
-			elseif v.way == "IDFA" then
-				package.loaded['idf'] = nil
-				require("idf")
-				main(v)
-
 			end
 			
 		end
@@ -96,36 +125,3 @@ while (true) do
 		delay(1)
 	end
 end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

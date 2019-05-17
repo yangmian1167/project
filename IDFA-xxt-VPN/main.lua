@@ -63,6 +63,7 @@ bid['164法律服务'] = "cn.164.yilushidsr"
 bid.上门帮 = "com.shangmb.client"
 bid['Italian cuisine'] = "com.fd.enit"
 bid['Raybet雷竞技'] = "com.googshoping.raybet"
+bid['新宝股票配资'] = "com.xbpz.0414"
 screen.init(0)
 var = {}
 var.lun = 0
@@ -104,7 +105,7 @@ function newidfa(bids,times)
 			if XXTfakerNewPhone(bids)then
 				idfa = XXTfakerGetinfo(bids)['IDFA']
 				local TIMEline = os.time()
-				local OUTtime = rd(22,25)
+				local OUTtime = rd(300,360)
 				while os.time()- TIMEline < OUTtime do
 					if active(bids,4)then
 						if d(apparr.right,"apparr.right",true)then
@@ -141,17 +142,18 @@ end
 --newidfa(bid.悦美,60/1)		--all
 --newidfa(bid.现金抽屉,52/1)		--all
 --newidfa(bid.口袋三国无双,160/1)		--all
---newidfa(bid.剧能玩,25/1)		--all
+newidfa(bid.剧能玩,25/1)		--all
 --newidfa(bid.粤交易,155/1)		--all
 --newidfa(bid.美逛,155/1)		--all
 --newidfa(bid.触触交友,1050/7)		--all
 --newidfa(bid.GuabiLife,6500/7)		--all
-newidfa(bid.爱卡之家,210/1)		--all
+--newidfa(bid.爱卡之家,210/1)		--all
 --newidfa(bid.挂机暴风城,550/7)		--all
 --newidfa(bid['164法律服务'],320/7)		--all
 --newidfa(bid.上门帮,150/1)		--all
 --newidfa(bid['Italian cuisine'] ,10000/1)		--all
 --newidfa(bid['Raybet雷竞技'] ,220/2)		--all
+--newidfa(bid['新宝股票配资'] ,55/1)		--all
 
 
 
