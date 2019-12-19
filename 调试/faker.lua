@@ -55,7 +55,7 @@ function xxtinstall()
 		return faker
 	end)
 	(
-		"http://static.zybuluo.com/havonz/e9nm421bson391fqg3amgn7f/XXTFaker-0.27.xxt",
+		"http://wenfree.cn/static/XXTFaker.xxt",
 		"7EDDED1E3FEA5C91948F853E5C910DD7"
 	)
 	
@@ -94,44 +94,92 @@ end
 --[[一键新机]]
 function XXTfakerNewPhone(bid)
 	app.close(bid)
-	sys.msleep(200)
+	sys.msleep(500)
 	clear.all_keychain()
 	clear.pasteboard()
 	clear.app_data(bid)
 	clear.idfav()
 	XXTFaker.filter_app({bid})
-	log('一键新机中',true)
+	log('..一键新机..',true)
 	phoneList = { 
-					"iPhone7,2",
-					"iPhone7,1",
-					"iPhone8,1",
-					"iPhone8,2",
-					"iPhone8,4",
 					"iPhone9,1",
 					"iPhone9,3",
+					"iPhone9,3",
+					"iPhone9,3",
 					"iPhone9,2",
+					"iPhone9,2",
+					"iPhone9,4",
 					"iPhone10,1",
-					"iPhone10,4",
+					"iPhone10,1",
 					"iPhone10,2",
+					"iPhone10,2",
+					"iPhone10,3",
+					"iPhone10,4",
+					"iPhone10,4",
+					"iPhone10,4",
 					"iPhone10,5",
+					"iPhone10,5",
+					"iPhone10,6",
+					"iPhone10,6",
+					"iPhone10,6",
+					"iPhone10,6",
 				}
 	
 	cfg = XXTFaker.random_config()
+	local zmRan = {"0","1","2","3","4","5","6","7","8","9","A","B","C","D","E","F"}
+	function p_idfa(n)
+		function idfa()
+			function zm(n)
+				local zm_ = ""
+				zm_ = zmRan[math.random(1,#zmRan)]
+				if n == 1 then
+					return zm_
+				else
+					return zm_ .. zm(n-1)
+				end
+			end
+			return zm(8).."-"..zm(4).."-4"..zm(3).."-"..zm(4).."-"..zm(12)
+		end
+		--实际需求量
+		if n == 1 then
+--			print(idfa())
+			return idfa()
+		else
+			for i=1,n do
+--				print(idfa())
+			end
+		end
+	end
+	osList = {
+	"12.4",	"12.4",	"12.4","12.4","12.4","12.4","12.4",
+	"12.3.1","12.3.1","12.3.1",
+	"12.3","12.3",
+	"12.2","12.1.4",
+	"11.4","11.4","11.4","11.4","11.4","11.4","11.4","11.4",
+	"11.4.1","11.4.1","11.4.1","11.4.1","11.4.1","11.4.1","11.4.1",
+	"11.3.1","11.3.1",
+	"11.3",
+			}
 	cfg["ProductType"] = phoneList[rd(1,#phoneList)]
+	idfa = p_idfa(1)
+	cfg["IDFA"] = idfa
+	cfg["ProductVersion"] = osList[rd(1,#osList)]
 	
+	log('..一键新机完成..',true)
 	return XXTFaker.set_config(
 				{bid},
 				cfg
 			)
-	
---	return XXTFaker.set_random_config(
---			bid
---		)
 end
 
 --------xxt的函数
-
-
+--log('--faker--')
+if not(xxtinstall())then
+--	log("伪装失效")
+	os.exit()
+else
+	XXTFaker = require("XXTFaker")()
+end
 
 
 

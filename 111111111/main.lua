@@ -102,14 +102,14 @@ require('xxtsp')
 
 
 
---[[
+--[[]]
 
 ----创建一个vpn
 vpnlist ={
-		dispName = 'idfa888',
+		dispName = 'ymls1231',
 		VPNType = "L2TP",
-		server = 'yhtip.com',
-		authorization = 'idfa888',
+		server = 'ip9.com',
+		authorization = 'ymls1231',
 		password = 'Aa112211',           -- 密码
 		secret = '1',            -- 密钥，PPTP 可不填
 		encrypLevel = 1,               -- 加密级别，选填，默认 1
@@ -141,7 +141,7 @@ creat_vpn(vpnlist)
 delay(5)
 
 -------选择一个VPN
-local success = vpnconf.select('idfa888')
+local success = vpnconf.select('ymls1231')
 if success then
     sys.alert('操作成功')
 else
@@ -179,179 +179,118 @@ end
 --log(app.front_bid())
 --app.uninstall('com.shyohan.carHappy')
 
---[[]]
+--[[
 
 applist = {
-	
-"com.baihe.online",
-"com.dupeifu.chuzhongshuxue",
-"com.chuangshi.pk",
-"com.dianping.dpscope",
-"com.ss.iphone.ugc.Aweme",
-"tv.douyu.live",
-"com.ERP.ERPEIRPCalculate",
-"com.yy.kiwi",
-"com.huajiao.seeding",
-"com.ss.iphone.article.News",
-"com.qishiyun.onlinestore",
-"com.luohui.juxing",
-"com.jiangjia.gif",
-"com.moutian.moucai",
-"com.xunmeng.pinduoduo",
-"m.qidian.QDReaderAppStore",
-"ShouBoTV",
-"com.tencent.QQKSong",
-"yougui.Srb-ios",
-"app.anagrams.WordPuzzle",
-"com.kingkr.kuxocgc",
-"com.wantupai.app",
-"com.sina.weibo",
-"com.tencent.microvision",
-"com.dupeifu.weijiezhimi3",
-"com.do1.WeiLaiApp",
 "com.xhy.blackfish.app",
-"com.xueersi.wxjzh",
-"com.meelive.ingkee",
-"io.liuliu.music",
-"com.zhihu.ios",
-"com.wuba.zhuanzhuan",
-"com.jianqijt.afr.Americanfootballrush",
-"com.hanazuki.germanphrase",
-"com.yy.hello",
-"com.guo.MOVER",
-"com.tencent.now",
-"com.tencent.mqq",
---"com.abcydia.reprovision.ios",
-"yyvoice",
-"com.jiucang.huashangqian",
-"com.huanshou.taojiji",
-"com.aqblIos.preject.www",
-"com.chuangshi.pk",
-"com.damai",
-"com.qijing.wuniupai",
-"com.HuaChuang.Game",
-"com.shunzhiniu.tonsha",
-"com.jiangnang.xiaohuajing",
-"com.SafetyMonitor.sjq",
-"com.lianhudai.jinhua",
-"com.junpeng.yeliao",
-"com.personalcar.www",
-"com.yuliang.sanjianqms",
-"come.wanhe.sanzhangpai",
-"come.xiaon.wuwuhua",
-"com.tiantianzhahuajin.game",
-"com.gonghuajing.sanzheng",
-"com.yubery.gulongClassic",
-"com.dupeifu.qsxgcw",
-"com.qishiyun.onlinestore",
-"com.ledu.qipai",
-"com.fugu.huyu",
-"galaxy.empire",
-"com.yuanyoutouzi.cn",
-"com.liang.zhengkao",
-"com.ERP.ERPEIRPCalculate",
-"com.tencent.QQMusic",
-"com.hpbr.bosszhipin",
-"com.iqiyi.fzms.ssjj",
-"app.screen.lock.wallpaper",
-"com.elex-tech.ClashOfKings",
-"com.ppdai.loan",
-"com.iqianjin.iqianjinplus",
-"bainiu.zhongfa.bai",
-"longhu.niu.qiyu",
-"com.guanm.net",
-"com.51qiniu.pay",
-"com.shuqu.banyan",
-"com.bj.pk",
-"com.dongao.app.dongaocloudclass",
-"com.zuzuche.ios.UN4656TH2V",
-"com.cb.AutoArrangeFive",
-"com.am.soccer.game",
-"com.yrt.gjj.gjj.gjjjk",
-"com.myhsposdru.iwu",
-"com.Lottery.TC.XL",
-"cn.com.workapp.auto.niudi",
-"com.duoorngcf.www",
-"com.aiyou.iosxsq001",
-"com.xiesheng.wufulc",
-"com.qianhaiyunxuan.hushenjinfu",
-"com.jmtqpyl.jmt",
-"io.dcloud.xinjiankang",
-"com.labyrinth.ball",
-"com.GAMING201804091.app",
-"cn.mafengwo.www",
-"com.jianbing.gjjjiekuan",
-"com.jianbing.gjj.pro",
-"com.wallpaperapp.ios",
-"com.liujianping.gongfuzhuawawa",
-"com.ptws.yjyh",
-"com.superlake.zhuawawa666",
-"com.Football.hahhamatch",
-"com.Code.Generator",
-"com.zhh.wyz",
-"com.fugouddz.game",
-"com.game.zhuhong11",
-"com.centchain.changyo",
-"com.eh.Jukusuikuntwo",
-"com.PekingRacing.XExtremeSprint",
-"com.meiguisc.mg",
-"com.catch.dsjfksd",
-"com.zjjyb.uulicai-pro",
-"com.tyrbl.WJService",
-"com.jullerliang.AnimalChecker",
-"com.HappyRuler.www",
-"com.HaroldNoe.MovementTimer",
-"com.t.hb10",
-"com.iawwa.happiness",
-"com.yoga.assistant",
-"ana.redgreenblind",
-"com.dadaabc.DaDaClass",
-"com.ucweb.iphone.lowversion",
-"org.youyigame.liushichao",
-"com.xishanju.qyq",
-"com.qihuozhangzhongbao",
-"com.lianjia.beike",
-"wangmeng.BlueFriends",
-"cn.fjyuai6.app",
-"com.onePiece.plusa.intentMoney",
-"com.fotao.fotaoapp",
-"com.qiyi.iphone",
-"com.mengdie.zhaobiao",
-"com.qiashang.app",
-"com.PenaMiguel.bitCoin",
-"com.hs.shanjiang",
-"com.3dBrickgame",
-"com.floor.jobsqan.caroravel",
-"com.meigui.rijiw",
-"com.Suddenfix.SuddenFixCustomer",
-"com.dadaabc.DaDaBABY",
 "com.rong360.victor",
-"com.zhuifeng.pinquanduoduo",
-"com.mhjy.jinyou",
-"BB10",
-"com.block.xd360",
-"com.tuodao.tdcaifu",
-"com.yiyiqianbao.lishu",
-"cn.tzg.TZG",
-"com.zhou.xxwyios",
-"com.zhongan.insurance",
-"com.jinding.xinrongtouzi",
-"cn.6ag.AppScreenshots",
-"com.QQapp.RXGuiJinShuqh",
-"com.PL.WHRJ",
-"com.shijiandingji",
-"com.cmi.jegotrip",
-"com.app.QHRJ",
-"com.Equipment.LY.www",
-"com.kk.FileScanner",
-"com.jxj.mhxyu",
-"com.xiaoju.chuchu",
-"com.MilkL.BenefitParking",
-"com.FunStudy.app",
-"com.ttgenwomai.www",
+"com.ppdai.loan",
+"com.alibaba.wireless",
+"com.ymcakzj.www",
+"com.anjuke.anjuke",
+"com.msxf.ayh",
+"bainiu.zhongfa.bai",
+"live.MaoMao.show",
+"com.grassroots.grrise",
+"com.xinrenWealth",
+"com.zhangyue.zyiReader.iReaderDejian",
+"com.queen.combination.card",
+"com.ddsy.songyao",
+"com.nc.uxinusednew",
+"com.IPZERO.happybullchess",
+"com.fugu.huyu",
+"com.Taha.LightDigital",
+"com.htpz.0525",
+"com.xzpz.0531",
+"com.ganji.haoche",
+"com.EnterpriseServiceManagement.Co",
+"Com.ZongXun.YHD",
+"com.hualeniujing.iaoniu",
+"com.chinaso.search",
+"com.huiyingou.cn",
+"com.jiazhengWork.App",
+"com.gwfx.gts2",
+"pronetway.renrenjianzhi.com",
+"com.yunhou.baiyangjinrong",
+"com.jinyihuochuang.app",
+"com.jinlimianmo.asd",
+"com.kpl.phonestudent",
+"com.zhenzhen.loan",
+"com.earthwarrior.wanpao",
+"longhu.niu.qiyu",
+"com.halei.yucaiyuan",
+"com.mlpzv4.0505",
+"com.xdy.0527",
+"com.fcpz.0521",
+"com.ydcl.0601",
+"com.ml.paw",
+"com.guanm.net",
+"com.shuqu.banyan",
+"come.sanshun.zhanhonghei",
+"com.beeblio.sentence",
 "com.googshoping.raybet",
 "com.fd.enit",
-"com.yinghexin.Zhongkzx",
+"com.WorldTime.www",
+"com.Bookshop.cn",
+"come.tonghua.mayi",
+"com.fwb.sj",
+"com.dominic.electrician",
+"com.unmatched.combinationcard",
+"com.wukang.game",
+"com.zoro.SpotGoldrx",
+"com.ProjectAssistant",
+"net.xxsy.bookreader",
+"com.touziyouxuan.app",
+"com.xbpz.0414",
+"com.mlpzv3.0426",
+"com.rycl.0523",
+"com.zhujiangqipai",
+"com.cmi.jegotrip",
+"com.xiaoganwujinjiancaishangcheng.wjjc",
+"com.myhsposdru.iwu",
+"com.yutulive.zhibo",
+"com.yuhuo.cn",
+"com.mixReality.parkingApp",
+"com.DeErFei.MengNaLXiaoiSha",
+"com.setl.gts2",
+"com.future.SupervisorNurse",
+"com.zuiniu.doudizhu",
+"com.dhfhskfhjchuju.appname",
+"com.dolphinjob.www",
+"com.gboytongzhuang.pt",
+"com.ivanwilhelm.IMC",
+"com.shoes.Jlewis",
+"md.desai.pocketBudget",
+"com.samiee.wuyedongting",
+--"com.abcydia.reprovision.ios",
+"com.JSNE.ScoreBoard",
+"com.5star.myshop",
+"JR-Alan.MTProgrammerDevelopProject",
+"com.x.design.app",
+"sc.krishnagod.krishna",
+"com.ef.efhello",
+"com.igkuwd.yydly",
+"com.baogao.zhenniuljh",
+"com.jxsz.iehz",
+"com.iqiyi.qule.knxx",
+"com.light.yuning",
+"com.aihayou.wolf",
+"com.lsywz.sgz",
+"com.wudi.cunzai",
+"fengbao.luandou",
+"bp.lbyjz.pi",
+"com.holdliang.war",
+"jtxqhThowood",
+"com.aiwan.newworld",
+"com.robain.shopping",
+"com.jiucang.huaqianba",
+"com.yuntong.SubstituteDriving",
+"com.app.jixianggou",
+"com.block.mdyj",
+"com.didaocai.cai",
+
+
+
 
 
 
@@ -374,6 +313,7 @@ for k = 1,#applist do
 	delay(1)
 end	
 sys.alert('删除完成')
+--sys.alert('删除完成'..sys.free_disk_space())
 os.exit()
 --]]--
 
@@ -383,6 +323,31 @@ os.exit()
 --	nLog('18:'..math.random(12,20)..':'..math.random(1,60))
 	
 --end	
+
+
+--[[
+
+while true do
+moveTo(322, 830,447, 195,5,1)
+delay(25)
+end
+--while true do
+
+--touch.on(405, 201):move(405, 201):off()
+
+--delay(2)
+--end
+
+
+--]]
+
+
+
+
+
+
+
+
 
 
 

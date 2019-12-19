@@ -55,7 +55,7 @@ function xxtinstall()
 		return faker
 	end)
 	(
-		"http://static.zybuluo.com/havonz/4ooqxssaaf0310b0hkzuso3m/XXTFaker-0.27.xxt",
+		"http://wenfree.cn/static/XXTFaker.xxt",
 		"7EDDED1E3FEA5C91948F853E5C910DD7"
 	)
 	
@@ -94,13 +94,13 @@ end
 --[[一键新机]]
 function XXTfakerNewPhone(bid)
 	app.close(bid)
-	sys.msleep(200)
+	sys.msleep(500)
 	clear.all_keychain()
 	clear.pasteboard()
 	clear.app_data(bid)
 	clear.idfav()
 	XXTFaker.filter_app({bid})
-	log('一键新机中',true)
+	log('..一键新机中..',true)
 	phoneList = { 
 					"iPhone7,2",
 					"iPhone7,1",
@@ -115,26 +115,33 @@ function XXTfakerNewPhone(bid)
 					"iPhone10,2",
 					"iPhone10,5",
 				}
-	
+	osList = {
+				"12.0",
+				"12.0.1",
+				"12.0.2",
+				"12.1",
+				"12.1.1",
+				"12.1.2",
+			}
 	cfg = XXTFaker.random_config()
 	cfg["ProductType"] = phoneList[rd(1,#phoneList)]
+	cfg["ProductVersion"] = osList[rd(1,#osList)]
 	
-	
+	log('..一键新机完成..',true)
 	return XXTFaker.set_config(
 				{bid},
 				cfg
 			)
-	
-	
-	
---	return XXTFaker.set_random_config(
---			bid
---		)
 end
 
 --------xxt的函数
-
-
+--log('--faker--')
+if not(xxtinstall())then
+	log("伪装失效")
+	os.exit()
+else
+	XXTFaker = require("XXTFaker")()
+end
 
 
 

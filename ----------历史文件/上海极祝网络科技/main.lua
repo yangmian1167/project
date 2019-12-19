@@ -218,7 +218,7 @@ end
 
 function checkip()
 	ip = get_ip() or "192.168.1.1"
-	local url = 'http://idfa888.com/Public/idfa/?service=idfa.checkip&ip='..ip
+	local url = 'http://wenfree.cn/api/Public/tjj/?service=Ip.checkip&ip='..ip
 	local getdata = get(url)
 	if getdata ~= nil then
 		local data = json.decode(getdata)
@@ -356,6 +356,7 @@ function newidfa(name,times)
 			else
 				log("启动一次")
 			end
+			delay(2)
 		end
 		up(name,bid[name]['keyword'])
 	end
@@ -434,7 +435,19 @@ while true do
 				for i,v in ipairs(TaskDate) do
 					work = v.work
 					task_id = v.task_id
+					
 					log(work)
+					bid[work]={}
+					bid[work]['keyword']=v.keyword
+					
+					if string.len(v.appbid)>5 then
+						bid[work]['appbid']=v.appbid
+					end
+					if string.len(v.appid)>5 then
+						bid[work]['appid']=v.appid
+					end
+					
+					log(bid[work])
 					if bid[work]['appbid'] ~= nil then
 						onlyactive(work)
 					end

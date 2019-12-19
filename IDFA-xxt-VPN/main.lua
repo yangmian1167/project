@@ -2,12 +2,7 @@ nLog = require('nLog')()
 require('faker')
 require('xxtsp')
 
-if not(xxtinstall())then
-	log("伪装失效")
-	os.exit()
-else
-	XXTFaker = require("XXTFaker")()
-end
+
 
 function atexit(callback) -- 参数为一个函数，使用 atexit(一个函数) 注册一个函数在脚本结束时执行，建议不要耗时太长
 	____atexit_guard____ = ____atexit_guard____ or {}
@@ -64,13 +59,45 @@ bid.上门帮 = "com.shangmb.client"
 bid['Italian cuisine'] = "com.fd.enit"
 bid['Raybet雷竞技'] = "com.googshoping.raybet"
 bid['新宝股票配资'] = "com.xbpz.0414"
+bid['必买BEMINE'] = "cn.techwis.PrivilegeGo"
+bid['车开新二手车'] = "com.shyohan.carHappy"
+bid['省钱大圣'] = "com.youyou1.app"
+bid['家政兼职赚钱平台'] = "com.jiazhengWork.App"
+bid['股票配资计囊'] = "com.Taha.LightDigital"
+bid['微品金融'] = "cn.vpfinance.weipin"
+bid['淘车夫'] = "com.dyc88888.www"
+bid['股票配资'] = "com.EnterpriseServiceManagement.Co"
+bid['大众点评'] = "com.dianping.dpscope"
+bid['认知形状'] = "com.artemis.fishlianliankan"
+bid['海翔gmat'] = "com.quakoo.haixiang"
+bid['FSSH Terminal sshclient'] = "com.fish.ssh"
+bid['TaskOnHand'] = "tasks.taskonhand"
+bid['虔城民生通管理端'] = "com.ganxian.wz.wenzheng"
+bid['心情FM'] = "com.yhl.www.audioPlayer-4"
+bid['垃圾分类'] = "com.SH.NewGarbageClassification"
+bid['LockPictures'] = "com.LockPictures.photo"
+bid['益智拼图'] = "com.puzzle.liyu"
+bid['植观'] = "com.GQ6BLF3HKD.q32m2"
+bid['逗声'] = "com.cheniue.warmsound"
+bid['翡翠珍箱'] = "com.jbangit.yicui"
+bid['易车'] = "bitauto.application"
+bid['MedImaging'] = "com.QY.medatlas"
+bid['1986 Barbershop'] = "com.barber-app.app"
+bid['Ketch Circle:Tap Jump'] = "com.l9LDa4P7ki.5INfYVpY8Ybc2eigz"
+bid['AB客'] = "com.muke.ABKE"
+bid['天涯刀锋'] = "com.sideb.tydf"
+
+
+
+
+
 screen.init(0)
 var = {}
 var.lun = 0
 --全局变量
 
 function up(name,other)
-	local url = 'http://idfa888.com/Public/idfa/?service=idfa.idfa'
+	local url = 'http://wenfree.cn/api/Public/idfa/?service=idfa.idfa'
 	local idfalist ={}
 	idfalist.phonename = phonename or device.name()
 	idfalist.phoneimei = phoneimei or sys.mgcopyanswer("SerialNumber")
@@ -96,16 +123,38 @@ function appname(bid)
 end
 
 
+web={}
+web.open={{{526,632,0x007aff},{396,622,0x3897ff},{393,623,0xffffff},},85}
+
+--url = 'https://apps.apple.com/us/app/id1436467071?l=zh&ls=1' --ab客
+url = 'https://f1.leniugame.com/b8/71/bbaabb.html' --天涯刀锋
+function open(url)
+	openUrl(url)
+	delay(3)
+	local timeline = os.time()
+	local outtimes = 15
+	while os.time()-timeline < outtimes do
+		if d(web.open,"web.open",true,1)then
+			delay(math.random(10,15))
+			return true
+		end
+		delay(1)
+	end
+	log("open time ",true)
+	return true
+end
 apparr={}
 apparr.right={{{462,666,0x007aff},{225,666,0x007aff},}, 85, 54, 394, 590, 809}
+
 
 function newidfa(bids,times)
 	for i= 1,times do
 		if false or vpn()then
 			if XXTfakerNewPhone(bids)then
+				open(url)
 				idfa = XXTfakerGetinfo(bids)['IDFA']
 				local TIMEline = os.time()
-				local OUTtime = rd(300,360)
+				local OUTtime = rd(22,25)
 				while os.time()- TIMEline < OUTtime do
 					if active(bids,4)then
 						if d(apparr.right,"apparr.right",true)then
@@ -142,20 +191,46 @@ end
 --newidfa(bid.悦美,60/1)		--all
 --newidfa(bid.现金抽屉,52/1)		--all
 --newidfa(bid.口袋三国无双,160/1)		--all
-newidfa(bid.剧能玩,25/1)		--all
---newidfa(bid.粤交易,155/1)		--all
+--newidfa(bid.剧能玩,25/1)		--all
+--newidfa(bid.粤交易,240/1)		--all
 --newidfa(bid.美逛,155/1)		--all
 --newidfa(bid.触触交友,1050/7)		--all
 --newidfa(bid.GuabiLife,6500/7)		--all
 --newidfa(bid.爱卡之家,210/1)		--all
---newidfa(bid.挂机暴风城,550/7)		--all
+--newidfa(bid.挂机暴风城,33/1)		--all
 --newidfa(bid['164法律服务'],320/7)		--all
---newidfa(bid.上门帮,150/1)		--all
+--newidfa(bid.上门帮,330/1)		--all
 --newidfa(bid['Italian cuisine'] ,10000/1)		--all
 --newidfa(bid['Raybet雷竞技'] ,220/2)		--all
 --newidfa(bid['新宝股票配资'] ,55/1)		--all
-
-
+--newidfa(bid['必买BEMINE'] ,200/1)		--all
+--newidfa(bid['车开新二手车'] ,70/1)		--all
+--newidfa(bid['省钱大圣'] ,220/1)		--all
+--newidfa(bid['家政兼职赚钱平台'] ,2300/20)		--all
+--newidfa(bid['股票配资计囊'] ,2300/1)		--all
+--newidfa(bid['微品金融'] ,450/1)		--all
+--newidfa(bid['淘车夫'] ,220/1)		--all
+--newidfa(bid['股票配资'] ,4500/40)		--all
+--newidfa(bid['大众点评'] ,550/20)		--all
+--newidfa(bid['认知形状'] ,120/1)		--all
+--newidfa(bid['海翔gmat'] ,120/1)		--all
+--newidfa(bid['FSSH Terminal sshclient'] ,33/1)		--all
+--newidfa(bid['TaskOnHand'] ,450/10)		--all
+--newidfa(bid['虔城民生通管理端'] ,3200/10)		--all
+--newidfa(bid['心情FM'] ,3700/10)		--all
+--newidfa(bid['垃圾分类'] ,3600/10)		--all
+--newidfa(bid['LockPictures'] ,3200/10)		--all
+--newidfa(bid['LockPictures'] ,3200/10)		--all
+--newidfa(bid['益智拼图'] ,300/10)		--all
+--newidfa(bid['植观'] ,4300/10)		--all
+--newidfa(bid['逗声'] ,130/1)		--all
+--newidfa(bid['翡翠珍箱'] ,350/1)		--all
+--newidfa(bid['易车'] ,250/1)		--all
+--newidfa(bid['MedImaging'] ,250/1)		--all
+--newidfa(bid['1986 Barbershop'] ,1000/1)		--all
+--newidfa(bid['Ketch Circle:Tap Jump'] ,1000/1)		--all
+--newidfa(bid['AB客'] ,22/1)		--all
+newidfa(bid['天涯刀锋'] ,100/1)		--all
 
 
 

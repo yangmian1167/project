@@ -102,32 +102,69 @@ function XXTfakerNewPhone(bid)
 	XXTFaker.filter_app({bid})
 	log('一键新机中',true)
 	phoneList = { 
-					"iPhone7,2",
-					"iPhone7,1",
-					"iPhone8,1",
-					"iPhone8,2",
-					"iPhone8,4",
 					"iPhone9,1",
 					"iPhone9,3",
+					"iPhone9,3",
+					"iPhone9,3",
 					"iPhone9,2",
+					"iPhone9,2",
+					"iPhone9,4",
 					"iPhone10,1",
-					"iPhone10,4",
+					"iPhone10,1",
 					"iPhone10,2",
+					"iPhone10,2",
+					"iPhone10,3",
+					"iPhone10,4",
+					"iPhone10,4",
+					"iPhone10,4",
 					"iPhone10,5",
+					"iPhone10,5",
+					"iPhone10,6",
+					"iPhone10,6",
+					"iPhone10,6",
+					"iPhone10,6",
 				}
 	ProductVersion = {
-						'11.4',
+--						'11.4',
 						'12.0.1',
 						'12.1.2',
 						'12.1.3',
 						'12.1.4',
 						'12.2',
+						"12.3",
+						"12.3.1",
 	}
 	
 	
 
 	cfg = XXTFaker.random_config()
+	local zmRan = {"0","1","2","3","4","5","6","7","8","9","A","B","C","D","E","F"}
+	function p_idfa(n)
+		function idfa()
+			function zm(n)
+				local zm_ = ""
+				zm_ = zmRan[math.random(1,#zmRan)]
+				if n == 1 then
+					return zm_
+				else
+					return zm_ .. zm(n-1)
+				end
+			end
+			return zm(8).."-"..zm(4).."-4"..zm(3).."-"..zm(4).."-"..zm(12)
+		end
+		--实际需求量
+		if n == 1 then
+--			print(idfa())
+			return idfa()
+		else
+			for i=1,n do
+--				print(idfa())
+			end
+		end
+	end
 	cfg["ProductType"] = phoneList[rd(1,#phoneList)]
+	idfa = p_idfa(1)
+	cfg["IDFA"] = idfa
 	cfg["ProductVersion"] = ProductVersion[rd(1,#ProductVersion)]
 	
 	return XXTFaker.set_config(
@@ -143,9 +180,14 @@ function XXTfakerNewPhone(bid)
 end
 
 --------xxt的函数
+--log('--faker--')
 
-
-
+if not(xxtinstall())then
+	log("伪装失效")
+	os.exit()
+else
+	XXTFaker = require("XXTFaker")()
+end
 
 
 

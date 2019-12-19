@@ -552,8 +552,8 @@ end
 
 --buys()11-12
 
-vpnx()
-delay(3)
+--vpnx()
+--delay(3)
  
 
 kfy.id = '14294'
@@ -578,13 +578,13 @@ end
 
 while true do
 	if vpn() then
-		if checkip() then
+--		if checkip() then
 			if open(bid['淘集集注册']['url'][device.name()])then
 				if newidfa() then
 --					buys()
 				end	
 			end
-		end
+--		end
 		closeX(bid.淘集集注册.appbid)
 	end
 	vpnx()
