@@ -86,6 +86,7 @@ bid['1986 Barbershop'] = "com.barber-app.app"
 bid['Ketch Circle:Tap Jump'] = "com.l9LDa4P7ki.5INfYVpY8Ybc2eigz"
 bid['AB客'] = "com.muke.ABKE"
 bid['天涯刀锋'] = "com.sideb.tydf"
+bid['猎魂觉醒'] = "com.netease.H37.LHJX"
 
 
 
@@ -151,7 +152,7 @@ function newidfa(bids,times)
 	for i= 1,times do
 		if false or vpn()then
 			if XXTfakerNewPhone(bids)then
-				open(url)
+--				open(url)
 				idfa = XXTfakerGetinfo(bids)['IDFA']
 				local TIMEline = os.time()
 				local OUTtime = rd(22,25)
@@ -230,7 +231,8 @@ end
 --newidfa(bid['1986 Barbershop'] ,1000/1)		--all
 --newidfa(bid['Ketch Circle:Tap Jump'] ,1000/1)		--all
 --newidfa(bid['AB客'] ,22/1)		--all
-newidfa(bid['天涯刀锋'] ,100/1)		--all
+--newidfa(bid['天涯刀锋'] ,100/1)		--all
+newidfa(bid['猎魂觉醒'] ,620/1)		--all
 
 
 
