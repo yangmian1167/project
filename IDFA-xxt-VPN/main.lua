@@ -87,6 +87,7 @@ bid['Ketch Circle:Tap Jump'] = "com.l9LDa4P7ki.5INfYVpY8Ybc2eigz"
 bid['AB客'] = "com.muke.ABKE"
 bid['天涯刀锋'] = "com.sideb.tydf"
 bid['猎魂觉醒'] = "com.netease.H37.LHJX"
+bid['畅阅小说阅读'] = "cn.qbzsydq.reader"
 
 
 
@@ -129,6 +130,8 @@ web.open={{{526,632,0x007aff},{396,622,0x3897ff},{393,623,0xffffff},},85}
 
 --url = 'https://apps.apple.com/us/app/id1436467071?l=zh&ls=1' --ab客
 url = 'https://f1.leniugame.com/b8/71/bbaabb.html' --天涯刀锋
+--url = 'https://apps.apple.com/cn/app/id1228049107' --畅阅小说阅读
+
 function open(url)
 	openUrl(url)
 	delay(3)
@@ -152,20 +155,22 @@ function newidfa(bids,times)
 	for i= 1,times do
 		if false or vpn()then
 			if XXTfakerNewPhone(bids)then
---				open(url)
+				open(url)
 				idfa = XXTfakerGetinfo(bids)['IDFA']
 				local TIMEline = os.time()
 				local OUTtime = rd(22,25)
+--				local OUTtime = rd(1500,1800)
 				while os.time()- TIMEline < OUTtime do
 					if active(bids,4)then
 						if d(apparr.right,"apparr.right",true)then
 						else
 							moveTo(600,300,100,100,30,50)
 							delay(1)
---							click(321, 978)
---							delay(1)
---							click(462, 666)
---							delay(1)
+							click(321, 978)
+							delay(1)
+							click(462, 666)
+							delay(1)
+							click(390, 781)
 						end
 					end
 				end
@@ -231,8 +236,9 @@ end
 --newidfa(bid['1986 Barbershop'] ,1000/1)		--all
 --newidfa(bid['Ketch Circle:Tap Jump'] ,1000/1)		--all
 --newidfa(bid['AB客'] ,22/1)		--all
---newidfa(bid['天涯刀锋'] ,100/1)		--all
-newidfa(bid['猎魂觉醒'] ,620/1)		--all
+newidfa(bid['天涯刀锋'] ,100/1)		--all
+--newidfa(bid['猎魂觉醒'] ,220/1)		--all
+--newidfa(bid['畅阅小说阅读'] ,220/1)		--all
 
 
 
