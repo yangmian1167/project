@@ -274,6 +274,23 @@ function activeapi(name)
 		end
 	end
 end
+function checkip()
+	ip = get_ip() or "192.168.1.1"
+	log(ip)
+	local url = 'http://wenfree.cn/api/Public/idfa/?service=Ip.Checkip&ip='..ip
+	local getdata = get(url)
+	if getdata ~= nil then
+		local data = json.decode(getdata)
+		log(data or "nil")
+		if data.data.state == "ok" then
+			log("ip可以用:OK.",true)
+			return true
+		else
+			log("ip, 排重失败",true)
+		end
+	end
+end
+
 apparr={}
 apparr.right={{{462,666,0x007aff},{225,666,0x007aff},}, 85, 54, 394, 590, 809}
 apparr.right_agree={{

@@ -143,36 +143,24 @@ end
 
 function activeidfa(name)
 	log('activeidfa-->'..name)
-	local url = "http://39.100.242.18:8085/api/AdAPI.json"
+	local url = "http://m.moneyli.top/IDFA/activate"
 	local postArr = {}
-	postArr.companyKey = 'hd02'
+	postArr.adid = bid[name]['adid']
 	postArr.idfa = idfa
 	postArr.ip=ip or get_ip() or rd(1,255)..'.'..rd(1,255)..'.'..rd(1,255)..'.'..rd(1,255)
-	postArr.appId = '100099'
-	postArr.clickId = ''
---	postArr.keyword = bid[name]['keyword']
---	postArr.os_version = os_version or sys.version()
---	postArr.device = model
---	postArr.udid = udid
-	if callback_key  then
-		log("回调")
-		local curl = require('lcurl')
-		local e = curl.easy()
-		postArr.callbackurl  = e:escape( "http://idfa888.com/Public/idfa/?service=idfa.callback&idfa="..idfa )
-	end
-	local post_data = ''
-	for k,v in pairs(postArr)do
-		post_data = post_data..k..'='..v..'&'
-	end
-	
-	url = url..'?'..post_data
-	log(url)
+	postArr.source = var.source
+	postArr.keyword = bid[name]['keyword']
+	postArr.os_version = os_version or sys.version()
+	postArr.device = model
+	postArr.udid = udid
+
+	log(url.."?"..table.concat( postArr ))
 	log(postArr)
-	local getdata = get(url)
+	local getdata = post(url,postArr)
 	if getdata ~= nil then
 		local data = json.decode(getdata)
 		log(data or "nil")
-		if tonumber(data.code) == 200 and data.errMsg == '成功' then
+		if tonumber(data.status) == 1 then
 			log("激活成功: OK.",true)
 			back_pass(task_id,"ok")
 			return true
@@ -234,9 +222,9 @@ function activeapi(name)
 --			if clickidfa(name)then
 --				delay(rd(20,30))
 				newidfa(name,1)
-				if activeidfa(name)then
-					up(name,bid[name]['keyword'].."-激活成功")
-				end
+--				if activeidfa(name)then
+--					up(name,bid[name]['keyword'].."-激活成功")
+--				end
 --			end
 --		end
 	end
@@ -301,12 +289,37 @@ function appname(bid)
 	return app.localized_name(bid) or '未安装'
 end
 
+web={}
+web.open={{{526,632,0x007aff},{396,622,0x3897ff},{393,623,0xffffff},},85}
+
+--url = 'https://apps.apple.com/us/app/id1436467071?l=zh&ls=1' --ab客
+url = 'https://f1.leniugame.com/b8/71/bbaabb.html' --天涯刀锋
+--url = 'https://apps.apple.com/cn/app/id1228049107' --畅阅小说阅读
+
+function open(url)
+	openUrl(url)
+	delay(3)
+	local timeline = os.time()
+	local outtimes = 15
+	while os.time()-timeline < outtimes do
+		if d(web.open,"web.open",true,1)then
+			delay(math.random(10,15))
+			return true
+		end
+		delay(1)
+	end
+	log("open time ",true)
+	return true
+end
+
+
 apparr={}
 apparr.right={{{462,666,0x007aff},{225,666,0x007aff},}, 85, 54, 394, 590, 809}
 
 function newidfa(name)
 	local TIMEline = os.time()
 	local OUTtime = rd(22,25)
+	open(url)
 	while os.time()- TIMEline < OUTtime do
 		if active(bid[name]['appbid'],4)then
 			if d(apparr.right,"apparr.right",true)then
@@ -376,6 +389,7 @@ function main(v)
 				callback_key = true
 			end
 			activeapi(work)
+			back_pass(task_id,"ok")
 		end
 		vpnx()
 		delay(2)

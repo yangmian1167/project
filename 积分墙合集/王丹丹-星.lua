@@ -76,26 +76,27 @@ function up(name,other)
 	idfalist.password = password
 	idfalist.phone = phone
 	idfalist.other = other
+	idfalist.appid = bid[name]['appid']
 	idfalist.device =json.encode(fakerdevice) 
 	return post(url,idfalist)
 end
 
 function checkidfa(name)
 	log("准备查询->checkidfa")
-	local url = "http://wenfree.cn/api/Public/idfa/"
+	local url = "http://ad.masaike2018.com/ad/idfaRepeat"
 	local postArr = {}
-	postArr.service = 'Idfas.Distinct'
-	postArr.uid = bid[name]['adid']
+--	postArr.service = 'Idfas.Distinct'
+--	postArr.uid = bid[name]['adid']
 --	postArr.uid = '2106'
-	postArr.source = 'meizh'
-	postArr.appid = bid[work]['appid']
+	postArr.source = 'xwzg'
+	postArr.appid = bid[name]['appid']
 	postArr.idfa = idfa
 	postArr.device = model
 	postArr.os = os_version
 	postArr.ip =ip or get_ip() or rd(1,255)..'.'..rd(1,255)..'.'..rd(1,255)..'.'..rd(1,255)
 --	postArr.keyword = e:escape(keyword)
 	postArr.keyword = bid[name]['keyword']
-	postArr.udid = udid
+--	postArr.udid = udid
 --	if callbackKey then
 --		postArr.callback  = e:escape("http://wenfree.cn/api/Public/idfa/?service=Idfa.Callbackname&idfa="..idfa.."&name="..name)
 ----		postArr.callback  = "http"
@@ -123,25 +124,26 @@ end
 
 function clickidfa(name)
 	log("准备点击")
-	local url = "http://wenfree.cn/api/Public/idfa/"
+	local url = "http://ad.masaike2018.com/ad/click"
 	local postArr = {}
-	postArr.service = 'Idfas.Click'
-	postArr.uid = bid[name]['adid']
+--	postArr.service = 'Idfas.Distinct'
+--	postArr.uid = bid[name]['adid']
 --	postArr.uid = '2106'
-	postArr.source = 'meizh'
-	postArr.appid = bid[work]['appid']
+	postArr.source = 'xwzg'
+	postArr.appid = bid[name]['appid']
 	postArr.idfa = idfa
 	postArr.device = model
 	postArr.os = os_version
 	postArr.ip =ip or get_ip() or rd(1,255)..'.'..rd(1,255)..'.'..rd(1,255)..'.'..rd(1,255)
 --	postArr.keyword = e:escape(keyword)
 	postArr.keyword = bid[name]['keyword']
-	postArr.udid = udid
-	if callbackKey then
-		postArr.callback  = e:escape("http://wenfree.cn/api/Public/idfa/?service=Idfa.Callbackname&idfa="..idfa.."&name="..name)
+--	postArr.udid = udid
+--	if callbackKey then
+--		postArr.callback  = (e:escape("http://wenfree.cn/api/Public/idfa/?service=Idfa.Callbackname&idfa="..dfa).."&name="..e:escape(name)))
+		postArr.callback  = e:escape("http://wenfree.cn/api/Public/idfa/?service=Idfa.Callback&idfa="..idfa.."&appid="..bid[name]['appid'])
 --		postArr.callback  = "http"
-	end
-	
+--	end
+		
 	local post_data = ''
 	for k,v in pairs(postArr)do
 		post_data = post_data..k..'='..v..'&'
@@ -155,7 +157,7 @@ function clickidfa(name)
 	if getdata ~= nil then
 		local data = json.decode(getdata)
 		log(data or "nil")
-		if  data.data.msg == 'success' then
+		if  data.message == '操作成功' and tonumber(data.status) == 1  then
 			log("点击成功: OK.",true)
 			return true
 		else
@@ -199,7 +201,7 @@ function activeidfa(name)
 	if getdata ~= nil then
 		local data = json.decode(getdata)
 		log(data or "nil")
-		if tonumber(data["result"]) == true or data.resultDesc == 'success' then
+		if data["date"]["result"] == 'ok' or data["message"] == '操作成功' then
 			log("激活成功: OK.",true)
 			back_pass(task_id,"ok")
 			return true
@@ -243,14 +245,16 @@ function activeapi(name)
 		os_version = XXTfakerGetinfo(bid[name]["appbid"])['ProductVersion']
 		udid = XXTfakerGetinfo(bid[name]["appbid"])['UDID']
 		fakerdevice = XXTfakerGetinfo(bid[name]['appbid'])
---		if checkidfa(name)then
---			if clickidfa(name)then
-				newidfa(name)
-				if activeidfa(name)then
+		if checkidfa(name)then
+				if newidfa(name) then
+					if clickidfa(name)then
+--					if activeidfa(name)then
 					up(name,bid[name]['keyword'].."-激活成功")
+					back_pass(task_id,"ok")
+--					end
 				end
---			end
---		end
+			end
+		end
 	end
 end
 apparr={}

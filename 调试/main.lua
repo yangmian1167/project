@@ -629,14 +629,24 @@ function getu()
 	end	
 
 end
-
-
-
-while true do
-getu()
-
+	function suiji()
+				local num = math.random(1,100)
+				log(num)
+				if num < 10 then
+					if num < 5 then
+						log('11111')
+					else	
+						log('22222')
+					end	
+				end	
 end
 
 
+--while true do
+--suiji()
+--end
+
+local curl = require('lcurl')
+local e = curl.easy()
 
 

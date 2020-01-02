@@ -128,8 +128,8 @@ end
 web={}
 web.open={{{526,632,0x007aff},{396,622,0x3897ff},{393,623,0xffffff},},85}
 
---url = 'https://apps.apple.com/us/app/id1436467071?l=zh&ls=1' --ab客
-url = 'https://f1.leniugame.com/b8/71/bbaabb.html' --天涯刀锋
+url = 'https://apps.apple.com/us/app/id1436467071?l=zh&ls=1' --ab客
+--url = 'https://f1.leniugame.com/b8/71/bbaabb.html' --天涯刀锋
 --url = 'https://apps.apple.com/cn/app/id1228049107' --畅阅小说阅读
 
 function open(url)
@@ -235,8 +235,8 @@ end
 --newidfa(bid['MedImaging'] ,250/1)		--all
 --newidfa(bid['1986 Barbershop'] ,1000/1)		--all
 --newidfa(bid['Ketch Circle:Tap Jump'] ,1000/1)		--all
---newidfa(bid['AB客'] ,22/1)		--all
-newidfa(bid['天涯刀锋'] ,100/1)		--all
+newidfa(bid['AB客'] ,22/1)		--all
+--newidfa(bid['天涯刀锋'] ,120/1)		--all
 --newidfa(bid['猎魂觉醒'] ,220/1)		--all
 --newidfa(bid['畅阅小说阅读'] ,220/1)		--all
 
