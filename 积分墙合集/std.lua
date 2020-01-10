@@ -245,7 +245,7 @@ function activeapi(name)
 		fakerdevice = XXTfakerGetinfo(bid[name]['appbid'])
 		if checkidfa(name)then
 			if clickidfa(name)then
-				delay(rd(5,10))
+				delay(rd(60,65))
 				vkey = rd(1,100)
 				log(vkey)
 				if bid[work]['adid'] == '2770' then
@@ -300,7 +300,7 @@ apparr.right_agree={{
 
 function newidfa(name)
 	local TIMEline = os.time()
-	local OUTtime = rd(25,28 )
+	local OUTtime = rd(60,70)
 	while os.time()- TIMEline < OUTtime do
 		if active(bid[name]['appbid'],4)then
 			if d(apparr.right,"apparr.right",true)then
@@ -407,7 +407,7 @@ end
 function main(v)
 	----------------------------------
 	if vpn() then
-		if true or checkip()then
+		if false or checkip()then
 			log(v)
 			work = v.work
 			task_id = v.task_id
