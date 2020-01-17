@@ -259,11 +259,9 @@ creat_vpn(vpnlist)
 --[[]]
 applist = {
 
-{"耳萌",50              },
-{"学习资料",50          },
-{"txt阅读器",50         },
-{"全本免费",50          },
-{"儿童电子书",50        },
+{"intramirror",99              },
+{"buyer",100          },
+
 
 
 
@@ -528,10 +526,10 @@ end
 
 
 --[[
-for i = 1,1300 do
-	date = '2019-10-13'
-	h = math.random(16,16)
-	m = math.random(01,59)
+for i = 1,200 do
+	date = '2020-01-14'
+	h = math.random(22,22)
+	m = math.random(30,59)
 	s = math.random(1,59)
 
 	times = date..' '..h..':'..m..':'..s

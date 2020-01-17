@@ -75,6 +75,7 @@ function up(name,other)
 	idfalist.account = bid[name]['keyword'] or account
 	idfalist.password = password
 	idfalist.phone = phone
+	idfalist.appid = bid[name]['appid']
 	idfalist.other = other
 	idfalist.device =json.encode(fakerdevice) 
 	return post(url,idfalist)
@@ -108,9 +109,21 @@ function checkidfa(name)
 
 	url = url.."?"..postdata
 	log(url)
-	local getdata = get(url)
-	if  getdata ~= nil then
-		local data = json.decode(getdata)
+--	local getdata = get(url)
+--	if  getdata ~= nil then
+--		local data = json.decode(getdata)
+--		log(data or "nil")
+--		if tonumber(data.data[idfa]) == 0 then 
+--			log("idfa排重: OK.",true)
+--			return true
+--		else
+--			log("idfa------排重失败",true)
+--		end
+--	end	
+
+	local postdata = post(url,postArr)
+	if postdata ~= nil then
+		local data = json.decode(postdata)
 		log(data or "nil")
 		if tonumber(data.data[idfa]) == 0 then 
 			log("idfa排重: OK.",true)
@@ -138,7 +151,8 @@ function clickidfa(name)
 	postArr.keyword = bid[name]['keyword']
 	postArr.udid = udid
 	if callback_key then
-		postArr.callback  = (e:escape("http://wenfree.cn/api/Public/idfa/?service=Idfa.Callbackname&idfa="..idfa.."&name="..name))
+--		postArr.callback  = (e:escape("http://wenfree.cn/api/Public/idfa/?service=Idfa.Callbackname&idfa="..idfa.."&name="..name))
+		postArr.callback  = "http://wenfree.cn/api/Public/idfa/?service=Idfa.Callbackname&idfa="..idfa.."&name="..e:escape(name)
 --		postArr.callback  = "http"
 	end
 	
@@ -151,9 +165,23 @@ function clickidfa(name)
 	log("url----------------\n" .. url)
 	log(postArr)
 
-	local getdata = get(url)
-	if getdata ~= nil then
-		local data = json.decode(getdata)
+--	local getdata = get(url)
+--	if getdata ~= nil then
+--		local data = json.decode(getdata)
+--		log(data or "nil")
+--		if  data.data.msg == 'success' then
+--			log("点击成功: OK.",true)
+--			return true
+--		else
+--			log("idfa-点击失败",true)
+--		end
+--	else
+--		log("点击返回空")
+--	end
+	
+	local postdata = post(url,postArr)
+	if postdata ~= nil then
+		local data = json.decode(postdata)
 		log(data or "nil")
 		if  data.data.msg == 'success' then
 			log("点击成功: OK.",true)
@@ -164,6 +192,7 @@ function clickidfa(name)
 	else
 		log("点击返回空")
 	end
+	
 end
 
 
@@ -182,7 +211,8 @@ function activeidfa(name)
 	postArr.keyword = bid[name]['keyword']
 	postArr.udid = udid
 	if callback_key then
-		postArr.callback  = (e:escape("http://wenfree.cn/api/Public/idfa/?service=Idfa.Callbackname&idfa="..idfa.."&name="..name))
+--		postArr.callback  = (e:escape("http://wenfree.cn/api/Public/idfa/?service=Idfa.Callbackname&idfa="..idfa.."&name="..name))
+		postArr.callback  = "http://wenfree.cn/api/Public/idfa/?service=Idfa.Callbackname&idfa="..idfa.."&name="..e:escape(name)
 --		postArr.callback  = "http"
 	end
 
@@ -195,9 +225,24 @@ function activeidfa(name)
 	log("url----------------\n" .. url)
 	log(postArr)
 
-	local getdata = get(url)
-	if getdata ~= nil then
-		local data = json.decode(getdata)
+--	local getdata = get(url)
+--	if getdata ~= nil then
+--		local data = json.decode(getdata)
+--		log(data or "nil")
+--		if tonumber(data["code"]) == 200 or data.data.msg == 'success' then
+--			log("激活成功: OK.",true)
+--			back_pass(task_id,"ok")
+--			return true
+--		else
+--			log("idfa-激活失败",true)
+--		end
+--	else
+--		log("点击返回空")
+--	end	
+
+	local postdata = post(url,postArr)
+	if postdata ~= nil then
+		local data = json.decode(postdata)
 		log(data or "nil")
 		if tonumber(data["code"]) == 200 or data.data.msg == 'success' then
 			log("激活成功: OK.",true)
@@ -245,10 +290,14 @@ function activeapi(name)
 		fakerdevice = XXTfakerGetinfo(bid[name]['appbid'])
 		if checkidfa(name)then
 			if clickidfa(name)then
-				delay(rd(60,65))
+				up(name,bid[name]['keyword'].."-点击成功")
 				vkey = rd(1,100)
 				log(vkey)
-				if bid[work]['adid'] == '2770' then
+				if bid[work]['adid'] == '3569' then
+					delay(rd(60,65))
+					log('准备激活')
+					葫芦兄弟(name)
+				elseif bid[work]['adid'] == '2770' then
 					if vkey > 15 then
 						log('准备激活')
 						newidfa(name)
@@ -265,6 +314,7 @@ function activeapi(name)
 						newplayer1(name)
 					end
 				else
+					delay(rd(20,25))
 					newidfa(name)
 				end
 				if activeidfa(name)then
@@ -300,12 +350,13 @@ apparr.right_agree={{
 
 function newidfa(name)
 	local TIMEline = os.time()
-	local OUTtime = rd(60,70)
+	local OUTtime = rd(30,40)
 	while os.time()- TIMEline < OUTtime do
 		if active(bid[name]['appbid'],4)then
 			if d(apparr.right,"apparr.right",true)then
-			elseif d(apparr.right_agree,"right_agree",true)then
-			else
+			elseif d(apparr.right_agree,"apparr.right_agree",true)then
+		else
+				click(258, 906)
 				moveTo(600,300,100,100,30,50)
 				delay(1)
 				click(321, 978)
@@ -335,7 +386,7 @@ function newplayer(name)
 	while os.time()- TIMEline < OUTtime do
 		if active(bid[name]['appbid'],4)then
 			if d(apparr.right,"apparr.right",true)then
-			elseif d(apparr.right_agree,"right_agree",true)then
+			elseif d(apparr.right_agree,"apparr.right_agree",true)then
 			elseif d(apparr.游客登录,"apparr.游客登录",true)then
 			elseif d(apparr.实名窗口,"apparr.实名窗口",true)then
 			elseif d(apparr.账号进入游戏,"apparr.账号进入游戏",true)then
@@ -380,7 +431,7 @@ function newplayer1()
 				closeX(app.front_bid())
 				切换网络key =false
 			elseif d(apparr.right,"apparr.right",true)then
-			elseif d(apparr.right_agree,"right_agree",true)then
+			elseif d(apparr.right_agree,"apparr.right_agree",true)then
 			elseif d(gy.实名弹窗,"gy.实名弹窗",true)then
 			elseif d(gy.游客登录,"apparr.游客登录",true)then
 			elseif d(gy.允许,"gy.允许",true)then
@@ -403,10 +454,44 @@ function newplayer1()
 	return true
 end
 
+hlxd = {}
+hlxd.快速游戏={{{405, 495, 0x1baffe},{206, 463, 0x1baffe},{360, 578, 0xf8feff},{431, 667, 0x008cd6},{427, 642, 0x008cd6},}, 85, 167, 390, 464, 716}
+hlxd.我知道了={{{430, 683, 0x008cd6},{219, 662, 0x008cd6},{216, 635, 0xf8feff},{410, 764, 0x888b8c},{427, 642, 0x008cd6},}, 85, 179, 630, 484, 812}
+hlxd.确定={{{335, 905, 0xfffaf0},{280, 879, 0xeea635},{359, 899, 0xe9982c},{353, 939, 0x2b916d},}, 85, 239, 857, 394, 938}
+hlxd.进入游戏={{{311,  997, 0xa9a69f},{286,  969, 0xbe802a},{242, 1014, 0x827e77},{368,  955, 0x536a75},}, 85, 221, 930, 411, 1033}
+hlxd.重新连接={{{499, 661, 0xe49b27},{393, 636, 0xe6b838},{128, 635, 0x44b6a0},{234, 666, 0x2b9e80},}, 85, 100, 607, 554, 691}
+hlxd.返回箭头={{{ 72, 308, 0x4c4c4c},{220, 312, 0xfcc700},{274, 303, 0x00479d},{395, 305, 0x00479d},}, 85, 54, 284, 495, 339}
+function 葫芦兄弟(name)
+	local TIMEline = os.time()
+	local OUTtime = math.random(180,190)
+	while os.time() - TIMEline < OUTtime do
+		if active(bid[name]['appbid'],4) then
+			if d(apparr.right,"apparr.right",true)then
+			elseif d(apparr.right_agree,"apparr.right_agree",true)then
+			elseif d(hlxd.快速游戏,"hlxd.快速游戏",true)then
+			elseif d(hlxd.我知道了,"hlxd.我知道了",true)then
+			elseif d(hlxd.确定,"hlxd.确定",true)then
+			elseif d(hlxd.进入游戏,"hlxd.进入游戏",true)then
+			elseif d(hlxd.重新连接,"hlxd.重新连接",true)then
+			elseif d(hlxd.返回箭头,"hlxd.返回箭头",true)then
+			else
+				click(323, 855)
+				delay(1)
+				click(353, 703)
+				delay(1)
+				click(173, 499)
+				click(323, 959)
+			end
+		else
+			log("启动一次")
+		end
+	end
+	return true
+end
 
 function main(v)
 	----------------------------------
-	if vpn() then
+	if	false or vpn() then
 		if false or checkip()then
 			log(v)
 			work = v.work

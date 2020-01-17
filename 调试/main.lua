@@ -536,46 +536,87 @@ appbid = 'com.ss.iphone.ugc.Aweme'
 
 
 douyinlist = {
-{"周濡濡","1","https://v.douyin.com/XnbKXx/  "},
-{"安慨慨","2","https://v.douyin.com/XnVh97/  "},
-{"安砺砺","3","https://v.douyin.com/Xn4Mqo/  "},
-{"张蓣蓣","4","https://v.douyin.com/Xn4d2W/  "},
-{"张晓晓","5","https://v.douyin.com/XnKpSt/  "},
-{"张庞庞","6","https://v.douyin.com/Xn31uQ/  "},
-{"张亥亥","7","https://v.douyin.com/XWfFDV/  "},
-{"张扩扩","8","https://v.douyin.com/XWjpUC/  "},
-{"安绫绫","9","https://v.douyin.com/XWddnH/  "},
-{"安泶泶","10","https://v.douyin.com/X7Ny9W/ "},
-{"李育育","11","https://v.douyin.com/XWkMJE/ "},
-{"周鸣鸣","12","https://v.douyin.com/Xnc5Cj/ "},
-{"周习习","13","https://v.douyin.com/XWP7Rg/ "},
-{"李奇奇","14","https://v.douyin.com/Xn4xgy/ "},
-{"张铧铧","15","https://v.douyin.com/XnEqEo/ "},
-{"安簿簿","16","https://v.douyin.com/Xnqy4f/ "},
-{"李航航","17","https://v.douyin.com/XWk24a/ "},
-{"安嵘嵘","18","https://v.douyin.com/XWSJ2R/ "},
-{"张菱菱","19","https://v.douyin.com/XWaGsG/ "},
-{"张驰驰","20","https://v.douyin.com/XW6fL1/ "},
-{"周眧眧","21","https://v.douyin.com/Xn3TRo/ "},
-{"安乐乐","22","https://v.douyin.com/X7UBnQ/ "},
-{"周申申","23","https://v.douyin.com/X7JYyu/ "},
-{"李园园","24","https://v.douyin.com/X769p7/ "},
-{"周崴崴","25","https://v.douyin.com/X7RubL/ "},
-{"张灿灿","26","https://v.douyin.com/X7dSCa/ "},
-{"安逍逍","27","https://v.douyin.com/X7Y5rr/ "},
-{"安姐姐","28","https://v.douyin.com/X7Rf6x/ "},
-{"李倩倩","29","https://v.douyin.com/X78LWR/ "},
-{"周翰翰","30","https://v.douyin.com/X7Fjwe/ "},
-{"张堤堤","31","https://v.douyin.com/X7Ba31/ "},
-{"周卜卜","32","https://v.douyin.com/X7jHor/ "},
-{"周支支","33","https://v.douyin.com/X7yMr4/ "},
-{"周伶伶","34","https://v.douyin.com/X78Msg/ "},
-{"李惜惜","35","https://v.douyin.com/X7Fq2Y/ "},
-{"周迎迎","36","https://v.douyin.com/X7Yen4/ "},
-{"李戎戎","37","https://v.douyin.com/X72SFp/ "},
-{"安悟悟","38","https://v.douyin.com/X7UQPt/ "},
-{"安注注","39","https://v.douyin.com/XWoE2D/ "},
-{"安溏溏","40","https://v.douyin.com/XWoMMf/ "},
+--{"周濡濡","1","https://v.douyin.com/XnbKXx/"},
+--{"安慨慨","2","https://v.douyin.com/XnVh97/"},
+--{"安砺砺","3","https://v.douyin.com/Xn4Mqo/"},
+--{"张蓣蓣","4","https://v.douyin.com/Xn4d2W/"},
+--{"张晓晓","5","https://v.douyin.com/XnKpSt/"},
+--{"张庞庞","6","https://v.douyin.com/Xn31uQ/"},
+--{"张亥亥","7","https://v.douyin.com/XWfFDV/"},
+--{"张扩扩","8","https://v.douyin.com/XWjpUC/"},
+--{"安绫绫","9","https://v.douyin.com/XWddnH/"},
+--{"安泶泶","10","https://v.douyin.com/X7Ny9W/"},
+--{"李育育","11","https://v.douyin.com/XWkMJE/"},
+--{"周鸣鸣","12","https://v.douyin.com/Xnc5Cj/"},
+--{"周习习","13","https://v.douyin.com/XWP7Rg/"},
+--{"李奇奇","14","https://v.douyin.com/Xn4xgy/"},
+--{"张铧铧","15","https://v.douyin.com/XnEqEo/"},
+--{"安簿簿","16","https://v.douyin.com/Xnqy4f/"},
+--{"李航航","17","https://v.douyin.com/XWk24a/"},
+--{"安嵘嵘","18","https://v.douyin.com/XWSJ2R/"},
+--{"张菱菱","19","https://v.douyin.com/XWaGsG/"},
+--{"张驰驰","20","https://v.douyin.com/XW6fL1/"},
+--{"周眧眧","21","https://v.douyin.com/Xn3TRo/"},
+--{"安乐乐","22","https://v.douyin.com/X7UBnQ/"},
+--{"周申申","23","https://v.douyin.com/X7JYyu/"},
+--{"李园园","24","https://v.douyin.com/X769p7/"},
+--{"周崴崴","25","https://v.douyin.com/X7RubL/"},
+--{"张灿灿","26","https://v.douyin.com/X7dSCa/"},
+--{"安逍逍","27","https://v.douyin.com/X7Y5rr/"},
+--{"安姐姐","28","https://v.douyin.com/X7Rf6x/"},
+--{"李倩倩","29","https://v.douyin.com/X78LWR/"},
+--{"周翰翰","30","https://v.douyin.com/X7Fjwe/"},
+--{"张堤堤","31","https://v.douyin.com/X7Ba31/"},
+--{"周卜卜","32","https://v.douyin.com/X7jHor/"},
+--{"周支支","33","https://v.douyin.com/X7yMr4/"},
+--{"周伶伶","34","https://v.douyin.com/X78Msg/"},
+--{"李惜惜","35","https://v.douyin.com/X7Fq2Y/"},
+--{"周迎迎","36","https://v.douyin.com/X7Yen4/"},
+--{"李戎戎","37","https://v.douyin.com/X72SFp/"},
+--{"安悟悟","38","https://v.douyin.com/X7UQPt/"},
+--{"安注注","39","https://v.douyin.com/XWoE2D/"},
+--{"安溏溏","40","https://v.douyin.com/XWoMMf/"},
+--{"周读读","41","https://v.douyin.com/X72N6U/"},
+--{"周嵇嵇","42","https://v.douyin.com/X7RJm9/"},
+--{"张琴琴","43","https://v.douyin.com/X7AMNH/"},
+--{"安汾汾","44","https://v.douyin.com/X7d4TG/"},
+--{"张鸾鸾","45","https://v.douyin.com/X76oo7/"},
+--{"周钱钱","46","https://v.douyin.com/XWEQTF/"},
+--{"周芦芦","47","https://v.douyin.com/X7DxC1/"},
+--{"李萝萝","48","https://v.douyin.com/X7FLw8/"},
+--{"李雍雍","49","https://v.douyin.com/X7Jyfa/"},
+--{"安援援","50","https://v.douyin.com/XWoqyp/"},
+--{"李粼粼","51","https://v.douyin.com/X7Nhjt/"},
+--{"周徉徉","52","https://v.douyin.com/XWoDaU/"},
+--{"张玢玢","53","https://v.douyin.com/X71LKL/"},
+--{"李各各","54","https://v.douyin.com/X7MWoL/"},
+--{"李岳岳","55","https://v.douyin.com/X7h2Jc/"},
+--{"李汇汇","56","https://v.douyin.com/X7FR4f/"},
+--{"周淋淋","57","https://v.douyin.com/X7rswS/"},
+--{"安正正","58","https://v.douyin.com/X7FaGQ/"},
+--{"李闻闻","59","https://v.douyin.com/X7SRuD/"},
+--{"周绘绘","60","https://v.douyin.com/X7AtWW/"},
+--{"周守守","61","https://v.douyin.com/X7NgV6/"},
+--{"安佼佼","62","https://v.douyin.com/X7UBqA/"},
+--{"李愫愫","63","https://v.douyin.com/X7Fgem/"},
+--{"李令令","64","https://v.douyin.com/X7Ff3V/"},
+--{"周教教","65","https://v.douyin.com/X7DeQ2/"},
+--{"安萌萌","66","https://v.douyin.com/X7YS1q/"},
+--{"安遇遇","67","https://v.douyin.com/X78wcX/"},
+--{"安燕燕","68","https://v.douyin.com/XWEJ3r/"},
+--{"安淼淼","69","https://v.douyin.com/X7Rkxd/"},
+--{"李金金","70","https://v.douyin.com/X7e8eN/"},
+
+--{"李社社","101","https://v.douyin.com/XntDv5/"},
+--{"李梆梆","102","https://v.douyin.com/Xn3Usp/"},
+--{"李芸芸","103","https://v.douyin.com/XnGxYv/"},
+--{"张芍芍","104","https://v.douyin.com/XnQNdf/"},
+--{"李颖颖","105","https://v.douyin.com/XnCV1p/"},
+{"安镭镭","106","https://v.douyin.com/XnK9sa/"},
+{"安阐阐","107","https://v.douyin.com/XnVHGV/"},
+{"李珉珉","108","https://v.douyin.com/Xnw6cT/"},
+{"张蔡蔡","109","https://v.douyin.com/XnTrpv/"},
+{"安纡纡","110","https://v.douyin.com/X8DBbY/"},
 
 
 
@@ -629,24 +670,6 @@ function getu()
 	end	
 
 end
-	function suiji()
-				local num = math.random(1,100)
-				log(num)
-				if num < 10 then
-					if num < 5 then
-						log('11111')
-					else	
-						log('22222')
-					end	
-				end	
+while true do
+getu()
 end
-
-
---while true do
---suiji()
---end
-
-local curl = require('lcurl')
-local e = curl.easy()
-
-
