@@ -256,11 +256,12 @@ creat_vpn(vpnlist)
 
 ---打印关键词
 
---[[]]
+--[[
 applist = {
 
-{"intramirror",99              },
-{"buyer",100          },
+{"精算师",20              },
+{"irr",50              },
+{"利率计算",100          },
 
 
 
@@ -525,11 +526,11 @@ end
 
 
 
---[[
-for i = 1,200 do
-	date = '2020-01-14'
-	h = math.random(22,22)
-	m = math.random(30,59)
+--[[]]
+for i = 1,350 do
+	date = '2020-02-03'
+	h = math.random(18,21)
+	m = math.random(1,59)
 	s = math.random(1,59)
 
 	times = date..' '..h..':'..m..':'..s

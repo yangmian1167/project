@@ -106,10 +106,10 @@ require('xxtsp')
 
 ----创建一个vpn
 vpnlist ={
-		dispName = 'ymvpn2140',
+		dispName = 'ymvpn6180',
 		VPNType = "L2TP",
 		server = 'yhtip.com',
-		authorization = 'ymvpn2140',
+		authorization = 'ymvpn6180',
 		password = 'Aa112211',           -- 密码
 		secret = '1',            -- 密钥，PPTP 可不填
 		encrypLevel = 1,               -- 加密级别，选填，默认 1
@@ -141,7 +141,7 @@ creat_vpn(vpnlist)
 delay(5)
 
 -------选择一个VPN
-local success = vpnconf.select('ymvpn2140')
+local success = vpnconf.select('ymvpn6180')
 if success then
     sys.alert('操作成功')
 else

@@ -314,7 +314,7 @@ function activeapi(name)
 						newplayer1(name)
 					end
 				else
-					delay(rd(20,25))
+					delay(rd(25,35))
 					newidfa(name)
 				end
 				if activeidfa(name)then
@@ -350,7 +350,7 @@ apparr.right_agree={{
 
 function newidfa(name)
 	local TIMEline = os.time()
-	local OUTtime = rd(30,40)
+	local OUTtime = rd(90,150)
 	while os.time()- TIMEline < OUTtime do
 		if active(bid[name]['appbid'],4)then
 			if d(apparr.right,"apparr.right",true)then
