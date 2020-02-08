@@ -88,6 +88,7 @@ bid['AB客'] = "com.muke.ABKE"
 bid['天涯刀锋'] = "com.sideb.tydf"
 bid['猎魂觉醒'] = "com.netease.H37.LHJX"
 bid['畅阅小说阅读'] = "cn.qbzsydq.reader"
+bid['咪咕视频'] = "com.wondertek.hecmccmobile"
 
 
 
@@ -235,10 +236,11 @@ end
 --newidfa(bid['MedImaging'] ,250/1)		--all
 --newidfa(bid['1986 Barbershop'] ,1000/1)		--all
 --newidfa(bid['Ketch Circle:Tap Jump'] ,1000/1)		--all
-newidfa(bid['AB客'] ,22/1)		--all
+--newidfa(bid['AB客'] ,22/1)		--all
 --newidfa(bid['天涯刀锋'] ,120/1)		--all
 --newidfa(bid['猎魂觉醒'] ,220/1)		--all
 --newidfa(bid['畅阅小说阅读'] ,220/1)		--all
+newidfa(bid['咪咕视频'] ,220/1)		--all
 
 
 
