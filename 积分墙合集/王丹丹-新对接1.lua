@@ -71,6 +71,7 @@ function up(name,other)
 	idfalist.phoneos = phoneos or sys.version()
 	idfalist.name = name
 	idfalist.idfa = idfa
+	idfalist.appid = bid[work]['appid']
 	idfalist.ip = ip or get_ip() or '192.168.1.1'
 	idfalist.account = bid[name]['keyword'] or account
 	idfalist.password = password
@@ -82,16 +83,16 @@ end
 
 function checkidfa(name)
 	log("准备查询->checkidfa")
-	local url = "http://open.youweihd.com/channel/query"
+	local url = "http://h5.gamemm.com/ads/ck_idfa"
 	local postArr = {}
 --	postArr.service = 'Idfas.Distinct'
 --	postArr.cid = bid[name]['adid']
 --	postArr.uid = '2106'
-	postArr.channel = '7452F7F494AF4CE8E42A84A9A31D4DEB99A397D283B6123C02B0B36303A599D9'
+--	postArr.source = 'meizh'
 	postArr.appid = bid[work]['appid']
 	postArr.idfa = idfa
-	postArr.os = os_version
-	postArr.device = model
+--	postArr.model = model
+--	postArr.sysVer = os_version
 	postArr.ip =ip or get_ip() or rd(1,255)..'.'..rd(1,255)..'.'..rd(1,255)..'.'..rd(1,255)
 --	postArr.keyword = e:escape(keyword)
 	postArr.word = bid[name]['keyword']
@@ -112,7 +113,7 @@ function checkidfa(name)
 	if  getdata ~= nil then
 		local data = json.decode(getdata)
 		log(data or "nil")
-		if tonumber(data["installed"]) == 0 and data["message"] == "" then 
+		if tonumber(data["idfa"]) == 0 or data.message == 'ok' then 
 			log("idfa: OK.",true)
 			return true
 		else
@@ -123,24 +124,24 @@ end
 
 function clickidfa(name)
 	log("准备点击")
-	local url = "http://open.youweihd.com/channel/click"
+	local url = "http://agentapi.youweihd.com/channel/clickIdfa"
 	local postArr = {}
 --	postArr.service = 'Idfas.Distinct'
---	postArr.cid = bid[name]['adid']
+	postArr.cid = bid[name]['adid']
 --	postArr.uid = '2106'
-	postArr.channel = '7452F7F494AF4CE8E42A84A9A31D4DEB99A397D283B6123C02B0B36303A599D9'
+	postArr.source = 'meizh'
 	postArr.appid = bid[work]['appid']
 	postArr.idfa = idfa
-	postArr.os = os_version
-	postArr.device = model
+	postArr.model = model
+	postArr.sysVer = os_version
 	postArr.ip =ip or get_ip() or rd(1,255)..'.'..rd(1,255)..'.'..rd(1,255)..'.'..rd(1,255)
 --	postArr.keyword = e:escape(keyword)
 	postArr.word = bid[name]['keyword']
 	postArr.udid = udid
---	if callbackKey then
-		postArr.callback  = (e:escape("http://wenfree.cn/api/Public/idfa/?service=Idfa.Callback&idfa="..idfa.."&appid="..bid[name]['appid']))
+	if callbackKey then
+		postArr.callback  = e:escape("http://wenfree.cn/api/Public/idfa/?service=Idfa.Callbackname&idfa="..idfa.."&name="..name)
 --		postArr.callback  = "http"
---	end
+	end
 	
 	local post_data = ''
 	for k,v in pairs(postArr)do
@@ -155,7 +156,7 @@ function clickidfa(name)
 	if getdata ~= nil then
 		local data = json.decode(getdata)
 		log(data or "nil")
-		if tonumber(data["code"] ) == 0 and data["message"] == "" then 
+		if tonumber(data.status) == 20000 or date.message == 'ok' then 
 			log("点击成功: OK.",true)
 			return true
 		else
@@ -169,20 +170,19 @@ end
 
 function activeidfa(name)
 	log("准备点击-上报")
-	local url = "http://open.youweihd.com/channel/active"
+	local url = "http://h5.gamemm.com/ads/chuangqi"
 	local postArr = {}
 --	postArr.service = 'Idfas.Distinct'
 --	postArr.cid = bid[name]['adid']
 --	postArr.uid = '2106'
-	postArr.channel = '7452F7F494AF4CE8E42A84A9A31D4DEB99A397D283B6123C02B0B36303A599D9'
-	postArr.appid = bid[work]['appid']
+--	postArr.source = 'meizh'
+--	postArr.appid = bid[work]['appid']
 	postArr.idfa = idfa
-	postArr.os = os_version
-	postArr.device = model
+	postArr.channel = 'youdao'
+--	postArr.sysVer = os_version
 	postArr.ip =ip or get_ip() or rd(1,255)..'.'..rd(1,255)..'.'..rd(1,255)..'.'..rd(1,255)
 --	postArr.keyword = e:escape(keyword)
-	postArr.word = bid[name]['keyword']
-	postArr.udid = udid
+--	postArr.udid = udid
 --	if callbackKey then
 		postArr.callback  = (e:escape("http://wenfree.cn/api/Public/idfa/?service=Idfa.Callback&idfa="..idfa.."&appid="..bid[name]['appid']))
 --		postArr.callback  = "http"
@@ -201,7 +201,7 @@ function activeidfa(name)
 	if getdata ~= nil then
 		local data = json.decode(getdata)
 		log(data or "nil")
-		if tonumber(data["code"] ) == 0 and data["message"] == "" then 
+		if  data["code"] == "0" or data["code"] == 0 then 
 			log("激活成功: OK.",true)
 			back_pass(task_id,"ok")
 			return true
@@ -222,18 +222,18 @@ function callbackapi(name)
 		os_version = XXTfakerGetinfo(bid[name]["appbid"])['ProductVersion']
 		udid = XXTfakerGetinfo(bid[name]["appbid"])['UDID']
 		
-		local dtassss = up(name,bid[name]['keyword'])
-		if dtassss ~= nil then
-			callbackid = json.decode(dtassss)['data']['id']
-			if callbackid ~= nil then
+--		local dtassss = up(name,bid[name]['keyword'])
+--		if dtassss ~= nil then
+--			callbackid = json.decode(dtassss)['data']['id']
+--			if callbackid ~= nil then
 				if checkidfa(name)then
-					if clickidfa(name,true)then
-						delay(rd(5,10))
-						newidfa(name,1)
+					if newidfa(name) then
+						activeidfa(name)
+						up(name,bid[name]['keyword'].."-激活成功")
 					end
 				end
-			end
-		end
+--			end
+--		end
 	end
 end
 
@@ -247,7 +247,6 @@ function activeapi(name)
 		fakerdevice = XXTfakerGetinfo(bid[name]['appbid'])
 		if checkidfa(name)then
 			if clickidfa(name)then
-				up(name,bid[name]['keyword'].."-点击成功")
 				newidfa(name)
 				if activeidfa(name)then
 					up(name,bid[name]['keyword'].."-激活成功")
@@ -307,7 +306,7 @@ function main(v)
 			if v.json == "回调" then
 				callback_key = true
 			end
-			activeapi(work)
+			callbackapi(work)
 		end
 		vpnx()
 		delay(2)

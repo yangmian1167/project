@@ -297,11 +297,16 @@ function activeapi(name)
 					delay(rd(60,65))
 					log('准备激活')
 					葫芦兄弟(name)
+				elseif bid[work]['adid'] == '2106' then
+					delay(15)
+					openUrl('https://appstat.chinaso.com/cb/installation_track?utm_campaign=投放&utm_medium=监测&utm_source=抖音&utm_term=ios&project=default&channel_name=toutiao_track&idfa=__IDFA__&imei=__IMEI__&mac=__MAC__&os=__OS__&callback_url=__CALLBACK_URL__')
+					delay(5)
+					huayang(name)
 				elseif bid[work]['adid'] == '2770' then
-					if vkey > 15 then
+					if vkey > 60 then
 						log('准备激活')
 						newidfa(name)
-					elseif vkey <= 15 then
+					else
 						log('准备试玩')
 						newplayer(name)
 					end
@@ -314,7 +319,7 @@ function activeapi(name)
 						newplayer1(name)
 					end
 				else
-					delay(rd(25,35))
+--					delay(rd(14,16))
 					newidfa(name)
 				end
 				if activeidfa(name)then
@@ -350,7 +355,29 @@ apparr.right_agree={{
 
 function newidfa(name)
 	local TIMEline = os.time()
-	local OUTtime = rd(90,150)
+	local OUTtime = rd(18,20)
+	while os.time()- TIMEline < OUTtime do
+		if active(bid[name]['appbid'],4)then
+			if d(apparr.right,"apparr.right",true)then
+			elseif d(apparr.right_agree,"apparr.right_agree",true)then
+		else
+				click(258, 906)
+				moveTo(600,300,100,100,30,50)
+				delay(1)
+				click(321, 978)
+				delay(1)
+				click(462, 666)
+				delay(1)
+			end
+		else
+			log("启动一次")
+		end
+	end
+	return true
+end
+function huayang(name)
+	local TIMEline = os.time()
+	local OUTtime = rd(300,310)
 	while os.time()- TIMEline < OUTtime do
 		if active(bid[name]['appbid'],4)then
 			if d(apparr.right,"apparr.right",true)then
@@ -378,11 +405,12 @@ apparr.进入游戏={{{300, 912, 0xfaf4c8},{228, 895, 0x997e2d},{412, 943, 0x694
 apparr.领取奖励={{{528, 869, 0xffffff},{465, 857, 0x897631},{565, 872, 0x6e5602},}, 85, 462, 849, 576, 885}
 apparr.前往打怪={{{442, 640, 0xfcfcfa},{393, 632, 0x8f7c36},{485, 655, 0x6e5601},}, 85, 382, 626, 501, 667}
 apparr.关闭窗口={{{619, 87, 0x7c5b29},{611, 74, 0xc0ab4f},{607, 62, 0x313336},}, 85, 590, 52, 636, 103}
-apparr.实名窗口={{{589, 336, 0x515151},{590, 328, 0xffffff},{375, 325, 0xf8663d},{372, 346, 0xffffff},{275, 339, 0xf97b57},}, 85, 245, 313, 613, 355}
 apparr.选区窗口关闭={{{556, 231, 0xf6f198},{566, 250, 0x6a4e20},{555, 241, 0x0f0f0e},{554, 223, 0x2b2a2a},}, 85, 535, 214, 577, 256}
+apparr.实名窗口={{{565, 362, 0xbdbdbd},{280, 387, 0xff9c00},{133, 700, 0xff9c00},{521, 701, 0xff9c00},{142, 369, 0x373737},}, 85, 48, 317, 588, 800}
 function newplayer(name)
 	local TIMEline = os.time()
-	local OUTtime = math.random(240,280 )
+--	local OUTtime = math.random(240,280 )
+	local OUTtime = math.random(20,25 )
 	while os.time()- TIMEline < OUTtime do
 		if active(bid[name]['appbid'],4)then
 			if d(apparr.right,"apparr.right",true)then

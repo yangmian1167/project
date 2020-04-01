@@ -205,7 +205,7 @@ apparr.right={{{462,666,0x007aff},{225,666,0x007aff},}, 85, 54, 394, 590, 809}
 
 function newidfa(name)
 	local TIMEline = os.time()
-	local OUTtime = rd(35,40)
+	local OUTtime = rd(22,30)
 	while os.time()- TIMEline < OUTtime do
 		if active(bid[name]['appbid'],4)then
 			if d(apparr.right,"apparr.right",true)then

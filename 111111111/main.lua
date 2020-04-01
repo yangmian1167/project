@@ -106,10 +106,10 @@ require('xxtsp')
 
 ----创建一个vpn
 vpnlist ={
-		dispName = 'ymvpn6180',
+		dispName = 'ymvpn5',
 		VPNType = "L2TP",
 		server = 'yhtip.com',
-		authorization = 'ymvpn6180',
+		authorization = 'ymvpn5',
 		password = 'Aa112211',           -- 密码
 		secret = '1',            -- 密钥，PPTP 可不填
 		encrypLevel = 1,               -- 加密级别，选填，默认 1
@@ -141,7 +141,7 @@ creat_vpn(vpnlist)
 delay(5)
 
 -------选择一个VPN
-local success = vpnconf.select('ymvpn6180')
+local success = vpnconf.select('ymvpn5')
 if success then
     sys.alert('操作成功')
 else
@@ -176,139 +176,30 @@ end
 
 --log(app.bundles())
 
+--log(app.localized_name(app.front_bid()))
+
+
 --log(app.front_bid())
---app.uninstall('com.shyohan.carHappy')
+--app.uninstall('com.apple.calculator')
 
 --[[
 
-applist = {
-"com.xhy.blackfish.app",
-"com.rong360.victor",
-"com.ppdai.loan",
-"com.alibaba.wireless",
-"com.ymcakzj.www",
-"com.anjuke.anjuke",
-"com.msxf.ayh",
-"bainiu.zhongfa.bai",
-"live.MaoMao.show",
-"com.grassroots.grrise",
-"com.xinrenWealth",
-"com.zhangyue.zyiReader.iReaderDejian",
-"com.queen.combination.card",
-"com.ddsy.songyao",
-"com.nc.uxinusednew",
-"com.IPZERO.happybullchess",
-"com.fugu.huyu",
-"com.Taha.LightDigital",
-"com.htpz.0525",
-"com.xzpz.0531",
-"com.ganji.haoche",
-"com.EnterpriseServiceManagement.Co",
-"Com.ZongXun.YHD",
-"com.hualeniujing.iaoniu",
-"com.chinaso.search",
-"com.huiyingou.cn",
-"com.jiazhengWork.App",
-"com.gwfx.gts2",
-"pronetway.renrenjianzhi.com",
-"com.yunhou.baiyangjinrong",
-"com.jinyihuochuang.app",
-"com.jinlimianmo.asd",
-"com.kpl.phonestudent",
-"com.zhenzhen.loan",
-"com.earthwarrior.wanpao",
-"longhu.niu.qiyu",
-"com.halei.yucaiyuan",
-"com.mlpzv4.0505",
-"com.xdy.0527",
-"com.fcpz.0521",
-"com.ydcl.0601",
-"com.ml.paw",
-"com.guanm.net",
-"com.shuqu.banyan",
-"come.sanshun.zhanhonghei",
-"com.beeblio.sentence",
-"com.googshoping.raybet",
-"com.fd.enit",
-"com.WorldTime.www",
-"com.Bookshop.cn",
-"come.tonghua.mayi",
-"com.fwb.sj",
-"com.dominic.electrician",
-"com.unmatched.combinationcard",
-"com.wukang.game",
-"com.zoro.SpotGoldrx",
-"com.ProjectAssistant",
-"net.xxsy.bookreader",
-"com.touziyouxuan.app",
-"com.xbpz.0414",
-"com.mlpzv3.0426",
-"com.rycl.0523",
-"com.zhujiangqipai",
-"com.cmi.jegotrip",
-"com.xiaoganwujinjiancaishangcheng.wjjc",
-"com.myhsposdru.iwu",
-"com.yutulive.zhibo",
-"com.yuhuo.cn",
-"com.mixReality.parkingApp",
-"com.DeErFei.MengNaLXiaoiSha",
-"com.setl.gts2",
-"com.future.SupervisorNurse",
-"com.zuiniu.doudizhu",
-"com.dhfhskfhjchuju.appname",
-"com.dolphinjob.www",
-"com.gboytongzhuang.pt",
-"com.ivanwilhelm.IMC",
-"com.shoes.Jlewis",
-"md.desai.pocketBudget",
-"com.samiee.wuyedongting",
---"com.abcydia.reprovision.ios",
-"com.JSNE.ScoreBoard",
-"com.5star.myshop",
-"JR-Alan.MTProgrammerDevelopProject",
-"com.x.design.app",
-"sc.krishnagod.krishna",
-"com.ef.efhello",
-"com.igkuwd.yydly",
-"com.baogao.zhenniuljh",
-"com.jxsz.iehz",
-"com.iqiyi.qule.knxx",
-"com.light.yuning",
-"com.aihayou.wolf",
-"com.lsywz.sgz",
-"com.wudi.cunzai",
-"fengbao.luandou",
-"bp.lbyjz.pi",
-"com.holdliang.war",
-"jtxqhThowood",
-"com.aiwan.newworld",
-"com.robain.shopping",
-"com.jiucang.huaqianba",
-"com.yuntong.SubstituteDriving",
-"com.app.jixianggou",
-"com.block.mdyj",
-"com.didaocai.cai",
-
-
-
-
-
-
-
-	}
+applist = app.bundles()
 
 
  key = 1
 for k = 1,#applist do
-	if app.localized_name(applist[key]) == nil then
-		log('搜索需要删除的app....',true)
+	if app.localized_name(applist[key]) == 'X.X.T.' or app.localized_name(applist[key]) == 'Cydia' or app.localized_name(applist[key]) =='Electra' then
+		sys.toast('主要文件跳过')
+		log('主要文件跳过')
 		key = key +1
 	elseif app.localized_name(applist[key]) then
 		log('正在删除'..app.localized_name(applist[key]),true)
 		if app.uninstall(applist[key]) then
 			delay(10)
-			key = key + 1
+			
 		end
+		key = key + 1
 	end
 	delay(1)
 end	

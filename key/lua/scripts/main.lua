@@ -259,9 +259,22 @@ creat_vpn(vpnlist)
 --[[
 applist = {
 
-{"精算师",20              },
-{"irr",50              },
-{"利率计算",100          },
+{"上门电脑维修",70},
+{"电脑维修上门",70},
+{"维修电脑",70},
+{"上门修电脑",70},
+{"电脑上门维修",70},
+{"维修上门",70},
+{"电脑维修店",70},
+{"生活维修",70},
+{"电脑修复",70},
+{"电脑维护",70},
+{"家政维修",70},
+{"维修家电",70},
+{"修电脑",100},
+{"电脑系统",100},
+{"上门维修",100},
+{"电脑配件",100},
 
 
 
@@ -526,7 +539,7 @@ end
 
 
 
---[[]]
+--[[
 for i = 1,350 do
 	date = '2020-02-03'
 	h = math.random(18,21)
@@ -543,14 +556,15 @@ end
 
 --]]
 
+--app.open_url('https://betaprofiles.com/')
+
+--saf = 'com.apple.mobilesafari'
+--app.run(saf)
 
 
 
-
-
-
-
-
+--app.open_url('https://betaprofiles.com/')
+app.open_url('https://www.sdbao.com/lab/u/18e9ed472ffc02a1?subchannel=zjlzx62&ysadId=2246')
 
 
 

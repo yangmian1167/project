@@ -94,33 +94,50 @@ end
 --[[一键新机]]
 function XXTfakerNewPhone(bid)
 	app.close(bid)
-	sys.msleep(500)
+	sys.msleep(200)
 	clear.all_keychain()
 	clear.pasteboard()
 	clear.app_data(bid)
 	clear.idfav()
 	XXTFaker.filter_app({bid})
-	log('..一键新机..',true)
+	log('一键新机中',true)
 	phoneList = { 
 					"iPhone9,1",
 					"iPhone9,3",
+					"iPhone9,3",
+					"iPhone9,3",
+					"iPhone9,2",
 					"iPhone9,2",
 					"iPhone9,4",
 					"iPhone10,1",
+					"iPhone10,1",
+					"iPhone10,2",
 					"iPhone10,2",
 					"iPhone10,3",
+					"iPhone10,4",
+					"iPhone10,4",
 					"iPhone10,4",
 					"iPhone10,5",
 					"iPhone10,5",
 					"iPhone10,6",
-					"iPhone11,2",
-					"iPhone11,4",
-					"iPhone11,8",
---					"iPhone12,1",
---					"iPhone12,3",
---					"iPhone12,5",
+					"iPhone10,6",
+					"iPhone10,6",
+					"iPhone10,6",
 				}
+	ProductVersion = {
+--						'11.01',
+						'11.4',
+						'12.0.1',
+						'12.1.2',
+						'12.1.3',
+						'12.1.4',
+						'12.2',
+						"12.3",
+						"12.3.1",
+	}
 	
+	
+
 	cfg = XXTFaker.random_config()
 	local zmRan = {"0","1","2","3","4","5","6","7","8","9","A","B","C","D","E","F"}
 	function p_idfa(n)
@@ -149,24 +166,29 @@ function XXTfakerNewPhone(bid)
 	cfg["ProductType"] = phoneList[rd(1,#phoneList)]
 	idfa = p_idfa(1)
 	cfg["IDFA"] = idfa
-	cfg["ProductVersion"] = osList[rd(1,#osList)]
+	cfg["ProductVersion"] = ProductVersion[rd(1,#ProductVersion)]
 	
-	log('..一键新机完成..',true)
 	return XXTFaker.set_config(
 				{bid},
 				cfg
 			)
+	
+	
+	
+--	return XXTFaker.set_random_config(
+--			bid
+--		)
 end
 
 --------xxt的函数
 --log('--faker--')
+
 if not(xxtinstall())then
---	log("伪装失效")
+	log("伪装失效")
 	os.exit()
 else
 	XXTFaker = require("XXTFaker")()
 end
-
 
 
 
