@@ -62,9 +62,9 @@ end
 --来信平台
 function _vCode_lx() --来信
 
-		User = 'api-18190-rKpL6bd'
-		Pass = '135246'
-	local PID = '14112'
+	local User = 'api-32182-rLPZxzn'
+	local Pass = 'yangmian121'
+	local PID = '990'
     local token,number = "a5c85b2e94093b9885a885a8c89451e36710242c",""
     return {
 	    login=(function() 
@@ -144,7 +144,8 @@ function _vCode_lx() --来信
         end),
     }
 end
-
+dxcode = _vCode_lx()
+--dxcode.login()
 --致敬平台
 function _vCode_zj() --致敬
 
@@ -232,8 +233,7 @@ end
 
 var = {}
 --var.appbid = "com.wondertek.hecmccmobile";
-var.appbid = "cn.miao";
-
+var.appbid = "com.plateno.btota";
 
 
 function inputword(v)
@@ -244,85 +244,8 @@ end
 
 
 
-tips_开始体验={{{324, 934, 0xfef5f8},{225, 915, 0xe11e4e},{424, 944, 0xe63491},}, 85, 169, 877, 467, 980}
-tips_我知道了={{{357, 835, 0xffffff},{192, 828, 0x33b3fe},{461, 859, 0x2aadff},}, 85, 137, 802, 496, 886}
-tips_更换号码={{{172, 648, 0x007aff},{231, 645, 0x007aff},{433, 637, 0x007aff},{514, 640, 0x007aff},}, 85, 97, 614, 531, 668}
-点击登录注册={{{217, 189, 0x000000},{103, 183, 0xcacaca},{ 51, 215, 0xa4a4a4},{ 90, 215, 0x919191},}, 85, 17, 141, 319, 246}
-点击注册={{{572,  88, 0x31363e},{196, 700, 0x3778ff},{484, 690, 0x3778ff},{313, 267, 0x0092dc},{289, 250, 0xc90317},}, 85, 0, 0, 0, 0}
-同意并继续={{{438, 857, 0x3778ff},{229, 810, 0x3778ff},{223, 878, 0xffffff},{443, 787, 0xffffff},}, 85, 131, 770, 510, 891}
 
---注册界面={{{292, 70, 0xd7d8d9},{291, 96, 0x909397},{345, 71, 0xa5a7aa},{343, 97, 0x95989c},}, 85, 131, 770, 510, 891}
-注册界面={{{291, 71, 0xd4d6d7},{291, 96, 0x909397},{345, 71, 0xa5a7aa},{344, 97, 0xd8d9da},}, 85, 282, 56, 354, 110}
-注册界面_手机号界面={{{220, 216, 0xa9abaf},{216, 241, 0xd4d5d6},{419, 217, 0xb4b6b9},{417, 246, 0x5b5f65},}, 85, 200, 198, 435, 255 }
-注册界面_手机号界面_下一步={{{319, 567, 0xffffff},{288, 563, 0xffffff},{190, 544, 0x3778ff},{537, 592, 0x3778ff},}, 95, 41, 507, 609, 633}
-注册界面_设置密码界面={{{220, 213, 0xd2d3d5},{221, 243, 0xccced0},{418, 243, 0xb7b9bb},{419, 227, 0xb6b8bb},{419, 214, 0xb4b6b9},}, 85, 198, 195, 435, 258}
-注册界面_设置密码界面_注册按钮={{{333, 587, 0xffffff},{309, 599, 0xffffff},{ 88, 561, 0x3778ff},{528, 619, 0x3778ff},{527, 537, 0xfdfdfd},}, 85, 19, 531, 615, 634}
 
-注册成功界面={{{ 94, 200, 0x2d3f55},{ 52, 200, 0x325381},{ 76, 178, 0xffffff},{ 47, 167, 0x62affa},{102, 167, 0x62affa},}, 85, 27, 133, 126, 241}
-function reg()
-	local TIMEline = os.time()
-	local OUTtime = 4*60
-	local 手机号 = true
-	local 短信 = false
-	local 提交 = false
-	var.password  = myRand(4,8,2)
-	while os.time()- TIMEline < OUTtime do
-		if active(var.appbid,4)then
-			if d(tips_开始体验,"tips_开始体验",true) then
-			elseif d(tips_我知道了,"tips_我知道了",true) then
-			elseif d(tips_更换号码,"tips_更换号码",true) then
-				delay(3)
-				click(579, 445)
-				手机号 = true
-			elseif d(点击登录注册,"点击登录注册",true) then
-			elseif d(点击注册,"点击注册",true) then
-			elseif d(同意并继续,"同意并继续",true) then
-			elseif d(注册界面,"注册界面") then
-				if d(注册界面_设置密码界面,"注册界面_设置密码界面") then
-					if d(注册界面_设置密码界面_注册按钮,"注册界面_设置密码界面_注册按钮",true) then
-					else
-						click(82, 498)
-						input(var.password)
-					end	
-				elseif d(注册界面_手机号界面,"注册界面_手机号界面") then
-					if d(注册界面_手机号界面_下一步,"注册界面_手机号界面_下一步",true) then
-					elseif 手机号 then
-						var.phone = dxcode.getPhone()
-						if var.phone then
-							if #var.phone == 11 then
-								click(88, 453)
-								inputword(var.phone)
-								手机号 = false
-								短信 = true
-							end
-						end
-					end
-				elseif 短信 then	
-						var.sms = dxcode.getMessage()
-						if #var.sms == 6 then
-							inputword(var.sms)
-							up('咪咕视频','点击注册')
-							短信 = false
-							提交 = true
-						end	
-				end	
-			elseif 提交 then
-				if d(注册成功界面,'注册成功界面') then
-					up('咪咕视频','注册成功')
-					return true
-				end						
-					
-			else
-				click(578, 1123)
-			end
-
-		end
-		delay(1)	
-	end
-
-end
-dxcode = _vCode_lx()
-dxcode.login()
 tips = {}
 tips_我知道了 = {{{208, 999, 0x987de6},{457, 989, 0x987de6},{120, 455, 0xa0c3fd},{125, 288, 0x918ef0},}, 85, 31, 100, 575, 1065}
 登录界面 = {{{ 86, 154, 0xc9c9c9},{ 86, 155, 0x323232},{ 89, 186, 0xbfbfbf},{273, 154, 0xc4c4c4},{280, 167, 0x9d9d9d},{263, 188, 0x909090},}, 85, 73, 129, 293, 200}
@@ -331,7 +254,7 @@ tips_我知道了 = {{{208, 999, 0x987de6},{457, 989, 0x987de6},{120, 455, 0xa0c
 登录界面_键盘完成 = {{{572, 655, 0x007aff},{574, 666, 0x007aff},{609, 656, 0x007aff},}, 85, 548, 635, 628, 681}
 登录界面_同意条款 = {{{113, 764, 0xffffff},{106, 766, 0xfefefe},{121, 759, 0x9d9d9d},{106, 773, 0x9e9e9e},}, 85, 100, 748, 129, 781}
 登录界面_登录按钮 = {{{298, 670, 0xffffff},{157, 662, 0x987de6},{534, 708, 0x987de6},{346, 682, 0xffffff},{494, 669, 0x987de6},}, 85, 71, 633, 552, 728}
-function reg1()
+function reg()
 	local TIMEline = os.time()
 	local OUTtime = 3*60
 	local 手机号 = true
@@ -429,7 +352,7 @@ function 填资料()
 	end
 end
 
-填资料()
+
 
 
 function main()

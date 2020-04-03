@@ -139,7 +139,7 @@ end
 
 
 function up(name,other)
-	local url = 'http://wenfree.cn/api/Public/idfa/?service=idfa.idfa'
+	local url = 'http://hb.wenfree.cn/api/Public/idfa/?service=idfa.idfa'
 	local idfalist ={}
 	idfalist.phonename = phonename or device.name()
 	idfalist.phoneimei = phoneimei or sys.mgcopyanswer("SerialNumber")
