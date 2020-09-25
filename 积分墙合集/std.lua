@@ -151,9 +151,7 @@ function clickidfa(name)
 	postArr.keyword = bid[name]['keyword']
 	postArr.udid = udid
 	if callback_key then
---		postArr.callback  = (e:escape("http://wenfree.cn/api/Public/idfa/?service=Idfa.Callbackname&idfa="..idfa.."&name="..name))
-		postArr.callback  = "http://wenfree.cn/api/Public/idfa/?service=Idfa.Callbackname&idfa="..idfa.."&name="..e:escape(name)
---		postArr.callback  = "http"
+		postArr.callback  = e:escape("http://wenfree.cn/api/Public/idfa/?service=Idfa.Callbackname&idfa="..idfa.."&name="..name)
 	end
 	
 	local post_data = ''
@@ -211,8 +209,8 @@ function activeidfa(name)
 	postArr.keyword = bid[name]['keyword']
 	postArr.udid = udid
 	if callback_key then
---		postArr.callback  = (e:escape("http://wenfree.cn/api/Public/idfa/?service=Idfa.Callbackname&idfa="..idfa.."&name="..name))
-		postArr.callback  = "http://wenfree.cn/api/Public/idfa/?service=Idfa.Callbackname&idfa="..idfa.."&name="..e:escape(name)
+		postArr.callback  = e:escape("http://wenfree.cn/api/Public/idfa/?service=Idfa.Callbackname&idfa="..idfa.."&name="..name)
+--		postArr.callback  = "http://wenfree.cn/api/Public/idfa/?service=Idfa.Callbackname&idfa="..idfa.."&name="..e:escape(name)
 --		postArr.callback  = "http"
 	end
 
@@ -319,7 +317,7 @@ function activeapi(name)
 						newplayer1(name)
 					end
 				else
---					delay(rd(14,16))
+--					delay(rd(30,33))
 					newidfa(name)
 				end
 				if activeidfa(name)then
@@ -355,7 +353,7 @@ apparr.right_agree={{
 
 function newidfa(name)
 	local TIMEline = os.time()
-	local OUTtime = rd(18,20)
+	local OUTtime = rd(40,45)
 	while os.time()- TIMEline < OUTtime do
 		if active(bid[name]['appbid'],4)then
 			if d(apparr.right,"apparr.right",true)then
@@ -375,6 +373,7 @@ function newidfa(name)
 	end
 	return true
 end
+
 function huayang(name)
 	local TIMEline = os.time()
 	local OUTtime = rd(300,310)

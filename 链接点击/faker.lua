@@ -102,11 +102,11 @@ function XXTfakerNewPhone(bid)
 	XXTFaker.filter_app({bid})
 	log('一键新机中',true)
 	phoneList = { 
-					"iPhone7,2",
-					"iPhone7,1",
-					"iPhone8,1",
-					"iPhone8,2",
-					"iPhone8,4",
+--					"iPhone7,2",
+--					"iPhone7,1",
+--					"iPhone8,1",
+--					"iPhone8,2",
+--					"iPhone8,4",
 					"iPhone9,1",
 					"iPhone9,3",
 					"iPhone9,2",
@@ -114,6 +114,7 @@ function XXTfakerNewPhone(bid)
 					"iPhone10,4",
 					"iPhone10,2",
 					"iPhone10,5",
+					
 				}
 	ProductVersion = {
 						'11.4',

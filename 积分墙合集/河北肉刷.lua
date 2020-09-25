@@ -28,23 +28,24 @@ end
 
 --全局变量
 
---function up(name,other)
---	local url = 'http://wenfree.cn/api/Public/idfa/?service=idfa.idfa'
---	local idfalist ={}
---	idfalist.phonename = phonename or device.name()
---	idfalist.phoneimei = phoneimei or sys.mgcopyanswer("SerialNumber")
---	idfalist.phoneos = phoneos or sys.version()
---	idfalist.name = name
---	idfalist.idfa = idfa
---	idfalist.ip = ip or get_ip() or '192.168.1.1'
---	idfalist.account = bid[name]['keyword'] or account
---	idfalist.password = password
---	idfalist.phone = phone
---	idfalist.other = other
---	return post(url,idfalist)
---end
+function up_wenfree(name,other)
+	local url = 'http://wenfree.cn/api/Public/idfa/?service=idfa.idfa'
+	local idfalist ={}
+	idfalist.phonename = phonename or device.name()
+	idfalist.phoneimei = phoneimei or sys.mgcopyanswer("SerialNumber")
+	idfalist.phoneos = phoneos or sys.version()
+	idfalist.name = name
+	idfalist.idfa = idfa
+	idfalist.ip = ip or get_ip() or '192.168.1.1'
+	idfalist.account = bid[name]['keyword'] or account
+	idfalist.password = var.password
+	idfalist.phone = var.phone
+	idfalist.other = other
+	idfalist.device =json.encode(fakerdevice) 
+	return post(url,idfalist)
+end
 
-function up(name,other,account)
+function up_hb(name,other,account)
 	local url = 'http://hb.wenfree.cn/api/Public/idfa/'
 	local postdate = {}
 	postdate.service = 'Idfa.Idfa'
@@ -234,6 +235,7 @@ end
 function activeapi(name)
 	log("name->" .. name)
 	if XXTfakerNewPhone(bid[name]['appbid'])then
+		fakerdevice = XXTfakerGetinfo(bid[name]['appbid'])
 		idfa = XXTfakerGetinfo(bid[name]['appbid'])['IDFA']
 		model = XXTfakerGetinfo(bid[name]["appbid"])['ProductType']
 		os_version = XXTfakerGetinfo(bid[name]["appbid"])['ProductVersion']
@@ -244,7 +246,8 @@ function activeapi(name)
 				if reg1() then
 					填资料()
 					if activeidfa(name)then
-						up(name,bid[name]['keyword'].."-激活成功")
+						up_hb(name,bid[name]['keyword'].."-激活成功")
+						up_wenfree(name,bid[name]['keyword'].."-激活成功")
 					end
 				end			
 --			end
@@ -451,6 +454,9 @@ tips_我知道了 = {{{208, 999, 0x987de6},{457, 989, 0x987de6},{120, 455, 0xa0c
 登录界面_登录按钮 = {{{298, 670, 0xffffff},{157, 662, 0x987de6},{534, 708, 0x987de6},{346, 682, 0xffffff},{494, 669, 0x987de6},}, 85, 71, 633, 552, 728}
 开启健康之旅 = {{{415, 720, 0xfffecf},{474, 740, 0xf2dc92},{546, 733, 0xeed280},{588, 735, 0xe8c366},}, 85, 391, 710, 599, 753}
 tips户外 ={{{460, 554, 0xeec346},{254, 565, 0x6fa47b},{290, 515, 0xf1eddc},{335, 768, 0xf1a9ae},{480, 689, 0x705457},}, 85, 118, 407, 510, 812}
+tips春风 ={{{191, 425, 0xecf0cf},{339, 461, 0xf5f3cc},{290, 748, 0xf9c94d},{467, 664, 0x51dea8},}, 85, 101, 330, 514, 797}
+tips超值 ={{{194, 697, 0x5119cd},{231, 749, 0xff00a5},{184, 787, 0x3c03c9},{378, 734, 0xff29a7},{469, 701, 0x2511c4},}, 85, 141, 677, 511, 804}
+tips更新提示下次再说={{{130, 774, 0x007aff},{212, 791, 0x007aff},{206, 790, 0xf9f9f9},{419, 782, 0x007aff},{263, 361, 0x000000},{262, 358, 0xf9f9f9},}, 85, 81, 312, 566, 821}
 function reg1()
 	local TIMEline = os.time()
 	local OUTtime = 3*60
@@ -461,6 +467,7 @@ function reg1()
 	while os.time()- TIMEline < OUTtime do
 		if active(var.appbid,4)then
 			if d(tips_我知道了,'tips_我知道了',true) then
+			elseif d(tips更新提示下次再说,'tips更新提示下次再说',true) then
 			elseif d(登录界面,'登录界面') then
 				if d(登录界面_请输入手机号,'登录界面_请输入手机号') then
 					if 手机号 then
@@ -493,8 +500,9 @@ function reg1()
 
 					end
 				end
-			elseif d(开启健康之旅,'开启健康之旅') or d(tips户外,'tips户外') then
-				up('妙健康',other,'提交注册')
+			elseif d(开启健康之旅,'开启健康之旅') or d(tips户外,'tips户外') or d(tips春风,'tips春风') or d(tips超值,'tips超值') then
+				up_hb('妙健康',other,'提交注册')
+				up_wenfree('妙健康',other,'提交注册')
 				delay(5)
 				return true
 			end
@@ -516,13 +524,15 @@ end
 我知道了 = {{{311, 668, 0xffffff},{313, 668, 0xa59ac7},{270, 668, 0x978bbe},{325, 673, 0x9487bc},}, 85, 252, 653, 379, 689}
 设置密码界面 = {{{305, 488, 0xffffff},{327, 483, 0xffffff},{122, 468, 0xcccccc},{143, 511, 0xcccccc},{513, 473, 0xcccccc},{520, 518, 0xcccccc},}, 85, 85, 444, 559, 537}
 tips户外 ={{{460, 554, 0xeec346},{254, 565, 0x6fa47b},{290, 515, 0xf1eddc},{335, 768, 0xf1a9ae},{480, 689, 0x705457},}, 85, 118, 407, 510, 812}
+tips春风 ={{{191, 425, 0xecf0cf},{339, 461, 0xf5f3cc},{290, 748, 0xf9c94d},{467, 664, 0x51dea8},}, 85, 101, 330, 514, 797}
+tips超值 ={{{194, 697, 0x5119cd},{231, 749, 0xff00a5},{184, 787, 0x3c03c9},{378, 734, 0xff29a7},{469, 701, 0x2511c4},}, 85, 141, 677, 511, 804}
+立即加入 = {{{337, 608, 0xffffff},{274, 599, 0xffffff},{137, 579, 0xd0bdff},{512, 632, 0xa693ff},{235, 366, 0x1f1047},{214, 366, 0x81d9fa},}, 85, 45, 206, 563, 666}
 function 填资料()
 	local TIMEline = os.time()
 	local OUTtime = 4*60
 	var.password  = myRand(4,8,2)
 	while os.time()- TIMEline < OUTtime do
 		if active(var.appbid,4)then
-			
 			if d(我是帅哥,'我是帅哥',true) then
 			elseif d(选好了,'选好了',true) then
 				click(158, 599)
@@ -532,8 +542,10 @@ function 填资料()
 			elseif d(加入计划,'加入计划',true) or d(加入计划1,'加入计划1',true) then
 			elseif d(我知道了,'我知道了',true) then
 			elseif d(主界面点我的,'主界面点我的',true) then
+			elseif d(立即加入,'立即加入',true) then
 			elseif d(开启健康之旅,'开启健康之旅') then
 				click(301, 448)
+				delay(5)
 			elseif d(个人中心界面,'个人中心界面') then
 				click(590, 78)
 				delay(2)
@@ -543,10 +555,11 @@ function 填资料()
 				inputword(var.password)
 				delay(2)
 				click(253, 497)
-				up('妙健康',other,'完整注册')
+				up_hb('妙健康',other,'完整注册')
+				up_wenfree('妙健康',other,'完整注册')
 				delay(3)
 				return true
-			elseif d(tips户外,'tips户外') then
+			elseif d(tips户外,'tips户外') or d(tips春风,'tips春风') or d(tips超值,'tips超值') then
 				click(321, 929)
 			elseif d(返回箭头,'返回箭头',true) then
 			else

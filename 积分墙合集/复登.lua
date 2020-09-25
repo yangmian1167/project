@@ -250,6 +250,53 @@ function back(bids,times)
 	log("关闭VPN-------->>>>>>>")
 	return true
 end
+tips = {}
+tips_我知道了 = {{{208, 999, 0x987de6},{457, 989, 0x987de6},{120, 455, 0xa0c3fd},{125, 288, 0x918ef0},}, 85, 31, 100, 575, 1065}
+登录界面 = {{{ 86, 154, 0xc9c9c9},{ 86, 155, 0x323232},{ 89, 186, 0xbfbfbf},{273, 154, 0xc4c4c4},{280, 167, 0x9d9d9d},{263, 188, 0x909090},}, 85, 73, 129, 293, 200}
+登录界面_请输入手机号 = {{{ 90, 335, 0xe2e2e5},{ 88, 311, 0xf1f1f2},{153, 310, 0xefeff1},{255, 311, 0xececee},{252, 336, 0xe5e5e8},}, 85, 79, 301, 268, 343}
+登录界面_获取验证码 = {{{498, 451, 0x535353},{448, 444, 0xcfcfcf},{450, 461, 0xc0c0c0},{556, 443, 0xdedede},{556, 462, 0xc2c2c2},}, 85, 442, 437, 566, 469}
+登录界面_键盘完成 = {{{572, 655, 0x007aff},{574, 666, 0x007aff},{609, 656, 0x007aff},}, 85, 548, 635, 628, 681}
+登录界面_同意条款 = {{{113, 764, 0xffffff},{106, 766, 0xfefefe},{121, 759, 0x9d9d9d},{106, 773, 0x9e9e9e},}, 85, 100, 748, 129, 781}
+登录界面_登录按钮 = {{{298, 670, 0xffffff},{157, 662, 0x987de6},{534, 708, 0x987de6},{346, 682, 0xffffff},{494, 669, 0x987de6},}, 85, 71, 633, 552, 728}
+登录界面_密码登录 = {{{448, 162, 0x9b9b9b},{448, 169, 0x9b9b9b},{445, 179, 0x9b9b9b},{232, 175, 0x000000},{213, 173, 0x000000},}, 85, 189, 129, 471, 208}
+开启健康之旅 = {{{415, 720, 0xfffecf},{474, 740, 0xf2dc92},{546, 733, 0xeed280},{588, 735, 0xe8c366},}, 85, 391, 710, 599, 753}
+tips户外 ={{{460, 554, 0xeec346},{254, 565, 0x6fa47b},{290, 515, 0xf1eddc},{335, 768, 0xf1a9ae},{480, 689, 0x705457},}, 85, 118, 407, 510, 812}
+function back_妙健康(bids,times)
+	local 提交 = false
+	if false or vpn()then
+		delay(3)
+		if XXTfakerBackPhone(bids,devices)then
+			local TIMEline = os.time()
+			local OUTtime = rd(40,45)
+			while os.time()- TIMEline < OUTtime do
+				if active(bids,4)then
+					if d(tips_我知道了,'tips_我知道了',true) then
+					elseif 提交 then
+							if d(登录界面_键盘完成,'登录界面_键盘完成',true) then
+							elseif d(登录界面_同意条款,'登录界面_同意条款',true) then
+							elseif d(登录界面_登录按钮,'登录界面_登录按钮',true) then
+							end
+					elseif d(登录界面,'登录界面') then
+						if d(登录界面_密码登录,'登录界面_密码登录',true) then
+							click(101, 323)
+							input(phones)
+							delay(1)
+							click(98, 465)
+							input(passwords)
+							提交 = true
+						end
+					end	
+				end	
+				delay(1)
+			end
+		end
+	end
+	vpnx()
+	delay(3)
+	log("关闭VPN-------->>>>>>>")
+	return true
+end
+
 
 
 
@@ -292,6 +339,8 @@ function main(v)
 	log(data)
 	if data.data ~= "暂无帐号" then
 		devices = json.decode(data.data.device)
+		phones = data.data.phone
+		passwords = data.data.password
 	else
 		dialog("核对日期",10)
 		return 
@@ -299,7 +348,7 @@ function main(v)
 	ids = data.data.id
 	log(v)
 	if devices ~= nil then
-		if back(appbid) then
+		if back_妙健康(appbid) then
 			backid(ids)
 			back_pass(task_id,"ok")
 		end	

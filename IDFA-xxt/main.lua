@@ -9,34 +9,34 @@ else
 	XXTFaker = require("XXTFaker")()
 end
 
-function atexit(callback) -- 参数为一个函数，使用 atexit(一个函数) 注册一个函数在脚本结束时执行，建议不要耗时太长
-	____atexit_guard____ = ____atexit_guard____ or {}
-	if type(____atexit_guard____) == 'table' then
-		if not getmetatable(____atexit_guard____) then
-			setmetatable(____atexit_guard____, {
-					__gc = function(self)
-						if type(self.callback) == 'function' then
-							pcall(self.callback)
-						end
-					end
-				})
-		end
-		____atexit_guard____.callback = callback
-	else
-		error('别用 `____atexit_guard____` 命名你的变量。')
-	end
-end
+--function atexit(callback) -- 参数为一个函数，使用 atexit(一个函数) 注册一个函数在脚本结束时执行，建议不要耗时太长
+--	____atexit_guard____ = ____atexit_guard____ or {}
+--	if type(____atexit_guard____) == 'table' then
+--		if not getmetatable(____atexit_guard____) then
+--			setmetatable(____atexit_guard____, {
+--					__gc = function(self)
+--						if type(self.callback) == 'function' then
+--							pcall(self.callback)
+--						end
+--					end
+--				})
+--		end
+--		____atexit_guard____.callback = callback
+--	else
+--		error('别用 `____atexit_guard____` 命名你的变量。')
+--	end
+--end
 
-atexit(function() 
-		sys.toast('脚本结束了！')
-		vpnx()
-		local appbids = app.front_bid()
-		if appbids ~= "com.apple.springboard" then
-			app.quit(appbids)
-			--closeX(appbids)
-		end
-		sys.msleep(500)
-	end)
+--atexit(function() 
+--		sys.toast('脚本结束了！')
+--		vpnx()
+--		local appbids = app.front_bid()
+--		if appbids ~= "com.apple.springboard" then
+--			app.quit(appbids)
+--			--closeX(appbids)
+--		end
+--		sys.msleep(500)
+--	end)
 
 bid={}
 --require('bid')
@@ -104,7 +104,9 @@ apparr={}
 apparr.right={{{462,666,0x007aff},{225,666,0x007aff},}, 85, 54, 394, 590, 809}
 
 function newidfa(bids,times)
-	if true or vpn()then
+	vpnx()
+	delay(3)
+	if false or vpn()then
 	for i= 1,times do
 		if XXTfakerNewPhone(bids)then
 			idfa = XXTfakerGetinfo(bids)['IDFA']
@@ -128,7 +130,6 @@ function newidfa(bids,times)
 		end
 	end
 	end
-	vpnx()
 end
 
 
@@ -158,6 +159,7 @@ bid.华山论贱HD = "com.sslj.ios"
 bid.触触交友 = "com.chuchujiaoyou"
 bid.GuabiLife = "com.yu.guabi"
 bid.爱卡之家 = "com.ymcakzj.www"
+bid.上海松江 = "com.xinhuamm.d0537"
 --------------------------------------------------------在后面都加上 该app的 ID---------------------
 --newidfa(bid.玫瑰日记 ,300/8)		--A1组
 --newidfa(bid.佛滔命理大师,500/10)		--A组
@@ -185,7 +187,8 @@ bid.爱卡之家 = "com.ymcakzj.www"
 --newidfa(bid.触触交友,1050/7)		------B组
 --newidfa(bid.斗鱼直播,15000/40)		------all组
 --newidfa(bid.华山论贱HD,102/1)		------ah组
-newidfa(bid.爱卡之家,530/2)		------ah组
+--newidfa(bid.爱卡之家,530/2)		------ah组
+newidfa(bid.上海松江,530/2)		------ah组
 
 
 

@@ -102,14 +102,14 @@ require('xxtsp')
 
 
 
---[[]]
+--[[
 
 ----创建一个vpn
 vpnlist ={
-		dispName = 'hbrsvpn2',
+		dispName = 'ymvpn22',
 		VPNType = "L2TP",
 		server = 'yhtip.com',
-		authorization = 'hbrsvpn2',
+		authorization = 'ymvpn22',
 		password = 'Aa112211',           -- 密码
 		secret = '1',            -- 密钥，PPTP 可不填
 		encrypLevel = 1,               -- 加密级别，选填，默认 1
@@ -141,7 +141,7 @@ creat_vpn(vpnlist)
 delay(5)
 
 -------选择一个VPN
-local success = vpnconf.select('hbrsvpn2')
+local success = vpnconf.select('ymvpn22')
 if success then
     sys.alert('操作成功')
 else
@@ -233,16 +233,15 @@ end
 --]]
 
 
+app.quit(app.front_bid())
 
 
 
-
-
-
-
-
-
-
+active('com.apple.AppStore')
+delay(10)
+click(232, 311)
+input('风暴魔域2')
+click(543, 1104)
 
 
 

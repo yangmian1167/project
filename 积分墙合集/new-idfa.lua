@@ -217,7 +217,8 @@ function activeapi(name)
 		model = XXTfakerGetinfo(bid[name]["appbid"])['ProductType']
 		os_version = XXTfakerGetinfo(bid[name]["appbid"])['ProductVersion']
 		udid = XXTfakerGetinfo(bid[name]["appbid"])['UDID']
-
+		log(model)
+		log(os_version)
 --		if checkidfa(name)then
 --			if clickidfa(name)then
 --				delay(rd(20,30))

@@ -123,11 +123,34 @@ function XXTfakerNewPhone(bid)
 						'12.1.4',
 						'12.2',
 	}
-	
-	
-
 	cfg = XXTFaker.random_config()
+	local zmRan = {"0","1","2","3","4","5","6","7","8","9","A","B","C","D","E","F"}
+	function p_idfa(n)
+		function idfa()
+			function zm(n)
+				local zm_ = ""
+				zm_ = zmRan[math.random(1,#zmRan)]
+				if n == 1 then
+					return zm_
+				else
+					return zm_ .. zm(n-1)
+				end
+			end
+			return zm(8).."-"..zm(4).."-4"..zm(3).."-"..zm(4).."-"..zm(12)
+		end
+		--实际需求量
+		if n == 1 then
+--			print(idfa())
+			return idfa()
+		else
+			for i=1,n do
+--				print(idfa())
+			end
+		end
+	end
 	cfg["ProductType"] = phoneList[rd(1,#phoneList)]
+	idfa = p_idfa(1)
+	cfg["IDFA"] = idfa
 	cfg["ProductVersion"] = ProductVersion[rd(1,#ProductVersion)]
 	
 	return XXTFaker.set_config(

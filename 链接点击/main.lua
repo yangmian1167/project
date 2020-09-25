@@ -27,29 +27,30 @@ function atexit(callback) -- 参数为一个函数，使用 atexit(一个函数)
 	end
 end
 
-atexit(function() 
-		sys.toast('脚本结束了！')
-		vpnx()
-		local appbids = app.front_bid()
-		if appbids ~= "com.apple.springboard" then
-			app.quit(appbids)
-			--closeX(appbids)
-		end
+--atexit(function() 
+--		sys.toast('脚本结束了！')
+--		vpnx()
+--		local appbids = app.front_bid()
+--		if appbids ~= "com.apple.springboard" then
+--			app.quit(appbids)
+--			--closeX(appbids)
+--		end
 		
-		sys.msleep(500)
-	end)
+--		sys.msleep(500)
+--	end)
 
-url = 'https://www.meipian6.cn/27x2ecx7?first_share_uid=42423361&share_depth=11&share_source=timeline&share_user_mpuuid=05f5f60e244898b3df545570b1e83008&sharer_id=ojq1tt3oclQRmmay77Ic0eE6anSA&user_id=ohbsluNMqwyLce_4NlgT5Vk79pgc&v=5.0.0'
+url = 'https://share-m.kakamobi.com/activity.kakamobi.com/jiakaobaodian-jiaoliantuiguang/down.html?jxpid=v3_59260679&cityCode=&proxyName=%25E6%259D%25A8%25E5%25BA%25B7&jxrid=59260679'
 safari = 'com.apple.mobilesafari'
 
 --appbid = 'com.owohonline.owohapp'
-
+appbid = app.front_bid()
+log(appbid)
 
 
 --XXTfakerNewPhone(appbid)
 
 
-
+--[[]]
 function main()
 	vpnx()
 	delay(3)
@@ -74,8 +75,18 @@ end
 while true do
 	main()
 end
-
+--]]
 --openUrl(url)
+
+
+
+
+
+
+
+
+
+
 
 
 

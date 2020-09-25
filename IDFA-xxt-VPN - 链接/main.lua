@@ -39,14 +39,15 @@ atexit(function()
 	end)
 
 bid={}
-bid.大码微拍 = "com.xmfg.dmwp"
-bid.开天斩龙 = "com.kai.tian.ktzl"
-bid.赚钱啦 = "sz.parttimejob"
-bid.四方坦克大战 = "com.sfgame.sftkdz"
-bid.融360 = "com.rong360.victor"
-bid.全日空海淘 = "acd.mall.apps.20170619"
-bid.无忧行 = "com.cmi.jegotrip"
-bid.独角秀 = "com.mydeershow.www"
+--bid.大码微拍 = "com.xmfg.dmwp"
+--bid.开天斩龙 = "com.kai.tian.ktzl"
+--bid.赚钱啦 = "sz.parttimejob"
+--bid.四方坦克大战 = "com.sfgame.sftkdz"
+--bid.融360 = "com.rong360.victor"
+--bid.全日空海淘 = "acd.mall.apps.20170619"
+--bid.无忧行 = "com.cmi.jegotrip"
+--bid.独角秀 = "com.mydeershow.www"
+bid.驾考宝典 = "cn.mucang.ios.jiakaobaodianhuoche"
 
 
 screen.init(0)
@@ -55,7 +56,7 @@ var.lun = 0
 --全局变量
 
 function up(name,other)
-	local url = 'http://idfa888.com/Public/idfa/?service=idfa.idfa'
+	local url =  'http://wenfree.cn/api/Public/idfa/?service=idfa.idfa'
 	local idfalist ={}
 	idfalist.phonename = phonename or device.name()
 	idfalist.phoneimei = phoneimei or sys.mgcopyanswer("SerialNumber")
@@ -86,22 +87,24 @@ apparr.right={{{462,666,0x007aff},{225,666,0x007aff},}, 85, 54, 394, 590, 809}
 
 web={}
 web.open={{{526,632,0x007aff},{396,622,0x3897ff},{393,623,0xffffff},},85}
-
+web.点击下载={{{335, 952, 0x814d40},{130, 938, 0xffdf20},{525, 972, 0xffc20f},{537, 893, 0x052ee2},}, 85, 60, 847, 575, 1032}
 --融360
 --urls = "http://m.rong360.com/app/osdown/?ios=https://itunes.apple.com/cn/app/id1026689855?mt=8&android=https://campaign.rong360.com/applanding/rongapp/landing_22.html?&weixin=&from=zckj_xgxyk_ceshi01"
 --全日空海淘
-urls = "https://at.umeng.com/C09j0j"
+--urls = "https://at.umeng.com/C09j0j"
+urls = "https://share-m.kakamobi.com/activity.kakamobi.com/jiakaobaodian-jiaoliantuiguang/down.html?jxpid=v3_59260679&cityCode=&proxyName=%25E6%259D%25A8%25E5%25BA%25B7&jxrid=59260679"
 function open(urls)
 	openUrl(urls)
 	delay(3)
 	local timeline = os.time()
 	local outtimes = 60
 	while os.time()-timeline < outtimes do
-		if d(web.open,"web.open",true,1)then
-			delay(math.random(10,15))
+--		if d(web.open,"web.open",true,1)then
+			delay(math.random(14,15))
 			return true
-		end
-		delay(1)
+--		elseif d(web.点击下载,'web.点击下载',true) then
+--		end
+--		delay(1)
 	end
 	log("open time ",true)
 end
@@ -150,9 +153,9 @@ function newidfa(keys,times)
 		if false or vpn()then
 			XXTfakerNewPhone('com.apple.mobilesafari')
 			delay(1)
-			if open(urls) then
-				if XXTfakerNewPhone(bid[keys])then
-					idfa = XXTfakerGetinfo(bid[keys])['IDFA']
+			if XXTfakerNewPhone(bid[keys])then
+				idfa = XXTfakerGetinfo(bid[keys])['IDFA']
+				if open(urls) then
 					local TIMEline = os.time()
 					local OUTtime = rd(45,50)
 					while os.time()- TIMEline < OUTtime do
@@ -185,16 +188,17 @@ while true do
 	log("vpn-key")
 
 	-----------------------------------
-			local TaskDate = ( get_task() )
-			if TaskDate then
-				for i,v in ipairs(TaskDate) do
-					work = v.work
-					task_id = v.task_id
-					if bid[work] ~= nil then
+--			local TaskDate = ( get_task() )
+--			if TaskDate then
+--				for i,v in ipairs(TaskDate) do
+--					work = v.work
+					work = '驾考宝典'
+--					task_id = v.task_id
+--					if bid[work] ~= nil then
 						newidfa(work,1)
-					end
-				end
-			end
+--					end
+--				end
+--			end
 	------------------------------------
 	ends()
 end

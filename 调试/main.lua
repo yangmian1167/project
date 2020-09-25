@@ -605,7 +605,7 @@ douyinlist = {
 --{"67","安遇遇","https://v.douyin.com/X78wcX/"},
 --{"68","安燕燕","https://v.douyin.com/XWEJ3r/"},
 --{"69","安淼淼","https://v.douyin.com/X7Rkxd/"},
-{"70","李金金","https://v.douyin.com/X7e8eN/"},
+--{"70","李金金","https://v.douyin.com/X7e8eN/"},
 --{"71","张想想","https://v.douyin.com/X7Uprq/"},
 --{"72","张琼琼","https://v.douyin.com/X78KXA/"},
 --{"73","李寅寅","https://v.douyin.com/X7JcAn/"},
@@ -741,7 +741,7 @@ douyinlist = {
 
 }
 
-
+--[[
 dy = {}
 
 dy.打开看看={{{475, 813, 0x161823},{443, 810, 0xffffff},{421, 810, 0x161823},{406, 810, 0x161823},{190, 817, 0x8e8f94},}, 85, 105, 777, 539, 846}
@@ -791,3 +791,185 @@ end
 while true do
 getu()
 end
+
+--]]
+
+--[[
+
+function getData() --获取数据
+    local getList = function(path)
+        local a = io.popen("ls "..path)
+        local f = {};
+        for l in a:lines() do
+            table.insert(f,l)
+        end
+        return f
+    end
+    local Wildcard = getList("/var/mobile/Containers/Data/Application")
+    for var = 1,#Wildcard do
+        local file = io.open("/var/mobile/Containers/Data/Application/"..Wildcard[var].."/Library/WechatPrivate/wx.dat","rb")
+        if file then
+            local str = file:read("*a")
+            file:close()
+ 
+            local str = string.tohex(str) --16进制编码
+
+            return str
+        end
+    end
+end
+
+
+var  = getData()
+log(var)
+
+function writeData(data) --写入数据（62数据）
+    local getList = function(path)
+        local a = io.popen("ls "..path)
+        local f = {};
+        for l in a:lines() do
+            table.insert(f,l)
+        end
+        return f
+    end
+    local Wildcard = getList("/var/mobile/Containers/Data/Application")
+    for var = 1,#Wildcard do
+        local file = io.open("/var/mobile/Containers/Data/Application/"..Wildcard[var].."/Library/WechatPrivate/wx.dat","w+")
+        if file then
+            file:write(data)
+            file:close()
+            return true
+        end
+    end
+end
+
+writeData(var)
+--]]
+
+-- 备份 idfav 信息
+--app.quit('*') -- 关闭所有应用
+--local old_idfavs = clear.idfav()
+--local f = io.open("/var/mobile/Media/1ferver/res/old_idfavs.txt", "wb")
+--if f then
+--    f:write(old_idfavs)
+--    f:close()
+----    clear.caches() -- 清理一下系统缓存
+--    sys.alert("备份成功")
+--else
+--    clear.idfav(old_idfavs) -- 无法备份的情况下立马恢复
+--    clear.caches() -- 清理一下系统缓存
+--    sys.alert("备份失败")
+--end
+--local f = io.open("/var/mobile/Media/1ferver/res/old_idfavs.txt", "rb")
+--if f then
+--    local old_idfavs = f:read("*a")
+--    f:close()
+----    close_all_app() -- 关闭所有应用
+--    local current_idfavs = clear.idfav(old_idfavs)
+--    if current_idfavs then
+--        f = io.open("/var/mobile/Media/1ferver/res/current_idfavs.txt", "wb")
+--        f:write(current_idfavs) -- 将现有的 idfav 信息保存到另一个文件
+--        f:close()
+----        clear.caches() -- 清理一下系统缓存
+--        sys.alert("恢复 idfav 信息成功")
+--    else
+--        sys.alert("恢复 idfav 信息失败")
+--    end
+--else
+--    sys.alert("文件打开失败")
+--end
+
+
+
+
+
+--function new()
+--	openURL("IGG".."://cmd/".."newrecord");
+--	delay(4)
+--end
+
+--function nextgame()
+--	openURL("IGG:".."//cmd/".."nextrecord");
+--	delay(4)
+--end
+--function getparam()
+--	openURL("IGG:".."//cmd/".."getcurrentrecordparam");
+--	delay(4)
+--end
+
+--local awzbid = 'Y'..'O'..'Y'
+----local awzbid = 'A'..'L'..'S'
+
+
+--function activeawz(app_,t)
+--	t = t or 0.5
+--	bid_ = app.front_bid()
+--	if bid_ ~= app_ then
+--		nLog(app_.."，准备启动")
+--		app.run(app_)
+--		sys.msleep(t*1000)
+--		return true
+--	end
+--end
+
+--function getOnlineName()
+--	function getName()
+--		local code = http.get("http://127.0.0.1:1688/cmd?fun=getcurrentrecordparam");
+--		if code == 200 then
+--			log('OK')
+--			local jg = file.get_lines('/var/mobile/iggparams.txt')
+--			return jg
+--		end	
+--	end
+--	timeLine = os.time()
+--	outTime = 60 * 0.5
+--	while (os.time()-timeLine < outTime) do
+--		if activeawz(awzbid,3)then
+--		else
+--			return getName()
+--		end
+--		sys.msleep(1000)
+--	end
+--	nLog('设置超时')
+--end
+
+
+
+--function model_()
+--	name = device.name()
+--	name = string.sub(name,8)
+--	log(name)
+--	if name == '1' or name == '6' then
+--		mod = 'iPhone9,1'
+--		return mod
+--	elseif name == '2' or name == '7' then
+--		mod = 'iPhone9,2'
+--		return mod
+--	elseif name == '3' or name == '8' then
+--		mod = 'iPhone10,1'
+--		return mod
+--	elseif name == '4' or name == '9' then
+--		mod = 'iPhone10,2'
+--		return mod
+--	elseif name == '5' or name == '0' then
+--		mod = 'iPhone10,3'
+--		return mod
+--	end	
+--end	
+
+
+--model_()
+--log (mod)
+
+
+
+--log(device.serial_number())
+--log(device.set_name())
+
+
+
+XXTfakerNewPhone(app.front_bid())
+
+
+
+
